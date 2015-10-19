@@ -40,13 +40,16 @@ if(isset($_POST['login'])){
 	        	
 	            $response["success"] = 1;
 				$response["message"] = "User successfully Logged In.";
-				$response["uid"] = $user["uid"];
-				$response["name"] = $user["name"];
-				$response["year"] = $user["year"];
-				$response["contact"] = $user["contact"];
-				$response["sid"] = $user["sid"];
-				
-				echo json_encode($response);
+				// $response["uid"] = $user["sid"];
+				// $response["name"] = $user["name"];
+				// $response["email"] = $user["email"];
+				// $response["contact"] = $user["contact"];
+				// $response["dob"] = $user["dob"];
+				// $response["sex"] = $user["sex"];
+				$user["password"]= 0;
+				$user["success"] = 1;
+				$user["message"] = "User successfully Logged In.";
+				echo json_encode($user);
 	            
 	        } else{
 	             $response["success"] = 0;
@@ -83,13 +86,11 @@ if(isset($_POST['login'])){
 	        	
 	            $response["success"] = 1;
 				$response["message"] = "User successfully Logged In.";
-				$response["uid"] = $user["uid"];
-				$response["name"] = $user["name"];
-				$response["year"] = $user["year"];
-				$response["contact"] = $user["contact"];
-				$response["sid"] = $user["sid"];
+				$user["password"] = 0;
+				$user["success"] = 1;
+				$user["message"] = "User successfully Logged In.";
 				
-				echo json_encode($response);
+				echo json_encode($user);
 	            
 	        } else{
 	             $response["success"] = 0;
@@ -126,13 +127,13 @@ if(isset($_POST['login'])){
 	        	
 	            $response["success"] = 1;
 				$response["message"] = "User successfully Logged In.";
-				$response["uid"] = $user["uid"];
-				$response["name"] = $user["name"];
-				$response["year"] = $user["year"];
-				$response["contact"] = $user["contact"];
-				$response["sid"] = $user["sid"];
+				$user["password"] = 0;
+				$user["success"] = 1;
+				$user["message"] = "User successfully Logged In.";
 				
-				echo json_encode($response);
+				echo json_encode($user);
+				
+				
 	            
 	        } else{
 	             $response["success"] = 0;
