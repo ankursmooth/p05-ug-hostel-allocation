@@ -19,4 +19,4 @@ $pdo = new PDO(
     MYSQL_PASSWORD, 
     $pdoOptions 
 );
-
+?>
