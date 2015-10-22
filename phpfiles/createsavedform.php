@@ -7,13 +7,12 @@ $response = array();
 
 require 'connect.php';
 
-if(isset($_POST ['createsavedform'])){
+if(isset($_POST ['createsavedform']) && isset($_POST ['sid']) && isset($_POST ['sname']) && isset($_POST ['roominwing']) && isset($_POST ['pfid']) && isset($_POST ['hostelid']) && isset($_POST ['floorno'])){
     $uid = !empty($_POST['uid']) ? trim($_POST['uid']) : null;
-    $pfid = !empty($_POST['pfid']) ? trim($_POST['pfid']) : null;
-    $floorno = !empty($_POST['floorno']) ? trim($_POST['floorno']) : null;
-    $hostelid = !empty($_POST['hostelid']) ? trim($_POST['hostelid']) : null;
+    
     $i=1;
     $sid = array();
+
     foreach($_POST['sid'] as $key => $value) {
         
         $sid[$i]=$value;
@@ -45,13 +44,22 @@ if(isset($_POST ['createsavedform'])){
         $it = $it +1;
     }
     $it=1;
-    $pfid = array();
-    foreach($_POST['pfid'] as $key => $value) {
+    $hostelid = array();
+    foreach($_POST['hostelid'] as $key => $value) {
         
-        $pfid[$it]=$value;
+        $hostelid[$it]=$value;
         //echo $key, ' => ', $value, '<br />';
         $it = $it +1;
     }
+    $it=1;
+    $floorno = array();
+    foreach($_POST['floorno'] as $key => $value) {
+        
+        $floorno[$it]=$value;
+        //echo $key, ' => ', $value, '<br />';
+        $it = $it +1;
+    }
+    
     $sql = "SELECT wfid FROM savedwingform WHERE sid = :uid";
     $stmt = $pdo->prepare($sql);
     $stmt->bindValue(':uid', $uid);
@@ -70,7 +78,7 @@ if(isset($_POST ['createsavedform'])){
         $stmt = $pdo->prepare($sql);
         $stmt->bindValue(':uid', $uid);
         $stmt->execute();
-        $sql = "DELETE FROM savedpreferances WHERE sid = :uid";
+        $sql = "DELETE FROM savedpreferences WHERE sid = :uid";
         $stmt = $pdo->prepare($sql);
         $stmt->bindValue(':uid', $uid);
         $stmt->execute();
@@ -99,37 +107,39 @@ if(isset($_POST ['createsavedform'])){
         $sql = "INSERT INTO savedwingformdetails (wfid, sid, roominwing, sname) VALUES (:wfid, :sid, :roominwing, :sname)";
         $stmt = $pdo->prepare($sql);
         
-        $stmt->bindValue(':wfid', $wfid[$j]);
+        $stmt->bindValue(':wfid', $wfid);
         $stmt->bindValue(':sid', $sid[$j]);
         $stmt->bindValue(':roominwing', $roominwing[$j]);
         $stmt->bindValue(':sname', $sname[$j]);
         $result2 = $stmt->execute();    
     
     }
+    for ($j=1; $j < $it ; $j++) { 
+        # code...
+        $sql = "INSERT INTO savedpreferences (wfid, pfid, hostelid, floorno) VALUES (:wfid, :pfid, :hostelid, :floorno)";
+        $stmt = $pdo->prepare($sql);
+        
+        $stmt->bindValue(':wfid', $wfid);
+        $stmt->bindValue(':hostelid', $hostelid[$j]);
+        $stmt->bindValue(':pfid', $pfid[$j]);
+        
+        $stmt->bindValue(':floorno', $floorno[$j]);
+        $result2 = $stmt->execute();
+    }
     
-    $sql = "INSERT INTO savedpreferances (wfid, pfid, hostelid, floorno) VALUES (:wfid, :pfid, :hostelid, :floorno)";
-    $stmt = $pdo->prepare($sql);
-    
-    $stmt->bindValue(':wfid', $wfid);
-    $stmt->bindValue(':hostelid', $hostelid);
-    $stmt->bindValue(':pfid', $pfid);
-    
-    $stmt->bindValue(':floorno', $floorno);
-    $result2 = $stmt->execute();
     
     
-    if($result){
+    if($result2){
     
             $response["success"] = 1;
-            $response["hostelid"] = "notification sent to other users";
+            $response["message"] = "wing form may have been saved";
             $response["wfid"] = $wfid;
-            $response["usergroup"] = $usergroup;
             echo json_encode($response);
     }
     else
     {
         $response["success"] = 0;
-        $response["hostelid"] = "Unknown Error";
+        $response["message"] = "Unknown Error";
 
         echo json_encode($response);
     }
@@ -138,7 +148,7 @@ if(isset($_POST ['createsavedform'])){
 else
 {
     $response["success"] = 0;
-    $response["hostelid"] = "Unknown Error 2";
+    $response["message"] = "Unknown Error 2";
 
     echo json_encode($response);
 }

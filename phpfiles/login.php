@@ -53,7 +53,7 @@ if(isset($_POST['login'])){
 	            
 	        } else{
 	             $response["success"] = 0;
-				 $response["message"] = "Oops! An error occurred.";
+				 $response["message"] = "Oops! Incorrect Password!";
 					
 				 echo json_encode($response);
 	        }
@@ -94,7 +94,7 @@ if(isset($_POST['login'])){
 	            
 	        } else{
 	             $response["success"] = 0;
-				 $response["message"] = "Oops! An error occurred.";
+				 $response["message"] = "Oops! Incorrect Password!";
 					
 				 echo json_encode($response);
 	        }
@@ -137,7 +137,7 @@ if(isset($_POST['login'])){
 	            
 	        } else{
 	             $response["success"] = 0;
-				 $response["message"] = "Oops! An error occurred.";
+				 $response["message"] = "Oops! Incorrect Password!";
 					
 				 echo json_encode($response);
 	        }
