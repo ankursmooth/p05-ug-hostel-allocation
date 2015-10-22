@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.ankurshukla.hostel" >
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:name=".Controller.AppController"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name" >
+
+        </activity>
+        <activity
+            android:name=".DashBoard"
+            android:label="@string/title_activity_dash_board" >
+        </activity>
+        <activity
+            android:name=".Dashboard_Activity.Preference"
+            android:label="@string/title_activity_wing_form" >
+        </activity>
+        <activity
+            android:name=".ConflictUi"
+            android:label="@string/title_activity_conflict_ui" >
+        </activity>
+        <activity
+            android:name=".Dashboard_Activity.WingForm"
+            android:label="WingForm" >
+        </activity>
+        <activity
+            android:name=".Dashboard_Activity.Notifications"
+            android:label="@string/title_activity_notifications" >
+        </activity>
+        <activity
+            android:name=".SplashScreen"
+            android:label="@string/title_activity_splash_screen" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

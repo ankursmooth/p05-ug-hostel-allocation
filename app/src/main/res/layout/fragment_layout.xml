@@ -1,0 +1,48 @@
+<com.example.ankurshukla.hostel.DashboardLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_weight="1"
+    android:background="@color/background"
+     >
+
+
+    <!--  Profile Button -->
+    <Button
+        android:id="@+id/btn_notify"
+        style="@style/DashboardButton"
+        android:drawableTop="@drawable/notify"
+        android:text="Notifications"
+        android:background="@color/lightgrey"
+        android:textColor="@color/black"/>
+
+    <!--  Tasks Button -->
+    <Button
+        android:id="@+id/btn_wing"
+        style="@style/DashboardButton"
+        android:drawableTop="@drawable/wing"
+        android:text="Wing Allocation"
+        android:background="@color/lightgrey"
+        android:textColor="@color/black"/>
+
+    <!--  Upload Button -->
+    <Button
+        android:id="@+id/btn_search"
+        style="@style/DashboardButton"
+        android:drawableTop="@drawable/search"
+        android:text="Search"
+        android:background="@color/lightgrey"
+        android:textColor="@color/black"/>
+
+    <!--  Summary Button -->
+    <Button
+        android:id="@+id/btn_special"
+        style="@style/DashboardButton"
+        android:drawableTop="@drawable/wing"
+        android:text="Special Request"
+        android:background="@color/lightgrey"
+        android:textColor="@color/black"/>
+
+
+
+</com.example.ankurshukla.hostel.DashboardLayout>
