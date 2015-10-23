@@ -16,12 +16,14 @@ if(isset($_POST ['doallocation'])){
 
     $stmt->execute();
     while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+        // for every wing form
         $wfid= $row['wfid'];
         $noofstudent= $row['noofstudent'];
         $noofrooms= $noofstudent/2;
         // echo $noofstudent;
         // echo $wfid;
         // echo $noofrooms;
+
         $sql = "SELECT * FROM preferences where wfid = :wfid";
         $stmt = $pdo->prepare($sql);
         $stmt->bindValue(':wfid', $wfid);
@@ -29,25 +31,82 @@ if(isset($_POST ['doallocation'])){
         $stmt->execute();
         
         $notizes["pref"]= array();
-        $i=0;
+        //$i=0;
         $pref=array();
         $prevroominwing=0;
         while($notic = $stmt->fetch(PDO::FETCH_ASSOC)){
-            
+            // check each preference
             $pref["wfid"]=$notic["wfid"];
             $pref["pfid"]=$notic["pfid"];
             $pref["floorno"]=$notic["floorno"];
             $pref["hostelid"]=$notic["hostelid"];
+            if($pref["hostelid"]=="gh"){
+                $gh=true;
+            }
+            else
+                $gh=false;
             // $pref["ntype"]=$notic["ntype"];
             // $pref["ndate"]=$notic["ndate"];
             $sql = "SELECT hostelid, floorno, count(*) as num FROM rooms where hostelid = :hostelid and floorno= :floorno and rcondition = "unallocated"";
             $stmt = $pdo->prepare($sql);
+
             $stmt->bindValue(':hostelid', $pref["hostelid"]);
             $stmt->bindValue(':floorno', $pref["floorno"]);
             $stmt->execute();
-            $checkroom = $stmt->fetch(PDO::FETCH_ASSOC)
+            $checkroom = $stmt->fetch(PDO::FETCH_ASSOC);
             if($checkroom['num']>=$noofrooms){
                 // do allocation
+                $sql = "SELECT * FROM wingformdetails where wfid = :wfid order by roominwing asc";
+                $stmt = $pdo->prepare($sql);
+                $stmt->bindValue(':wfid', $wfid);
+                
+                $stmt->execute();
+                $notizes= array();
+                $notizes["entry"]= array();
+                $entry=array();
+                $prevroominwing=1;
+                // $pref["ndate"]=$notic["ndate"];
+                $sql = "SELECT hostelid, floorno, roomid as num FROM rooms where hostelid = :hostelid and floorno= :floorno and rcondition = "unallocated"";
+                $stmt = $pdo->prepare($sql);
+
+                $stmt->bindValue(':hostelid', $pref["hostelid"]);
+                $stmt->bindValue(':floorno', $pref["floorno"]);
+                $stmt->execute();
+                $roomss=array();
+                $hostelss=array();
+                while($userooms = $stmt->fetch(PDO::FETCH_ASSOC)){
+                    $roomss[$i]=$userooms['roomid'];
+                    $hostelss[$i]=$userooms['hostelid'];
+                }
+                while($notic = $stmt->fetch(PDO::FETCH_ASSOC)){
+                    
+                    $entry["wfid"]=$notic["wfid"];
+                    $entry["sid"]=$notic["sid"];
+                    $entry["roominwing"]=$notic["roominwing"];
+
+                    if($prevroominwing==$entry["roominwing"]){
+                        $sql = "INSERT INTO allocaton (hostelid, sid, roomid) VALUES (:hostelid, :sid, :roomid)";
+                        $stmt = $pdo->prepare($sql);
+                        $stmt->bindValue(':hostelid', $pref["hostelid"]);
+                        $stmt->bindValue(':sid', $pref["sid"]);
+                        $stmt->execute();
+                    }
+                    $prevroominwing=$entry["roominwing"];
+
+                    //$entry["sname"]=$notic["sname"];
+                    // $entry["ntype"]=$notic["ntype"];
+                    // $entry["ndate"]=$notic["ndate"];
+                    //array_push($notizes["entry"], $entry);
+                }    
+        
+
+                break;
+            }
+
+        }
+        if($prevroominwing==0){
+            // no preference satisfied
+            if($gh==true){
                 $sql = "SELECT * FROM wingformdetails where wfid = :wfid order by roominwing asc";
                 $stmt = $pdo->prepare($sql);
                 $stmt->bindValue(':wfid', $wfid);
@@ -77,14 +136,13 @@ if(isset($_POST ['doallocation'])){
                     // $entry["ndate"]=$notic["ndate"];
                     //array_push($notizes["entry"], $entry);
                 }    
-        
-
-                break;
             }
+            else{
 
+            }
         }
 
-        
+    }
         
     // not in submitted form
     $sql = "SELECT sid, sex order FROM student WHERE sid NOT IN (SELECT sid FROM wingformdetails) order by sex desc ";
