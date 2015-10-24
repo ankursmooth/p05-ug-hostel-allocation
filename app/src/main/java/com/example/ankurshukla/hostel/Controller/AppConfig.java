@@ -6,8 +6,11 @@ package com.example.ankurshukla.hostel.Controller;
 public class AppConfig {
 
     // Server create notification url
-    public static String URL_CREATE_NOTIFY = "http://hostel.16mb.com/createnotification.php";
+    public static String URL_CREATE_NOTIFY = "http://192.168.133.1/sepmdb/createnotification.php";
 
     //Server get notifications url
-    public static String URL_GET_NOTIFY="http://hostel.16mb.com/getnotification.php";
+    public static String URL_GET_NOTIFY="http://192.168.133.1/sepmdb/getnotification.php";
+
+    //Server Login URL
+    public static String URL_LOGIN="http://192.168.133.1/sepmdb/login.php";
 }

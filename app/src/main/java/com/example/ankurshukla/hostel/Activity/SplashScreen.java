@@ -1,12 +1,13 @@
-package com.example.ankurshukla.hostel;
+package com.example.ankurshukla.hostel.Activity;
 
-import android.app.ActionBar;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.example.ankurshukla.hostel.R;
 
 public class SplashScreen extends AppCompatActivity {
 

@@ -31,11 +31,6 @@ public class WingForm extends AppCompatActivity {
         one= (LinearLayout) findViewById(R.id.wfl1);
         two= (LinearLayout) findViewById(R.id.wfl2);
         three= (LinearLayout) findViewById(R.id.wfl3);
-        four= (LinearLayout) findViewById(R.id.wfl4);
-        five= (LinearLayout) findViewById(R.id.wfl5);
-        six= (LinearLayout) findViewById(R.id.wfl6);
-        seven= (LinearLayout) findViewById(R.id.wfl7);
-        eight= (LinearLayout) findViewById(R.id.wfl8);
 
 
         if(number.equals("One")){
@@ -62,25 +57,6 @@ public class WingForm extends AppCompatActivity {
             seven.setVisibility(View.GONE);
             eight.setVisibility(View.GONE);
         }
-        else if(number.equals("Four")){
-            five.setVisibility(View.GONE);
-            six.setVisibility(View.GONE);
-            seven.setVisibility(View.GONE);
-            eight.setVisibility(View.GONE);
-        }
-        else if(number.equals("Five")){
-            six.setVisibility(View.GONE);
-            seven.setVisibility(View.GONE);
-            eight.setVisibility(View.GONE);
-        }
-        else if(number.equals("Six")){
-            seven.setVisibility(View.GONE);
-            eight.setVisibility(View.GONE);
-        }
-        else if(number.equals("Seven")){
-            eight.setVisibility(View.GONE);
-        }
-
 
     }
 
