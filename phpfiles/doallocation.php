@@ -56,16 +56,6 @@ if(isset($_POST ['doallocation'])){
             $checkroom = $stmt->fetch(PDO::FETCH_ASSOC);
             if($checkroom['num']>=$noofrooms){
                 // do allocation
-                $sql = "SELECT * FROM wingformdetails where wfid = :wfid order by roominwing asc";
-                $stmt = $pdo->prepare($sql);
-                $stmt->bindValue(':wfid', $wfid);
-                
-                $stmt->execute();
-                $notizes= array();
-                $notizes["entry"]= array();
-                $entry=array();
-                $prevroominwing=1;
-                // $pref["ndate"]=$notic["ndate"];
                 $sql = "SELECT hostelid, floorno, roomid as num FROM rooms where hostelid = :hostelid and floorno= :floorno and rcondition = "unallocated"";
                 $stmt = $pdo->prepare($sql);
 
@@ -74,24 +64,50 @@ if(isset($_POST ['doallocation'])){
                 $stmt->execute();
                 $roomss=array();
                 $hostelss=array();
+                $i=1;
                 while($userooms = $stmt->fetch(PDO::FETCH_ASSOC)){
                     $roomss[$i]=$userooms['roomid'];
                     $hostelss[$i]=$userooms['hostelid'];
+                    $roomss[$i+1]=$userooms['roomid'];
+                    $hostelss[$i+1]=$userooms['hostelid'];
+                    $i= $i +2;
                 }
-                while($notic = $stmt->fetch(PDO::FETCH_ASSOC)){
+
+                $sql = "SELECT * FROM wingformdetails where wfid = :wfid order by roominwing asc";
+                $stmtT = $pdo->prepare($sql);
+                $stmtT->bindValue(':wfid', $wfid);
+                
+                $stmtT->execute();
+                $notizes= array();
+                $notizes["entry"]= array();
+                $entry=array();
+                $prevroominwing=1;
+                // $pref["ndate"]=$notic["ndate"];
+                $i=1;
+                while($notic = $stmtT->fetch(PDO::FETCH_ASSOC)){
                     
                     $entry["wfid"]=$notic["wfid"];
                     $entry["sid"]=$notic["sid"];
                     $entry["roominwing"]=$notic["roominwing"];
 
-                    if($prevroominwing==$entry["roominwing"]){
+                    //if($prevroominwing==$entry["roominwing"]){
                         $sql = "INSERT INTO allocaton (hostelid, sid, roomid) VALUES (:hostelid, :sid, :roomid)";
                         $stmt = $pdo->prepare($sql);
-                        $stmt->bindValue(':hostelid', $pref["hostelid"]);
-                        $stmt->bindValue(':sid', $pref["sid"]);
+                        $stmt->bindValue(':hostelid', $hostelss[$i]);
+                        $stmt->bindValue(':sid', $entry["sid"]);
+                        $stmt->bindValue(':roomid', $roomss[$i]);
                         $stmt->execute();
-                    }
-                    $prevroominwing=$entry["roominwing"];
+                        $sql = "UPDATE rooms Set rcondition = "allocated" WHERE roomid= :roomid and hostelid= :hostelid";
+                        $stmt = $pdo->prepare($sql);
+                        $stmt->bindValue(':hostelid', $hostelss[$i]);
+                       
+                        $stmt->bindValue(':roomid', $roomss[$i]);
+                        $stmt->execute();
+
+
+                        $i= $i +1;
+                    //}
+                    //$prevroominwing=$entry["roominwing"];
 
                     //$entry["sname"]=$notic["sname"];
                     // $entry["ntype"]=$notic["ntype"];
@@ -107,36 +123,51 @@ if(isset($_POST ['doallocation'])){
         if($prevroominwing==0){
             // no preference satisfied
             if($gh==true){
-                $sql = "SELECT * FROM wingformdetails where wfid = :wfid order by roominwing asc";
-                $stmt = $pdo->prepare($sql);
-                $stmt->bindValue(':wfid', $wfid);
                 
-                $stmt->execute();
+                $sql = "SELECT * FROM wingformdetails where wfid = :wfid order by roominwing asc";
+                $stmtT = $pdo->prepare($sql);
+                $stmtT->bindValue(':wfid', $wfid);
+                
+                $stmtT->execute();
                 $notizes= array();
                 $notizes["entry"]= array();
                 $entry=array();
                 $prevroominwing=1;
-                while($notic = $stmt->fetch(PDO::FETCH_ASSOC)){
+                // $pref["ndate"]=$notic["ndate"];
+                $i=1;
+                while($notic = $stmtT->fetch(PDO::FETCH_ASSOC)){
                     
                     $entry["wfid"]=$notic["wfid"];
                     $entry["sid"]=$notic["sid"];
                     $entry["roominwing"]=$notic["roominwing"];
 
-                    if($prevroominwing==$entry["roominwing"]){
+                    //if($prevroominwing==$entry["roominwing"]){
                         $sql = "INSERT INTO allocaton (hostelid, sid, roomid) VALUES (:hostelid, :sid, :roomid)";
                         $stmt = $pdo->prepare($sql);
-                        $stmt->bindValue(':hostelid', $pref["hostelid"]);
-                        $stmt->bindValue(':sid', $pref["sid"]);
+                        $stmt->bindValue(':hostelid', $hostelss[$i]);
+                        $stmt->bindValue(':sid', $entry["sid"]);
+                        $stmt->bindValue(':roomid', $roomss[$i]);
                         $stmt->execute();
-                    }
-                    $prevroominwing=$entry["roominwing"];
+                        $sql = "UPDATE rooms Set rcondition = "allocated" WHERE roomid= :roomid and hostelid= :hostelid";
+                        $stmt = $pdo->prepare($sql);
+                        $stmt->bindValue(':hostelid', $hostelss[$i]);
+                       
+                        $stmt->bindValue(':roomid', $roomss[$i]);
+                        $stmt->execute();
+
+
+                        $i= $i +1;
+                    //}
+                    //$prevroominwing=$entry["roominwing"];
 
                     //$entry["sname"]=$notic["sname"];
                     // $entry["ntype"]=$notic["ntype"];
                     // $entry["ndate"]=$notic["ndate"];
                     //array_push($notizes["entry"], $entry);
                 }    
-            }
+        
+            }    
+            
             else{
 
             }
