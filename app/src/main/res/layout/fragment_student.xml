@@ -4,12 +4,12 @@
     android:layout_height="fill_parent"
     android:layout_weight="1"
     android:background="@color/background"
-     >
+    >
 
 
     <!--  Profile Button -->
     <Button
-        android:id="@+id/btn_warden_notify"
+        android:id="@+id/btn_student_notify"
         style="@style/DashboardButton"
         android:drawableTop="@drawable/notify"
         android:text="Notifications"
@@ -18,16 +18,16 @@
 
     <!--  Tasks Button -->
     <Button
-        android:id="@+id/btn_warden_wing"
+        android:id="@+id/btn_student_wing"
         style="@style/DashboardButton"
         android:drawableTop="@drawable/wing"
-        android:text="Wing Allocation"
+        android:text="Wing Form"
         android:background="@color/lightgrey"
         android:textColor="@color/black"/>
 
     <!--  Upload Button -->
     <Button
-        android:id="@+id/btn_warden_search"
+        android:id="@+id/btn_student_search"
         style="@style/DashboardButton"
         android:drawableTop="@drawable/search"
         android:text="Search"
@@ -36,7 +36,7 @@
 
     <!--  Summary Button -->
     <Button
-        android:id="@+id/btn_warden_special"
+        android:id="@+id/btn_student_special"
         style="@style/DashboardButton"
         android:drawableTop="@drawable/wing"
         android:text="Special Request"

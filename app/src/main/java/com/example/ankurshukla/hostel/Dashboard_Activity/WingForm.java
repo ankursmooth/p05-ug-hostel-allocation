@@ -36,26 +36,9 @@ public class WingForm extends AppCompatActivity {
         if(number.equals("One")){
             two.setVisibility(View.GONE);
             three.setVisibility(View.GONE);
-            four.setVisibility(View.GONE);
-            five.setVisibility(View.GONE);
-            six.setVisibility(View.GONE);
-            seven.setVisibility(View.GONE);
-            eight.setVisibility(View.GONE);
         }
         else if(number.equals("Two")){
             three.setVisibility(View.GONE);
-            four.setVisibility(View.GONE);
-            five.setVisibility(View.GONE);
-            six.setVisibility(View.GONE);
-            seven.setVisibility(View.GONE);
-            eight.setVisibility(View.GONE);
-        }
-        else if(number.equals("Three")){
-            four.setVisibility(View.GONE);
-            five.setVisibility(View.GONE);
-            six.setVisibility(View.GONE);
-            seven.setVisibility(View.GONE);
-            eight.setVisibility(View.GONE);
         }
 
     }

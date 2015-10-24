@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
         logingroup.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                usergroup=parent.getItemAtPosition(position).toString();
+                usergroup=parent.getItemAtPosition(position).toString().toLowerCase();
             }
 
             @Override
@@ -79,19 +79,28 @@ public class MainActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(usergroup.equals("Warden")) {
+                if(usergroup.equals("warden")) {
                     String suid=uid.getText().toString().toLowerCase();
                     String spaasword=password.getText().toString().toLowerCase();
 
                     if(!suid.isEmpty() && !spaasword.isEmpty()) {
-                        Warden_Details(suid,spaasword,usergroup);
-                        Intent i = new Intent(MainActivity.this, Warden_DashBoard.class);
-                        startActivity(i);
+                        Warden_Details(suid, spaasword, usergroup);
+
                     }else{
                         Toast.makeText(MainActivity.this,"Enter Both Credentials",Toast.LENGTH_SHORT).show();
                     }
                 }
-                else if(usergroup.equals("Student")){
+                else if(usergroup.equals("student")){
+                    String suid=uid.getText().toString().toLowerCase();
+                    String spaasword=password.getText().toString().toLowerCase();
+
+                    if(!suid.isEmpty() && !spaasword.isEmpty()) {
+                        Student_Details(suid, spaasword, usergroup);
+
+
+                    }else{
+                        Toast.makeText(MainActivity.this,"Enter Both Credentials",Toast.LENGTH_SHORT).show();
+                    }
 
                 }else{
 
@@ -137,7 +146,7 @@ public class MainActivity extends AppCompatActivity {
     //function to login for warden
     private void Warden_Details(final String uid,final String password,final String usergroup){
 
-        pDialog.setMessage("Registering ...");
+        pDialog.setMessage("Login ...");
         showDialog();
 
         StringRequest strReq =new StringRequest(Request.Method.POST,
@@ -160,12 +169,80 @@ public class MainActivity extends AppCompatActivity {
 
                     //writing the value to sharedpreference in phone database
                     AppController.setString(MainActivity.this, "username", name);
-                    AppController.setString(MainActivity.this, "id", wid);
+                    AppController.setString(MainActivity.this, "loginId", wid);
 
-                    String amsg = wid + name + email + contact + message + address;
 
-                    Toast.makeText(MainActivity.this,amsg ,Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this,message ,Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent(MainActivity.this, Warden_DashBoard.class);
+                    startActivity(i);
 
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(),
+                        error.getMessage(), Toast.LENGTH_LONG).show();
+                hideDialog();
+            }
+        }) {
+
+            @Override
+            protected Map<String, String> getParams() {
+                // Posting params to register url
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("login", usergroup);
+                params.put("uid", uid);
+                params.put("password",password);
+                return params;
+            }
+
+        };
+
+        AppController.getInstance().addToRequestQueue(strReq);
+        hideDialog();
+
+
+
+    }
+
+    //function to login for student
+    private void Student_Details(final String uid,final String password,final String usergroup){
+
+        pDialog.setMessage("Login ...");
+        showDialog();
+
+        StringRequest strReq =new StringRequest(Request.Method.POST,
+                AppConfig.URL_LOGIN, new Response.Listener<String>() {
+
+            @Override
+            public void onResponse(String response) {
+                hideDialog();
+
+                try {
+                    JSONObject jObj = new JSONObject(response);
+                    //Response from server
+
+                    String sid = jObj.getString("sid");
+                    String name = jObj.getString("name");
+                    String email = jObj.getString("email");
+                    String contact = jObj.getString("contact");
+                    String message = jObj.getString("message");
+                    String sex = jObj.getString("sex");
+                    String DOB = jObj.getString("DOB");
+
+                    //writing the value to sharedpreference in phone database
+                    AppController.setString(MainActivity.this, "username", name);
+                    AppController.setString(MainActivity.this, "id", sid);
+
+
+                    Toast.makeText(MainActivity.this,message ,Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent(MainActivity.this, Student_Dashboard.class);
+                    startActivity(i);
 
                 } catch (JSONException e) {
                     e.printStackTrace();

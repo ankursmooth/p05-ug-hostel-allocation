@@ -13,4 +13,7 @@ public class AppConfig {
 
     //Server Login URL
     public static String URL_LOGIN="http://192.168.133.1/sepmdb/login.php";
+
+    //Allocation create
+    public static String URl_CREATEALLOPROCESS="http://192.168.133.1/sepmdb/createalloprocess.php";
 }

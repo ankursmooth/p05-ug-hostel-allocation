@@ -112,42 +112,6 @@
 
     </LinearLayout>
 
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="20dp">
-
-        <Spinner
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:background="@color/lightgrey"
-            android:id="@+id/thirdspinerhostel"
-            android:entries="@array/hostel_name"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:paddingLeft="10dp"
-            android:layout_weight="1">
-
-        </Spinner>
-
-        <Spinner
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:background="@color/lightgrey"
-            android:id="@+id/thirdspinerfloor"
-            android:entries="@array/floor"
-            android:paddingLeft="10dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_weight="1">
-
-        </Spinner>
-
-    </LinearLayout>
-
-
         <Button
             android:layout_width="120dp"
             android:layout_height="wrap_content"

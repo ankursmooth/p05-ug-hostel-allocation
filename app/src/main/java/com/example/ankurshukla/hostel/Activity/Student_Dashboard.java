@@ -10,12 +10,10 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.ankurshukla.hostel.Controller.AppController;
-import com.example.ankurshukla.hostel.Dashboard_Activity.Notifications;
 import com.example.ankurshukla.hostel.Dashboard_Activity.Preference;
 import com.example.ankurshukla.hostel.R;
-import com.example.ankurshukla.hostel.Warden_Wing;
 
-public class Warden_DashBoard extends AppCompatActivity {
+public class Student_Dashboard extends AppCompatActivity {
 
     Button wing,notification,search,special_req;
     TextView name;
@@ -23,39 +21,32 @@ public class Warden_DashBoard extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_warden_dash_board);
+        setContentView(R.layout.activity_student__dashboard);
 
         android.support.v7.app.ActionBar actionBar=getSupportActionBar();
         actionBar.hide();
 
-        wing= (Button) findViewById(R.id.btn_warden_wing);
-        notification= (Button) findViewById(R.id.btn_warden_notify);
-        name=(TextView)findViewById(R.id.display_name);
+        wing= (Button) findViewById(R.id.btn_student_wing);
+        notification= (Button) findViewById(R.id.btn_student_notify);
+        name=(TextView)findViewById(R.id.display_sname);
 
-        String display = AppController.getString(Warden_DashBoard.this ,"username");
+        String display = AppController.getString(Student_Dashboard.this, "username");
         name.setText(display);
 
         wing.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i=new Intent(Warden_DashBoard.this, Warden_Wing.class);
+                Intent i = new Intent(Student_Dashboard.this, Preference.class);
                 startActivity(i);
             }
         });
 
-        notification.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i=new Intent(Warden_DashBoard.this, Notifications.class);
-                startActivity(i);
-            }
-        });
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_dash_board, menu);
+        getMenuInflater().inflate(R.menu.menu_student__dashboard, menu);
         return true;
     }
 
