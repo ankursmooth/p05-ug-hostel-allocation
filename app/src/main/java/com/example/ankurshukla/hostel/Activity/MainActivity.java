@@ -96,8 +96,7 @@ public class MainActivity extends AppCompatActivity {
 
                     if(!suid.isEmpty() && !spaasword.isEmpty()) {
                         Student_Details(suid, spaasword, usergroup);
-
-
+                        Get_notification(suid, usergroup);
                     }else{
                         Toast.makeText(MainActivity.this,"Enter Both Credentials",Toast.LENGTH_SHORT).show();
                     }
@@ -237,12 +236,11 @@ public class MainActivity extends AppCompatActivity {
 
                     //writing the value to sharedpreference in phone database
                     AppController.setString(MainActivity.this, "username", name);
-                    AppController.setString(MainActivity.this, "id", sid);
+                    AppController.setString(MainActivity.this, "Student_id", sid);
+                    AppController.setString(MainActivity.this,"sex",sex);
 
 
-                    Toast.makeText(MainActivity.this,message ,Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(MainActivity.this, Student_Dashboard.class);
-                    startActivity(i);
+                   Toast.makeText(MainActivity.this,message ,Toast.LENGTH_SHORT).show();
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -274,8 +272,61 @@ public class MainActivity extends AppCompatActivity {
         AppController.getInstance().addToRequestQueue(strReq);
         hideDialog();
 
+    }
 
 
+    private void Get_notification(final String uid,final String number){
+        StringRequest strReq =new StringRequest(Request.Method.POST,
+                AppConfig.URL_GET_NOTIFY, new Response.Listener<String>() {
+
+            @Override
+            public void onResponse(String response) {
+                hideDialog();
+
+                try {
+                    JSONObject jObj = new JSONObject(response);
+                    //Response from server
+
+                    String success = jObj.getString("success");
+                    String message = jObj.getString("message");
+                    String noOfNotification = jObj.getString("noofnotifications");
+
+                    //writing the value to sharedpreference in phone database
+                    AppController.setString(MainActivity.this, "noOfNotify", noOfNotification);
+
+                //    Toast.makeText(MainActivity.this, message ,Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent(MainActivity.this, Student_Dashboard.class);
+                    startActivity(i);
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(),
+                        error.getMessage(), Toast.LENGTH_LONG).show();
+                hideDialog();
+            }
+        }) {
+
+            @Override
+            protected Map<String, String> getParams() {
+                // Posting params to register url
+                String getnotification = "number";
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("usergroup", usergroup);
+                params.put("uid", uid);
+                params.put("getnotification",getnotification);
+                return params;
+            }
+
+        };
+
+        AppController.getInstance().addToRequestQueue(strReq);
     }
 
 

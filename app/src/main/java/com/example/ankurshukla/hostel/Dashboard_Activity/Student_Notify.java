@@ -4,15 +4,31 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import com.example.ankurshukla.hostel.R;
 
+import java.util.ArrayList;
+
 public class Student_Notify extends AppCompatActivity {
+
+    ListView list_msg;
+    ArrayList msg_list = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student__notify);
+
+        list_msg = (ListView)findViewById(R.id.textNotify);
+        msg_list = getIntent().getStringArrayListExtra("msg_list");
+
+
+        ArrayAdapter<String> arrayAdatpter = new ArrayAdapter<String>(Student_Notify.this,android.R.layout.simple_list_item_1,msg_list);
+        list_msg.setAdapter(arrayAdatpter);
+
+
     }
 
     @Override
