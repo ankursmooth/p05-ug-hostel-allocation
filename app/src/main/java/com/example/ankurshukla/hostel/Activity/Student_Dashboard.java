@@ -71,8 +71,6 @@ public class Student_Dashboard extends AppCompatActivity {
 
                 String uid = AppController.getString(Student_Dashboard.this,"Student_id");
                 CheckForm(uid);
-                Intent i = new Intent(Student_Dashboard.this, Preference.class);
-                startActivity(i);
             }
         });
 

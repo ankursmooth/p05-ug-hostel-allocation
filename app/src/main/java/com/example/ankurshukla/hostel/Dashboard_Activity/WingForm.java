@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.example.ankurshukla.hostel.R;
 
@@ -16,13 +17,16 @@ public class WingForm extends AppCompatActivity {
 
     LinearLayout one,two,three,four,five,six,seven,eight;
     String number;
+    String hostel[] = new String[]{"",""};
+    String floor[] = new String[]{"",""};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Intent intent=getIntent();
-        number=intent.getExtras().getString("number");
-
+        number=intent.getExtras().getString("number");//getting no of rooms in the wing from prference class
+        hostel = intent.getStringArrayExtra("Hostel_type");//getting all hostel types for preferneces
+        floor  = intent.getStringArrayExtra("Floor_type");//getting all floor types from preferences
         setContentView(R.layout.wing_form);
 
         android.support.v7.app.ActionBar actionBar=getSupportActionBar();
@@ -41,6 +45,9 @@ public class WingForm extends AppCompatActivity {
             three.setVisibility(View.GONE);
         }
 
+
+        String shostel = hostel[0] + hostel[1] +floor[0] + floor[1];
+        Toast.makeText(WingForm.this , shostel,Toast.LENGTH_SHORT).show();
     }
 
    
