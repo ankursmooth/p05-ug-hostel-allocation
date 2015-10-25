@@ -16,4 +16,8 @@ public class AppConfig {
 
     //Allocation create
     public static String URl_CREATEALLOPROCESS="http://192.168.133.1/sepmdb/createalloprocess.php";
+
+    //Allocation create
+    public static String URl_CHECKFORM="http://192.168.133.1/sepmdb/checkform.php";
+
 }

@@ -7,7 +7,7 @@
     <string-array name="usergroup">
         <item>Student</item>
         <item>Warden</item>
-        <item>Viewrs</item>
+        <item>Viewers</item>
     </string-array>
     <string name="title_activity_dash_board">DashBoard</string>
     <string name="title_activity_wing_form">WingForm</string>
@@ -33,6 +33,9 @@
     <string name="title_activity_student__dashboard">Student_Dashboard</string>
     <string name="title_activity_warden__wing">Warden_Wing</string>
     <string name="title_activity_student__notify">Student_Notify</string>
+    <string name="title_activity_dashboard">Dashboard</string>
+    <string name="title_activity_saved__form">Saved_Form</string>
+    <string name="title_activity_submitted__form">Submitted_Form</string>
 
 
 </resources>

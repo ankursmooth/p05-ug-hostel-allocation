@@ -19,7 +19,9 @@ import com.android.volley.toolbox.StringRequest;
 import com.example.ankurshukla.hostel.Controller.AppConfig;
 import com.example.ankurshukla.hostel.Controller.AppController;
 import com.example.ankurshukla.hostel.Dashboard_Activity.Preference;
+import com.example.ankurshukla.hostel.Dashboard_Activity.Saved_Form;
 import com.example.ankurshukla.hostel.Dashboard_Activity.Student_Notify;
+import com.example.ankurshukla.hostel.Dashboard_Activity.Submitted_Form;
 import com.example.ankurshukla.hostel.R;
 
 import org.json.JSONArray;
@@ -53,6 +55,7 @@ public class Student_Dashboard extends AppCompatActivity {
         String display = AppController.getString(Student_Dashboard.this, "username");
         name.setText(display);
 
+        //number takees the number of notification in database
         final String number = AppController.getString(Student_Dashboard.this, "noOfNotify");
         if(number.equals("0")){
             student_notify.setText("");
@@ -61,9 +64,13 @@ public class Student_Dashboard extends AppCompatActivity {
             student_notify.setText(notifym_msg);
         }
 
+        //checkform is called first to check whether is there any saved or submiited form present or not
         wing.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                String uid = AppController.getString(Student_Dashboard.this,"Student_id");
+                CheckForm(uid);
                 Intent i = new Intent(Student_Dashboard.this, Preference.class);
                 startActivity(i);
             }
@@ -77,7 +84,7 @@ public class Student_Dashboard extends AppCompatActivity {
                     // alertdialogBuilder.setTitle("");
 
                     alertdialogBuilder
-                            .setMessage("No Notification")
+                            .setMessage("No Notifications")
                             .setCancelable(false)
                             .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                                 @Override
@@ -141,7 +148,7 @@ public class Student_Dashboard extends AppCompatActivity {
                     for(int i=0;i<Integer.parseInt(number);i++){
                         JSONObject jobj1=  notify.getJSONObject(i);
                         /* msg = msg + jobj1.getString("nmessage");*/
-                        msg_list.add(jobj1.getString("nmessage"));
+                        msg_list.add(jobj1.getString("nmessage")+" by "+jobj1.getString("creatorid")+ " on "+ jobj1.getString("ndate") + " ("+ jobj1.getString("ntype")+ ").");
                     }
                    /* Toast.makeText(Student_Dashboard.this,msg,Toast.LENGTH_SHORT).show();*/
 
@@ -182,5 +189,63 @@ public class Student_Dashboard extends AppCompatActivity {
         };
 
         AppController.getInstance().addToRequestQueue(strReq);
+    }
+
+    private void CheckForm(final String uid){
+
+        StringRequest strReq =new StringRequest(Request.Method.POST,
+                AppConfig.URl_CHECKFORM, new Response.Listener<String>() {
+
+            @Override
+            public void onResponse(String response) {
+
+                ArrayList<String> msg_list = new ArrayList<String>();
+
+                try {
+                    JSONObject jObj = new JSONObject(response);
+                    //Response from server
+                    String success = jObj.getString("success");
+                    String msg = jObj.getString("message");
+
+                    //redirecting to the class according to which class is present
+                    if(msg.equals("noFormPresent")){
+                        Intent i = new Intent(Student_Dashboard.this,Preference.class);
+                        startActivity(i);
+                    }else if(msg.equals("savedFormPresent")){
+                        Intent i = new Intent(Student_Dashboard.this,Saved_Form.class);
+                        startActivity(i);
+                    }else if(msg.equals("submittedFormPresent")){
+                        Intent i = new Intent(Student_Dashboard.this,Submitted_Form.class);
+                        startActivity(i);
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(),
+                        error.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        }) {
+
+            @Override
+            protected Map<String, String> getParams() {
+                // Posting params to register url
+                String checkform = "numcsa";
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("checkform", checkform);
+                params.put("uid", uid);
+                return params;
+            }
+
+        };
+
+        AppController.getInstance().addToRequestQueue(strReq);
+
     }
 }

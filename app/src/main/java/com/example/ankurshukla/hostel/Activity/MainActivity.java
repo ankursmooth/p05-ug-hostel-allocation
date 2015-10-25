@@ -48,25 +48,25 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        login= (Button) findViewById(R.id.login);
-        uid= (EditText) findViewById(R.id.username);
-        password= (EditText) findViewById(R.id.psswrd);
-        logingroup=(Spinner)findViewById(R.id.spinnermain);
+        login = (Button) findViewById(R.id.login);
+        uid = (EditText) findViewById(R.id.username);
+        password = (EditText) findViewById(R.id.psswrd);
+        logingroup = (Spinner) findViewById(R.id.spinnermain);
 
         // Progress dialog
         pDialog = new ProgressDialog(this);
         pDialog.setCancelable(false);
 
-        List<String> types= Arrays.asList(getResources().getStringArray(R.array.usergroup));
+        List<String> types = Arrays.asList(getResources().getStringArray(R.array.usergroup));
 
-        ArrayAdapter<String> dataAdapter=new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,types);
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, types);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         logingroup.setAdapter(dataAdapter);
 
         logingroup.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                usergroup=parent.getItemAtPosition(position).toString().toLowerCase();
+                usergroup = parent.getItemAtPosition(position).toString().toLowerCase();
             }
 
             @Override
@@ -79,34 +79,40 @@ public class MainActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(usergroup.equals("warden")) {
-                    String suid=uid.getText().toString().toLowerCase();
-                    String spaasword=password.getText().toString().toLowerCase();
+                if (usergroup.equals("warden")) {
+                    String suid = uid.getText().toString().toLowerCase();
+                    String spaasword = password.getText().toString().toLowerCase();
 
-                    if(!suid.isEmpty() && !spaasword.isEmpty()) {
+                    if (!suid.isEmpty() && !spaasword.isEmpty()) {
                         Warden_Details(suid, spaasword, usergroup);
 
-                    }else{
-                        Toast.makeText(MainActivity.this,"Enter Both Credentials",Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(MainActivity.this, "Enter Both Credentials", Toast.LENGTH_SHORT).show();
                     }
-                }
-                else if(usergroup.equals("student")){
-                    String suid=uid.getText().toString().toLowerCase();
-                    String spaasword=password.getText().toString().toLowerCase();
+                } else if (usergroup.equals("student")) {
+                    String suid = uid.getText().toString().toLowerCase();
+                    String spaasword = password.getText().toString().toLowerCase();
 
-                    if(!suid.isEmpty() && !spaasword.isEmpty()) {
+                    if (!suid.isEmpty() && !spaasword.isEmpty()) {
                         Student_Details(suid, spaasword, usergroup);
-                        Get_notification(suid, usergroup);
-                    }else{
-                        Toast.makeText(MainActivity.this,"Enter Both Credentials",Toast.LENGTH_SHORT).show();
+
+                    } else {
+                        Toast.makeText(MainActivity.this, "Enter Both Credentials", Toast.LENGTH_SHORT).show();
                     }
 
-                }else{
+                } else if (usergroup.equals("viewers")) {
+                    String suid = uid.getText().toString().toLowerCase();
+                    String spaasword = password.getText().toString().toLowerCase();
 
+                    if (!suid.isEmpty() && !spaasword.isEmpty()) {
+                        Details(suid, spaasword);
+                        Intent i = new Intent(MainActivity.this, Dashboard.class);
+                        startActivity(i);
+                    }
                 }
             }
-        });
 
+        });
     }
 
   /*  @Override
@@ -237,11 +243,11 @@ public class MainActivity extends AppCompatActivity {
                     //writing the value to sharedpreference in phone database
                     AppController.setString(MainActivity.this, "username", name);
                     AppController.setString(MainActivity.this, "Student_id", sid);
-                    AppController.setString(MainActivity.this,"sex",sex);
+                    AppController.setString(MainActivity.this, "sex", sex);
 
 
                    Toast.makeText(MainActivity.this,message ,Toast.LENGTH_SHORT).show();
-
+                    Get_notification(uid, usergroup);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -329,5 +335,67 @@ public class MainActivity extends AppCompatActivity {
         AppController.getInstance().addToRequestQueue(strReq);
     }
 
+    private void Details(final String uid,final String password){
+
+        pDialog.setMessage("Login ...");
+        showDialog();
+
+        StringRequest strReq =new StringRequest(Request.Method.POST,
+                AppConfig.URL_LOGIN, new Response.Listener<String>() {
+
+            @Override
+            public void onResponse(String response) {
+                hideDialog();
+
+                try {
+                    JSONObject jObj = new JSONObject(response);
+                    //Response from server
+
+                    String vid = jObj.getString("vid");
+                    String name = jObj.getString("name");
+                    String email = jObj.getString("email");
+                    String contact = jObj.getString("contact");
+                    String message = jObj.getString("message");
+                    String department = jObj.getString("department");
+
+                    //writing the value to sharedpreference in phone database
+                    AppController.setString(MainActivity.this, "username", name);
+                    AppController.setString(MainActivity.this, "other_id", vid);
+
+
+                    Toast.makeText(MainActivity.this,message ,Toast.LENGTH_SHORT).show();
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(),
+                        error.getMessage(), Toast.LENGTH_LONG).show();
+                hideDialog();
+            }
+        }) {
+
+            @Override
+            protected Map<String, String> getParams() {
+                // Posting params to register url
+                String usergroup = "med";
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("login", usergroup);
+                params.put("uid", uid);
+                params.put("password",password);
+                return params;
+            }
+
+        };
+
+        AppController.getInstance().addToRequestQueue(strReq);
+        hideDialog();
+
+    }
 
 }

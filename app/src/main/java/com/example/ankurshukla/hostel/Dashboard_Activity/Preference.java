@@ -22,7 +22,7 @@ public class Preference extends AppCompatActivity {
     Spinner noOfRoom;
     final Context context = this;
     Button next;
-    String number;
+    String number;//number is used for no of rooms in the wing
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

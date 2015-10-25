@@ -55,6 +55,18 @@
             android:name=".Dashboard_Activity.Student_Notify"
             android:label="@string/title_activity_student__notify" >
         </activity>
+        <activity
+            android:name=".Activity.Dashboard"
+            android:label="@string/title_activity_dashboard" >
+        </activity>
+        <activity
+            android:name=".Dashboard_Activity.Saved_Form"
+            android:label="@string/title_activity_saved__form" >
+        </activity>
+        <activity
+            android:name=".Dashboard_Activity.Submitted_Form"
+            android:label="@string/title_activity_submitted__form" >
+        </activity>
     </application>
 
 </manifest>
