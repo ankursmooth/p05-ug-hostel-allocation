@@ -9,6 +9,7 @@ require 'connect.php';
 
 if(isset($_POST ['createsubmittedform']) && isset($_POST ['sid']) && isset($_POST ['roominwing']) && isset($_POST ['pfid']) && isset($_POST ['hostelid']) && isset($_POST ['floorno'])){
     $uid = !empty($_POST['uid']) ? trim($_POST['uid']) : null;
+    $noofstudent = !empty($_POST['noofstudent']) ? trim($_POST['noofstudent']) : null;
     
     $i=1;
     $sid = array();
@@ -66,7 +67,7 @@ if(isset($_POST ['createsubmittedform']) && isset($_POST ['sid']) && isset($_POS
     $result= $stmt->execute();
     
     $wfidresult = $stmt->fetch(PDO::FETCH_ASSOC);
-
+    $wfid=0;
     $alreadysubmit=0;
     if($wfidresult){
         
@@ -88,9 +89,9 @@ if(isset($_POST ['createsubmittedform']) && isset($_POST ['sid']) && isset($_POS
     }
     else{
             
-            $sql = "SELECT count(*) as num FROM wingform WHERE sid = :uid";
+            $sql = "SELECT count(*) as num FROM wingform";
             $stmt = $pdo->prepare($sql);
-            $stmt->bindValue(':uid', $uid);
+            
             $stmt->execute();
             $wfidresult = $stmt->fetch(PDO::FETCH_ASSOC);
             $wfid= $wfidresult['num'] + 1;
@@ -104,12 +105,13 @@ if(isset($_POST ['createsubmittedform']) && isset($_POST ['sid']) && isset($_POS
         echo json_encode($response);
     }
     else{
-        $sql = "INSERT INTO wingform (wfid, sid) VALUES (:wfid, :uid)";
+       // echo $wfid;
+        $sql = "INSERT INTO wingform (wfid, sid, noofstudent) VALUES (:wfid, :uid, :noofstudent)";
         $stmt = $pdo->prepare($sql);
         
         $stmt->bindValue(':wfid', $wfid);
         $stmt->bindValue(':uid', $uid);
-        
+        $stmt->bindValue(':noofstudent', $noofstudent);
         $result1 = $stmt->execute();
 
         for ($j=1; $j < $i; $j++) { 

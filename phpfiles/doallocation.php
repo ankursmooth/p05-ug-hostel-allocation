@@ -6,16 +6,16 @@ $response = array();
 //require 'hostelid.php';
 
 require 'connect.php';
-
+$spacess="     . ";
 if(isset($_POST ['doallocation'])){
     $wid = !empty($_POST['wid']) ? trim($_POST['wid']) : null;
     
 
     $sql = "SELECT wfid, noofstudent FROM wingform Order by noofstudent desc";
-    $stmt = $pdo->prepare($sql);
+    $stmtz = $pdo->prepare($sql);
 
-    $stmt->execute();
-    while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+    $stmtz->execute();
+    while($row = $stmtz->fetch(PDO::FETCH_ASSOC)){
         // for every wing form
         $wfid= $row['wfid'];
         $noofstudent= $row['noofstudent'];
@@ -25,21 +25,21 @@ if(isset($_POST ['doallocation'])){
         // echo $noofrooms;
 
         $sql = "SELECT * FROM preferences where wfid = :wfid";
-        $stmt = $pdo->prepare($sql);
-        $stmt->bindValue(':wfid', $wfid);
+        $stmtp = $pdo->prepare($sql);
+        $stmtp->bindValue(':wfid', $wfid);
         
-        $stmt->execute();
+        $stmtp->execute();
         
-        $notizes["pref"]= array();
+        //$notizes["pref"]= array();
         //$i=0;
         $pref=array();
         $prevroominwing=0;
-        while($notic = $stmt->fetch(PDO::FETCH_ASSOC)){
+        while($notic2 = $stmtp->fetch(PDO::FETCH_ASSOC)){
             // check each preference
-            $pref["wfid"]=$notic["wfid"];
-            $pref["pfid"]=$notic["pfid"];
-            $pref["floorno"]=$notic["floorno"];
-            $pref["hostelid"]=$notic["hostelid"];
+            $pref["wfid"]=$notic2["wfid"];
+            $pref["pfid"]=$notic2["pfid"];
+            $pref["floorno"]=$notic2["floorno"];
+            $pref["hostelid"]=$notic2["hostelid"];
             if($pref["hostelid"]=="gh"){
                 $gh=true;
             }
@@ -139,12 +139,14 @@ if(isset($_POST ['doallocation'])){
             $entry["roominwing"]=$notic["roominwing"];
 
             //if($prevroominwing==$entry["roominwing"]){
-            $sql = "INSERT INTO allocaton (hostelid, sid, roomid) VALUES (:hostelid, :sid, :roomid)";
+            $sql = "INSERT INTO allocation (hostelid, sid, roomid) VALUES (:hostelid, :sid, :roomid)";
             $stmt = $pdo->prepare($sql);
             $stmt->bindValue(':hostelid', $hostelss[$i]);
             $stmt->bindValue(':sid', $entry["sid"]);
             $stmt->bindValue(':roomid', $roomss[$i]);
             $stmt->execute();
+            echo $entry["sid"];       echo $hostelss[$i]; echo $roomss[$i];
+        echo $spacess;
             $sql = "UPDATE rooms Set rcondition = :rcondition WHERE roomid= :roomid and hostelid= :hostelid";
             $stmt = $pdo->prepare($sql);
             $stmt->bindValue(':rcondition',"allocated");
@@ -179,27 +181,29 @@ if(isset($_POST ['doallocation'])){
     }
     $sql = "SELECT sid, sex FROM student WHERE sex = :sex AND sid NOT IN (SELECT sid FROM wingformdetails) ";
     $stmt = $pdo->prepare($sql);
-    $stmt->bindValue(':sex', "M");
+    $sex="M";
+    $stmt->bindValue(':sex', $sex);
     $stmt->execute();
     $i=1;
     //do allocation after gettings sid of boys
     while($innoform = $stmt->fetch(PDO::FETCH_ASSOC)){
             
-        
+        echo $innoform["sid"];       echo $hostelss[$i]; echo $roomss[$i];
+        echo $spacess;
 
         //if($prevroominwing==$entry["roominwing"]){
-        $sql = "INSERT INTO allocaton (hostelid, sid, roomid) VALUES (:hostelid, :sid, :roomid)";
-        $stmt = $pdo->prepare($sql);
-        $stmt->bindValue(':hostelid', $hostelss[$i]);
-        $stmt->bindValue(':sid', $innoform["sid"]);
-        $stmt->bindValue(':roomid', $roomss[$i]);
-        $stmt->execute();
+        $sql = "INSERT INTO allocation (hostelid, sid, roomid) VALUES (:hostelid, :sid, :roomid)";
+        $stmtin = $pdo->prepare($sql);
+        $stmtin->bindValue(':hostelid', $hostelss[$i]);
+        $stmtin->bindValue(':sid', $innoform["sid"]);
+        $stmtin->bindValue(':roomid', $roomss[$i]);
+        $stmtin->execute();
         $sql = "UPDATE rooms Set rcondition = :rcondition WHERE roomid= :roomid and hostelid= :hostelid";
-        $stmt = $pdo->prepare($sql);
-        $stmt->bindValue(':hostelid', $hostelss[$i]);
-        $stmt->bindValue(':rcondition',"allocated");
-        $stmt->bindValue(':roomid', $roomss[$i]);
-        $stmt->execute();
+        $stmtin = $pdo->prepare($sql);
+        $stmtin->bindValue(':hostelid', $hostelss[$i]);
+        $stmtin->bindValue(':rcondition',"allocated");
+        $stmtin->bindValue(':roomid', $roomss[$i]);
+        $stmtin->execute();
 
 
         $i= $i +1;
@@ -223,20 +227,23 @@ if(isset($_POST ['doallocation'])){
         $i= $i +2;
     }
     $sql = "SELECT sid, sex FROM student WHERE sex = :sex AND sid NOT IN (SELECT sid FROM wingformdetails) ";
-    $stmt = $pdo->prepare($sql);
-    $stmt->bindValue(':sex', "F");
-    $stmt->execute();
+    $stmtin = $pdo->prepare($sql);
+    $sex="F";
+    $stmtin->bindValue(':sex', $sex);
+    $stmtin->execute();
     $i=1;
     //do allocation after gettings sid of girls
-    while($innoform = $stmt->fetch(PDO::FETCH_ASSOC)){
+    while($innoform = $stmtin->fetch(PDO::FETCH_ASSOC)){
             
         
         //if($prevroominwing==$entry["roominwing"]){
-        $sql = "INSERT INTO allocaton (hostelid, sid, roomid) VALUES (:hostelid, :sid, :roomid)";
+        echo $innoform["sid"];       echo $hostelsss[$i]; echo $roomsss[$i];
+        echo $spacess;
+        $sql = "INSERT INTO allocation (hostelid, sid, roomid) VALUES (:hostelid, :sid, :roomid)";
         $stmt = $pdo->prepare($sql);
-        $stmt->bindValue(':hostelid', $hostelss[$i]);
+        $stmt->bindValue(':hostelid', $hostelsss[$i]);
         $stmt->bindValue(':sid', $innoform["sid"]);
-        $stmt->bindValue(':roomid', $roomss[$i]);
+        $stmt->bindValue(':roomid', $roomsss[$i]);
         $stmt->execute();
         $sql = "UPDATE rooms Set rcondition = :rcondition WHERE roomid= :roomid and hostelid= :hostelid";
         $stmt = $pdo->prepare($sql);

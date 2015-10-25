@@ -9,7 +9,7 @@ require 'connect.php';
 
 if(isset($_POST ['createsavedform']) && isset($_POST ['sid']) && isset($_POST ['sname']) && isset($_POST ['roominwing']) && isset($_POST ['pfid']) && isset($_POST ['hostelid']) && isset($_POST ['floorno'])){
     $uid = !empty($_POST['uid']) ? trim($_POST['uid']) : null;
-    
+    $noofstudent = !empty($_POST['noofstudent']) ? trim($_POST['noofstudent']) : null;
     $i=1;
     $sid = array();
 
@@ -86,18 +86,18 @@ if(isset($_POST ['createsavedform']) && isset($_POST ['sid']) && isset($_POST ['
     }
     else{
             
-            $sql = "SELECT count(*) as num FROM savedwingform WHERE sid = :uid";
+            $sql = "SELECT count(*) as num FROM savedwingform";
             $stmt = $pdo->prepare($sql);
-            $stmt->bindValue(':uid', $uid);
+            
             $stmt->execute();
             $wfidresult = $stmt->fetch(PDO::FETCH_ASSOC);
             $wfid= $wfidresult['num'] + 1;
             //echo $wfid;
 
     }   
-    $sql = "INSERT INTO savedwingform (wfid, sid) VALUES (:wfid, :uid)";
+    $sql = "INSERT INTO savedwingform (wfid, sid, noofstudent) VALUES (:wfid, :uid, :noofstudent)";
     $stmt = $pdo->prepare($sql);
-    
+    $stmt->bindValue(':noofstudent', $noofstudent);
     $stmt->bindValue(':wfid', $wfid);
     $stmt->bindValue(':uid', $uid);
     
