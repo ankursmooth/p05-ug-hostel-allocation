@@ -20,4 +20,10 @@ public class AppConfig {
     //Allocation create
     public static String URl_CHECKFORM="http://192.168.133.1/sepmdb/checkform.php";
 
+    //Check for whether connection to database has been made or not
+    public static String URL_CHECKCONNECT="http://192.168.133.1/sepmdb/checkconnect.php";
+
+    //for saved form
+    public static String URL_SAVEDFORM = "http://192.168.133.1/sepmdb/createsavedform.php";
+
 }

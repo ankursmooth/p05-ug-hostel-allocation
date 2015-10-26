@@ -44,7 +44,7 @@ public class Preference extends AppCompatActivity {
         floor2 = (Spinner)findViewById(R.id.secondspinerfloor);
         List<String> types_noOfRooms= Arrays.asList(getResources().getStringArray(R.array.NoOfRooms));
         List<String> hostel_types = Arrays.asList(getResources().getStringArray(R.array.hostel_name));
-        List<String> floor_types = Arrays.asList(getResources().getStringArray(R.array.floor));
+        List<String> floor_types = Arrays.asList(getResources().getStringArray(R.array.floor_types));
 
         //for no of rooms
         ArrayAdapter<String> dataAdapter=new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,types_noOfRooms);
@@ -64,12 +64,12 @@ public class Preference extends AppCompatActivity {
         //for first fllor spinner
         ArrayAdapter<String> floor_1 = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,floor_types);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        floor1.setAdapter(dataAdapter);
+        floor1.setAdapter(floor_1);
 
         //for second fllor spinner
         ArrayAdapter<String> floor_2 = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,floor_types);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        floor2.setAdapter(dataAdapter);
+        floor2.setAdapter(floor_1);
 
         //getting the number of rooms from no of room by spinner
         noOfRoom.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {

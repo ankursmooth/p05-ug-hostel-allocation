@@ -52,7 +52,7 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:id="@+id/psswrd1rm1"
+                android:id="@+id/id1rm1"
                 android:layout_weight="1"
                 android:layout_marginTop="20dp"
                 android:background="@layout/edittextlayout"
@@ -82,7 +82,7 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:id="@+id/psswrd2rm1"
+                android:id="@+id/id2rm1"
                 android:layout_weight="1"
                 android:layout_marginTop="20dp"
                 android:background="@layout/edittextlayout"
@@ -127,7 +127,7 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:id="@+id/psswrd1rm2"
+                    android:id="@+id/id1rm2"
                     android:layout_weight="1"
                     android:layout_marginTop="20dp"
                     android:background="@layout/edittextlayout"
@@ -157,7 +157,7 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:id="@+id/psswrd2rm2"
+                    android:id="@+id/id2rm2"
                     android:layout_weight="1"
                     android:layout_marginTop="20dp"
                     android:background="@layout/edittextlayout"
@@ -206,7 +206,7 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:id="@+id/psswrd1rm3"
+                    android:id="@+id/id1rm3"
                     android:layout_weight="1"
                     android:layout_marginTop="20dp"
                     android:background="@layout/edittextlayout"
@@ -236,7 +236,7 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:id="@+id/psswrd2rm3"
+                    android:id="@+id/id2rm3"
                     android:layout_weight="1"
                     android:layout_marginTop="20dp"
                     android:background="@layout/edittextlayout"
@@ -247,7 +247,35 @@
             </LinearLayout>
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
 
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Save Form"
+            android:id="@+id/save_but"
+            android:layout_weight="1"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+           android:background="@color/background"
+            android:layout_weight="1"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Submit Form"
+            android:id="@+id/submit_but"
+            android:layout_weight="1"/>
+
+
+
+    </LinearLayout>
 
     </LinearLayout>
 </ScrollView>

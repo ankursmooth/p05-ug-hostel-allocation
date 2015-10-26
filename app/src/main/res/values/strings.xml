@@ -16,15 +16,15 @@
         <item>BH2</item>
         <item>GH</item>
     </string-array>
-    <string-array name="floor">
+    <string-array name="floor_types">
         <item>Ground</item>
         <item>First</item>
         <item>Second</item>
     </string-array>
     <string-array name="NoOfRooms">
-        <item>One</item>
-        <item>Two</item>
-        <item>Three</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
     </string-array>
     <string name="title_activity_conflict_ui">Conflicts</string>
     <string name="conflict">The Following Students name is already present in the submitted form:</string>
