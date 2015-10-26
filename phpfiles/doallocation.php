@@ -20,9 +20,9 @@ if(isset($_POST ['doallocation'])){
         $wfid= $row['wfid'];
         $noofstudent= $row['noofstudent'];
         $noofrooms= $noofstudent/2;
-        // echo $noofstudent;
-        // echo $wfid;
-        // echo $noofrooms;
+        // //echo $noofstudent;
+        // //echo $wfid;
+        // //echo $noofrooms;
 
         $sql = "SELECT * FROM preferences where wfid = :wfid";
         $stmtp = $pdo->prepare($sql);
@@ -145,8 +145,8 @@ if(isset($_POST ['doallocation'])){
             $stmt->bindValue(':sid', $entry["sid"]);
             $stmt->bindValue(':roomid', $roomss[$i]);
             $stmt->execute();
-            echo $entry["sid"];       echo $hostelss[$i]; echo $roomss[$i];
-        echo $spacess;
+            //echo $entry["sid"];       //echo $hostelss[$i]; //echo $roomss[$i];
+        //echo $spacess;
             $sql = "UPDATE rooms Set rcondition = :rcondition WHERE roomid= :roomid and hostelid= :hostelid";
             $stmt = $pdo->prepare($sql);
             $stmt->bindValue(':rcondition',"allocated");
@@ -188,8 +188,8 @@ if(isset($_POST ['doallocation'])){
     //do allocation after gettings sid of boys
     while($innoform = $stmt->fetch(PDO::FETCH_ASSOC)){
             
-        echo $innoform["sid"];       echo $hostelss[$i]; echo $roomss[$i];
-        echo $spacess;
+        //echo $innoform["sid"];       //echo $hostelss[$i]; //echo $roomss[$i];
+        //echo $spacess;
 
         //if($prevroominwing==$entry["roominwing"]){
         $sql = "INSERT INTO allocation (hostelid, sid, roomid) VALUES (:hostelid, :sid, :roomid)";
@@ -237,8 +237,8 @@ if(isset($_POST ['doallocation'])){
             
         
         //if($prevroominwing==$entry["roominwing"]){
-        echo $innoform["sid"];       echo $hostelsss[$i]; echo $roomsss[$i];
-        echo $spacess;
+        //echo $innoform["sid"];       //echo $hostelsss[$i]; //echo $roomsss[$i];
+        //echo $spacess;
         $sql = "INSERT INTO allocation (hostelid, sid, roomid) VALUES (:hostelid, :sid, :roomid)";
         $stmt = $pdo->prepare($sql);
         $stmt->bindValue(':hostelid', $hostelsss[$i]);
@@ -256,13 +256,15 @@ if(isset($_POST ['doallocation'])){
         $i= $i +1;
             
     }
+    $response["success"] = 1;
+    $response["message"] = "Done!";
 }
 else
 {
     $response["success"] = 0;
     $response["message"] = "Unknown Error 2";
 
-    echo json_encode($response);
+    //echo json_encode($response);
 }
 
 ?>
