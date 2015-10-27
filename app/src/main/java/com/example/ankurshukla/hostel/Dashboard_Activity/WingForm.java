@@ -133,13 +133,33 @@ public class WingForm extends AppCompatActivity {
                 try {
                     JSONObject jObj = new JSONObject(response);
                     //Response from server
-                    String wid = jObj.getString("wid");
+                    String wfid = jObj.getString("wfid");
                     String success = jObj.getString("success");
                     String message = jObj.getString("message");
 
                     //writing the value to sharedpreference in phone database
 
                     Toast.makeText(WingForm.this,message ,Toast.LENGTH_SHORT).show();
+                    final AlertDialog.Builder alertdialogBuilder = new AlertDialog.Builder(WingForm.this);
+                    // alertdialogBuilder.setTitle("");
+
+
+                    alertdialogBuilder
+                            .setMessage(message)
+                            .setCancelable(false)
+                            .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    Intent i =  new Intent(WingForm.this,Saved_Form.class);
+                                    i.putExtra("sname",sname);//passing all names
+                                    i.putExtra("sid",sid);//passing all id
+                                    i.putExtra("noOfStudents",noOfStudents);//passing number of rooms
+                                    startActivity(i);
+                                }
+                            });
+
+                    AlertDialog dialog = alertdialogBuilder.create();
+                    dialog.show();
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -178,22 +198,7 @@ public class WingForm extends AppCompatActivity {
                     params.put("sid["+k+"]", sid[k]);
                     params.put("sname["+k+"]", sname[k]);
                     params.put("roominwing["+k+"]",z );
-                   /* params.put("pfid["+k+"]",String.valueOf(k));
-                    params.put("hostelid["+k+"]",hostelid[k]);
-                    params.put("floorno["+k+"]",floorno[k]);
-                    params.put("noofstudent",String .valueOf(k*2));*/
                 }
-//                for (int k = 0; k < noofstudent; k++) {
-//                    int m = k/2 +1;
-//                    String z= String.valueOf(m);
-//                    params.put("sid["+k+"]", sid[k]);
-//                    params.put("sname["+k+"]", sname[k]);
-//                    params.put("roominwing["+k+"]",z );
-//                   /* params.put("pfid["+k+"]",String.valueOf(k));
-//                    params.put("hostelid["+k+"]",hostelid[k]);
-//                    params.put("floorno["+k+"]",floorno[k]);
-//                    params.put("noofstudent",String .valueOf(k*2));*/
-//                }
 
                 return params;
             }//pori array paas ho rhi hai

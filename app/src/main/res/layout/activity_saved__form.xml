@@ -1,12 +1,258 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="com.example.ankurshukla.hostel.Dashboard_Activity.Saved_Form">
 
-    <TextView android:text="@string/hello_world" android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
 
-</RelativeLayout>
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/activity_vertical_margin">
+
+        <include layout="@layout/actionbar_wingform"/>
+
+    <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/sfl1"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Room Number 1:"
+        android:layout_marginTop="30dp"
+        android:textSize="20dp"
+        android:paddingLeft="10dp"
+        android:id="@+id/rm1"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:hint="Full Name"
+            android:id="@+id/savedfullname1rm1"
+            android:paddingLeft="10dp"
+            android:layout_weight="1"
+            android:background="@layout/edittextlayout"
+            android:singleLine="true"
+            android:layout_marginTop="20dp"
+            />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:id="@+id/savedid1rm1"
+            android:layout_weight="1"
+            android:layout_marginTop="20dp"
+            android:background="@layout/edittextlayout"
+            android:hint="Roll No"
+            android:paddingLeft="10dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:hint="Full Name"
+            android:id="@+id/savedfullname2rm1"
+            android:paddingLeft="10dp"
+            android:layout_weight="1"
+            android:background="@layout/edittextlayout"
+            android:singleLine="true"
+            android:layout_marginTop="20dp"
+            />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:id="@+id/savedid2rm1"
+            android:layout_weight="1"
+            android:layout_marginTop="20dp"
+            android:background="@layout/edittextlayout"
+            android:hint="Roll No"
+            android:paddingLeft="10dp"/>
+
+    </LinearLayout>
+
+</LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/sfl2"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Room Number 2:"
+                android:layout_marginTop="30dp"
+                android:textSize="20dp"
+                android:paddingLeft="10dp"
+                android:id="@+id/rm2"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:hint="Full Name"
+                    android:id="@+id/savedfullname1rm2"
+                    android:paddingLeft="10dp"
+                    android:layout_weight="1"
+                    android:background="@layout/edittextlayout"
+                    android:singleLine="true"
+                    android:layout_marginTop="20dp"
+                    />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:id="@+id/savedid1rm2"
+                    android:layout_weight="1"
+                    android:layout_marginTop="20dp"
+                    android:background="@layout/edittextlayout"
+                    android:hint="Roll No"
+                    android:paddingLeft="10dp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:hint="Full Name"
+                    android:id="@+id/savedfullname2rm2"
+                    android:paddingLeft="10dp"
+                    android:layout_weight="1"
+                    android:background="@layout/edittextlayout"
+                    android:singleLine="true"
+                    android:layout_marginTop="20dp"
+                    />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:id="@+id/savedid2rm2"
+                    android:layout_weight="1"
+                    android:layout_marginTop="20dp"
+                    android:background="@layout/edittextlayout"
+                    android:hint="Roll No"
+                    android:paddingLeft="10dp"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/sfl3"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Room Number 1:"
+                android:layout_marginTop="30dp"
+                android:textSize="20dp"
+                android:paddingLeft="10dp"
+                android:id="@+id/rm3"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:hint="Full Name"
+                    android:id="@+id/savedfullname1rm3"
+                    android:paddingLeft="10dp"
+                    android:layout_weight="1"
+                    android:background="@layout/edittextlayout"
+                    android:singleLine="true"
+                    android:layout_marginTop="20dp"
+                    />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:id="@+id/savedid1rm3"
+                    android:layout_weight="1"
+                    android:layout_marginTop="20dp"
+                    android:background="@layout/edittextlayout"
+                    android:hint="Roll No"
+                    android:paddingLeft="10dp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:hint="Full Name"
+                    android:id="@+id/savedfullname2rm3"
+                    android:paddingLeft="10dp"
+                    android:layout_weight="1"
+                    android:background="@layout/edittextlayout"
+                    android:singleLine="true"
+                    android:layout_marginTop="20dp"
+                    />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:id="@+id/savedid2rm3"
+                    android:layout_weight="1"
+                    android:layout_marginTop="20dp"
+                    android:background="@layout/edittextlayout"
+                    android:hint="Roll No"
+                    android:paddingLeft="10dp"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <Button
+            android:layout_width="110dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center"
+            android:id="@+id/sf_saved"
+            android:text="Submit"/>
+
+</LinearLayout>
+</ScrollView>
