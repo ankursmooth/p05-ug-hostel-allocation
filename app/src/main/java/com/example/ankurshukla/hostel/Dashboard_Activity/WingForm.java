@@ -23,6 +23,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 
@@ -114,9 +115,8 @@ public class WingForm extends AppCompatActivity {
 
                     AlertDialog dialog = alertdialogBuilder.create();
                     dialog.show();
-                }else{
+                }else
                     savedForm(roomname, rollId, number, hostel, floor);
-                }
             }
         });
     }
@@ -158,25 +158,46 @@ public class WingForm extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() {
                 // Posting params to saved form url
+                int noofstudent = 2*Integer.parseInt(noOfStudents);
                 String creatre = "jbscjas";//send anything part
-                String [] roomwing = new String[]{"","",""};
-                String [] pfid  = new String[]{"",""};
                 String uid = AppController.getString(WingForm.this,"Student_id");
-                Map<String, String> params = new HashMap<String, String>();
+                Map<String, String> params = new LinkedHashMap<String, String>();
+                //using LinkedHashmap because backend does not check key value and sees order of variables
                 params.put("createsavedform", creatre);
                 params.put("uid",uid);
-                for (int k = 0; k < 2*Integer.parseInt(noOfStudents); k++) {
-                    int m = k/2;
+                params.put("noofstudent", String.valueOf(noofstudent));
+                for(int m=1;m<3;m++){
+                    String z= String.valueOf(m);
+                    params.put("pfid["+m+"]",z);
+                    params.put("hostelid["+m+"]",hostelid[m-1]);
+                    params.put("floorno["+m+"]",floorno[m-1]);
+                }
+                for (int k = 0; k < noofstudent; k++) {
+                    int m = k/2 +1;
+                    String z= String.valueOf(m);
                     params.put("sid["+k+"]", sid[k]);
                     params.put("sname["+k+"]", sname[k]);
-                    params.put("roomwing["+k+"]", String.valueOf(m));
-                    params.put("pfid["+k+"]",String.valueOf(k));
+                    params.put("roominwing["+k+"]",z );
+                   /* params.put("pfid["+k+"]",String.valueOf(k));
                     params.put("hostelid["+k+"]",hostelid[k]);
                     params.put("floorno["+k+"]",floorno[k]);
-                    params.put("noofstudent",String .valueOf(k*2));
+                    params.put("noofstudent",String .valueOf(k*2));*/
                 }
+//                for (int k = 0; k < noofstudent; k++) {
+//                    int m = k/2 +1;
+//                    String z= String.valueOf(m);
+//                    params.put("sid["+k+"]", sid[k]);
+//                    params.put("sname["+k+"]", sname[k]);
+//                    params.put("roominwing["+k+"]",z );
+//                   /* params.put("pfid["+k+"]",String.valueOf(k));
+//                    params.put("hostelid["+k+"]",hostelid[k]);
+//                    params.put("floorno["+k+"]",floorno[k]);
+//                    params.put("noofstudent",String .valueOf(k*2));*/
+//                }
+
                 return params;
-            }
+            }//pori array paas ho rhi hai
+            //debug krke dekho smjh aa jaega ek ke sath ek kaise bheju smjh nh aa rha
 
         };
 
