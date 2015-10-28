@@ -3,7 +3,7 @@ session_start();
 
 $response = array();
 
-//require 'hostelid.php';
+//post doallocation and wid
 
 require 'connect.php';
 $spacess="     . ";
@@ -258,13 +258,14 @@ if(isset($_POST ['doallocation'])){
     }
     $response["success"] = 1;
     $response["message"] = "Done!";
+    echo json_encode($response);
 }
 else
 {
     $response["success"] = 0;
     $response["message"] = "Unknown Error 2";
 
-    //echo json_encode($response);
+    echo json_encode($response);
 }
 
 ?>

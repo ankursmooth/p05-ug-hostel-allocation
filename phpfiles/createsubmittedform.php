@@ -3,7 +3,34 @@ session_start();
 
 $response = array();
 
-//require 'hostelid.php';
+// check any saved or submitted form by that user
+// **************** createsavedform.php *************
+// post
+// NOTE: no of student shoud always be even
+
+// createsavedform=anything                    uid=y13uc032                  
+//   sid[1]=y13uc001                           roominwing[1]=1 
+//         sid[2]=y13uc011                     roominwing[2]=1                  
+//   pfid[1]=1                    hostelid[1]=bh1                    floorno[1]=first         
+//            pfid[2]=2                 
+//    hostelid[2]=bh1                    floorno[2]=second  noofstudent=2
+
+// {
+//   "success": 1,
+//   "message": "wing form may have been submitted",
+//   "wfid": 1
+// }
+
+// post another example
+
+// createsubmittedform=anything         uid=y13uc019         sid[1]=y13uc019         sid[2]=y13uc074         roominwing[1]=1         roominwing[2]=1         pfid[1]=1         hostelid[1]=bh1         floorno[1]=ground         pfid[2]=2         hostelid[2]=bh1         floorno[2]=second         sid[3]=y13uc093         sid[4]=y13uc098         roominwing[3]=2         roominwing[4]=2         noofstudent=4
+// response
+// {
+//   "success": 1,
+//   "message": "wing form may have been submitted",
+//   "wfid": 1
+// }
+
 
 require 'connect.php';
 
@@ -17,7 +44,7 @@ if(isset($_POST ['createsubmittedform']) && isset($_POST ['sid']) && isset($_POS
     foreach($_POST['sid'] as $key => $value) {
         
         $sid[$i]=$value;
-        //echo $key, ' => ', $value, '<br />';
+        
         $i = $i +1;
     }
     // $i=1;

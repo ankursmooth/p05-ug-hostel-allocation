@@ -3,7 +3,71 @@ session_start();
 
 $response = array();
 
-//require 'message.php';
+// search
+// **************** search.php ************8
+// post
+
+// search=name/sid/contact
+// query=ankur/y13uc032/9910188803
+
+
+// example response
+// when search = name
+// and query = ka
+
+// response structure will be same for search usid sid or contact
+
+// {
+//     "res": [
+//         {
+//             "hostelid": "gh",
+//             "roomid": "a101",
+//             "sid1": "y13uc007",
+//             "name1": "ayushi",
+//             "sid2": "y13uc036",
+//             "name2": "anshika"
+//         },
+//         {
+//             "hostelid": "gh",
+//             "roomid": "a103",
+//             "sid1": "y13uc039",
+//             "name1": "anushka",
+//             "sid2": "y13uc092",
+//             "name2": "divya"
+//         },
+//         {
+//             "hostelid": "bh1",
+//             "roomid": "a102",
+//             "sid1": "y13uc093",
+//             "name1": "vikash",
+//             "sid2": "y13uc098",
+//             "name2": "chugani"
+//         },
+//         {
+//             "hostelid": "gh",
+//             "roomid": "a102",
+//             "sid1": "y13uc160",
+//             "name1": "manjari",
+//             "sid2": "y13uc170",
+//             "name2": "monika"
+//         }
+//     ],
+//     "success": 1,
+//     "message": "search results for query",
+//     "noofresults": 4
+// }
+
+
+// when not found
+// search=name
+// query=kasss
+// response
+// {
+//   "success": 1,
+//   "message": "Not found kasss indatabase",
+//   "noofresults": 0
+// }
+
 
 require 'connect.php';
 

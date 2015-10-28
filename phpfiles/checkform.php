@@ -3,17 +3,20 @@ session_start();
 
 $response = array();
 
-//require 'message.php';
+// post checkform=anything, uid = id of user (student)
+// response 
+// {
+//   "success": 1/0
+//   "message": (when success 1) "noFormPresent"/"savedFormPresent"/"submittedFormPresent"   / case 0: "Unknown Error"/"Unknown Error"
+// }
+
 
 require 'connect.php';
 
 if(isset($_POST ['checkform'])){
-    //$createnotification=!empty($_POST['register']) ? trim($_POST['register']) : null;
-    //echo $register;
-    //if($register=="2"){
     $uid = !empty($_POST['uid']) ? trim($_POST['uid']) : null;
     
-    
+   
     
     $sql = "SELECT COUNT(*) AS num FROM wingform where sid= :uid";
     $stmt = $pdo->prepare($sql);

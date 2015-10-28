@@ -3,17 +3,50 @@ session_start();
 
 $response = array();
 
-//require 'message.php';
+// getsavedform=anything                    uid=y13uc032
+
+
+// the above uid is the uid of the student who logged in and may have filled the form
+// response
+
+// {
+//   "entry": [
+//     {
+//       "wfid": "1",
+//       "sid": "y13uc001",
+//       "roominwing": "1",
+//       "sname": "aadhar"
+//     },
+//     {
+//       "wfid": "1",
+//       "sid": "y13uc011",
+//       "roominwing": "1",
+//       "sname": "aditya"
+//     }
+//   ],
+//   "pref": [
+//     {
+//       "wfid": "1",
+//       "pfid": "1",
+//       "floorno": "first",
+//       "hostelid": "bh1"
+//     },
+//     {
+//       "wfid": "1",
+//       "pfid": "2",
+//       "floorno": "second",
+//       "hostelid": "bh1"
+//     }
+//   ],
+//   "success": 1,
+//   "message": "entries in this form ",
+//   "noofstudent": "2",
+//   "noofprefer": 2
+// }
 
 require 'connect.php';
 
 if(isset($_POST ['getsavedform'])){
-    //$createnotification=!empty($_POST['register']) ? trim($_POST['register']) : null;
-    //echo $register;
-    //if($register=="2"){
-    //$usergroup=!empty($_POST['usergroup']) ? trim($_POST['usergroup']) : null;
-    
-   // $getnotification=!empty($_POST['getnotification']) ? trim($_POST['getnotification']) : null;
     
     
     $uid = !empty($_POST['uid']) ? trim($_POST['uid']) : null;

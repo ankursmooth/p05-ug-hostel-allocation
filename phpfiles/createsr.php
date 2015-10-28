@@ -3,7 +3,19 @@ session_start();
 
 $response = array();
 
-//require 'reqmessage.php';
+
+// **************** createsr.php ************8
+// post
+
+// createsr=anything  
+// sid=y13uc032        reqmessage=me and my roomie ankur shukla y13uc033 are fed up of water leakage problem. please change our room        rdate=2015-10-23
+// response 
+// {
+//     "success": 1,
+//     "message": "request submitted",
+//     "rqid": "1"
+// }
+
 
 require 'connect.php';
 

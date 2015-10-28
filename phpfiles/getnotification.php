@@ -2,15 +2,55 @@
 session_start();
 
 $response = array();
+/*
+getnotification.php
+post
+usergroup=student&uid=y13uc032&getnotification=number
+response
+{
+  "success": 1,
+  "message": "no of notifications for this user",
+  "noofnotifications": 2
+}
 
-//require 'message.php';
+post
+usergroup=student&uid=y13uc032&getnotification=everything
+response will be this when no of notifications are 0
+{
+  "success": 1,
+  "message": "no of notifications for this user",
+  "noofnotifications": 0
+}
+response when no of notifications >0
+{
+  "notiz": [
+    {
+      "nfid": "1",
+      "usergroup": "student",
+      "nmessage": "allocation process from this to this",
+      "creatorid": "neogi",
+      "ntype": "allocation",
+      "ndate": "2015-10-19"
+    },
+    {
+      "nfid": "2",
+      "usergroup": "y13uc032",
+      "nmessage": "allocation process from this to this",
+      "creatorid": "neogi",
+      "ntype": "allocation",
+      "ndate": "2015-10-19"
+    }
+  ],
+  "success": 1,
+  "message": "notifications for this user",
+  "noofnotifications": 2
+}
+*/
 
 require 'connect.php';
 
 if(isset($_POST ['getnotification'])){
-    //$createnotification=!empty($_POST['register']) ? trim($_POST['register']) : null;
-    //echo $register;
-    //if($register=="2"){
+   
     $usergroup=!empty($_POST['usergroup']) ? trim($_POST['usergroup']) : null;
     
     $getnotification=!empty($_POST['getnotification']) ? trim($_POST['getnotification']) : null;

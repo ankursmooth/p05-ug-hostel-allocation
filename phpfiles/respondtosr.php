@@ -2,8 +2,19 @@
 session_start();
 
 $response = array();
+// for warden
 
-//require 'reqresponse.php';
+// post
+// respondtosr=anything  
+// rqid=1
+// wid=neogi        reqresponse=ok. changed your room
+// response 
+// {
+//     "success": 1,
+//     "message": "request responded",
+//     "rqid": "1"
+// }
+
 
 require 'connect.php';
 

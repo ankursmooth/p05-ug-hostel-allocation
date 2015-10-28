@@ -2,15 +2,24 @@
 session_start();
 
 $response = array();
+// sent when warden logged in
+// post
 
-//require 'message.php';
+// createalloprocess=createalloprocess,    wid=neogi, startdate=2015-10-22, enddate=2015-10-30
+// response
+
+// {
+//   "success": 1/0
+//   "message": "saved allocation process. now create notification"/ "Unknown error"
+//   "wid": "neogi" or not sent
+// }
+
+
+
 
 require 'connect.php';
 
 if(isset($_POST ['createalloprocess'])){
-    //$createnotification=!empty($_POST['register']) ? trim($_POST['register']) : null;
-    //echo $register;
-    //if($register=="2"){
     $wid = !empty($_POST['wid']) ? trim($_POST['wid']) : null;
     $startdate = !empty($_POST['startdate']) ? trim($_POST['startdate']) : null;
     $enddate = !empty($_POST['enddate']) ? trim($_POST['enddate']) : null;

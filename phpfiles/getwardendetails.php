@@ -3,7 +3,27 @@ session_start();
 
 $response = array();
 
-//require 'message.php';
+
+// **************** getwardendetails.php ************8
+// post
+
+// getwardendetails=anything
+
+// response has the details of all wardens
+// {
+//     "warden": [
+//         {
+//             "name": "Amit neogi",
+//             "email": "amit.neofi@gmail.com",
+//             "position": "HEAD",
+//             "contact": "9891011211"
+//         }
+//     ],
+//     "success": 1,
+//     "message": " warden details",
+//     "noofwarden": 1
+// }
+
 
 require 'connect.php';
 

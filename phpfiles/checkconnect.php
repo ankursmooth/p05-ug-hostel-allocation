@@ -3,14 +3,10 @@ session_start();
 
 $response = array();
 
-//require 'message.php';
-
+//post checkconnect with any value
 require 'connect.php';
 
 if(isset($_POST ['checkconnect'])){
-    //$createnotification=!empty($_POST['register']) ? trim($_POST['register']) : null;
-    //echo $register;
-    //if($register=="2"){
     
     
     $sql = "SELECT COUNT(*) AS num FROM warden";

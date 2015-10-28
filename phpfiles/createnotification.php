@@ -2,15 +2,20 @@
 session_start();
 
 $response = array();
+// post createnotification=anything, ntype=allocation, usergroup=student, creatorid=neogi, ndate=2015-10-22
+// message=Allocation process starts on 2015-10-22. fill wing form before 2015-10-30
 
-//require 'message.php';
+// response
+// {
+//   "success": 1,
+//   "message": "notification sent to other users",
+//   "nfid": "3",
+//   "usergroup": "student"
+// }
 
 require 'connect.php';
 
 if(isset($_POST ['createnotification'])){
-    //$createnotification=!empty($_POST['register']) ? trim($_POST['register']) : null;
-    //echo $register;
-    //if($register=="2"){
     $usergroup = !empty($_POST['usergroup']) ? trim($_POST['usergroup']) : null;
     $ntype = !empty($_POST['ntype']) ? trim($_POST['ntype']) : null;
     $creatorid = !empty($_POST['creatorid']) ? trim($_POST['creatorid']) : null;

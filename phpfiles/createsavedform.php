@@ -3,7 +3,26 @@ session_start();
 
 $response = array();
 
-//require 'hostelid.php';
+// check any saved or submitted form by that user
+// **************** createsavedform.php ************8
+// post
+
+
+// createsavedform=anything                    uid=y13uc032                  
+//   sid[1]=y13uc001                    sname[1]=aadhar             roominwing[1]=1 
+//         sid[2]=y13uc011                    sname[2]=aditya       roominwing[2]=1                  
+//   pfid[1]=1                    hostelid[1]=bh1                    floorno[1]=first         
+//            pfid[2]=2                 
+//    hostelid[2]=bh1                    floorno[2]=second and so on till k number of students
+// noofstudent=k
+
+// response 
+// {
+//   "success": 1,
+//   "message": "wing form may have been saved",
+//   "wfid": 1
+// }
+
 
 require 'connect.php';
 
