@@ -33,7 +33,7 @@ if(isset($_POST ['doallocation'])){
         //$notizes["pref"]= array();
         //$i=0;
         $pref=array();
-        $prevroominwing=0;
+        $preferencesatisfied=0;
         while($notic2 = $stmtp->fetch(PDO::FETCH_ASSOC)){
             // check each preference
             $pref["wfid"]=$notic2["wfid"];
@@ -73,14 +73,14 @@ if(isset($_POST ['doallocation'])){
                     $hostelss[$i+1]=$userooms['hostelid'];
                     $i= $i +2;
                 }
-
+                $preferencesatisfied=1;
                 break;
 
             }
 
         }//preferences loop
 
-        if($prevroominwing==0){
+        if($preferencesatisfied==0){
             // no preference satisfied
             if($gh==true){
                 $sql = "SELECT hostelid, floorno, roomid FROM rooms where (hostelid = :hostelid and rcondition = :rcondition) order by floorno ASC ";
@@ -129,7 +129,7 @@ if(isset($_POST ['doallocation'])){
         $notizes= array();
         $notizes["entry"]= array();
         $entry=array();
-        $prevroominwing=1;
+        //$preferencesatisfied=1;
         // $pref["ndate"]=$notic["ndate"];
         $i=1;
         while($notic = $stmtT->fetch(PDO::FETCH_ASSOC)){
@@ -138,7 +138,7 @@ if(isset($_POST ['doallocation'])){
             $entry["sid"]=$notic["sid"];
             $entry["roominwing"]=$notic["roominwing"];
 
-            //if($prevroominwing==$entry["roominwing"]){
+            //if($preferencesatisfied==$entry["roominwing"]){
             $sql = "INSERT INTO allocation (hostelid, sid, roomid) VALUES (:hostelid, :sid, :roomid)";
             $stmt = $pdo->prepare($sql);
             $stmt->bindValue(':hostelid', $hostelss[$i]);
@@ -191,7 +191,7 @@ if(isset($_POST ['doallocation'])){
         //echo $innoform["sid"];       //echo $hostelss[$i]; //echo $roomss[$i];
         //echo $spacess;
 
-        //if($prevroominwing==$entry["roominwing"]){
+        //if($preferencesatisfied==$entry["roominwing"]){
         $sql = "INSERT INTO allocation (hostelid, sid, roomid) VALUES (:hostelid, :sid, :roomid)";
         $stmtin = $pdo->prepare($sql);
         $stmtin->bindValue(':hostelid', $hostelss[$i]);
@@ -236,7 +236,7 @@ if(isset($_POST ['doallocation'])){
     while($innoform = $stmtin->fetch(PDO::FETCH_ASSOC)){
             
         
-        //if($prevroominwing==$entry["roominwing"]){
+        //if($preferencesatisfied==$entry["roominwing"]){
         //echo $innoform["sid"];       //echo $hostelsss[$i]; //echo $roomsss[$i];
         //echo $spacess;
         $sql = "INSERT INTO allocation (hostelid, sid, roomid) VALUES (:hostelid, :sid, :roomid)";
