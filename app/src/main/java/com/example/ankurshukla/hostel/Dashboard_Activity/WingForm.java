@@ -118,8 +118,6 @@ public class WingForm extends AppCompatActivity {
                 if(b == true){
                     final AlertDialog.Builder alertdialogBuilder = new AlertDialog.Builder(WingForm.this);
                     // alertdialogBuilder.setTitle("");
-
-
                     alertdialogBuilder
                             .setMessage("Fill all the names")
                             .setCancelable(false)
@@ -136,6 +134,62 @@ public class WingForm extends AppCompatActivity {
                     savedForm(roomname, rollId, number, hostel, floor);
             }
         });
+
+        submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                for(int i=0;i<2*Integer.parseInt(number);i++){
+                    roomname [i] = rname[i].getText().toString().toLowerCase();
+                    rollId [i] = rollno[i].getText().toString().toLowerCase();
+                }
+                boolean b = false;
+                for(int j=0;j<2*Integer.parseInt(number);j++){
+                    if(roomname[j].equals("") || rollId[j].equals("")){
+                        b = true;
+                        break;
+                    }
+                }
+                if(b == true){
+                    final AlertDialog.Builder alertdialogBuilder = new AlertDialog.Builder(WingForm.this);
+                    // alertdialogBuilder.setTitle("");
+                    alertdialogBuilder
+                            .setMessage("Fill all the names")
+                            .setCancelable(false)
+                            .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                }
+                            });
+
+                    AlertDialog dialog = alertdialogBuilder.create();
+                    dialog.show();
+                }else{
+                    final AlertDialog.Builder alertdialogBuilder = new AlertDialog.Builder(WingForm.this);
+                    // alertdialogBuilder.setTitle("");
+                    String msg = "You wont be able to make further changes.Your sure want to submit the form";
+                    alertdialogBuilder
+                            .setMessage(msg)
+                            .setCancelable(false)
+                            .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    submitform(roomname,rollId, number, hostel, floor);
+                                }
+                            })
+                            .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                }
+                            });
+
+                    AlertDialog dialog = alertdialogBuilder.create();
+                    dialog.show();
+                }
+            }
+        });
+
     }
 
     //for saving the form for first time
@@ -226,6 +280,93 @@ public class WingForm extends AppCompatActivity {
 
         AppController.getInstance().addToRequestQueue(strReq);
 
+    }
+
+
+    private void submitform(final String sname[],final String sid[],final String noOfStudents,final String hostelid[],final
+    String floorno[]){
+        StringRequest strReq =new StringRequest(Request.Method.POST,
+                AppConfig.URL_SUBMITFORM, new Response.Listener<String>() {
+
+            @Override
+            public void onResponse(String response) {
+
+                try {
+                    JSONObject jObj = new JSONObject(response);
+                    //Response from server
+                    String wfid = jObj.getString("wfid");
+                    String success = jObj.getString("success");
+                    String message = jObj.getString("message");
+
+                    //writing the value to sharedpreference in phone database
+
+                    Toast.makeText(WingForm.this,message ,Toast.LENGTH_SHORT).show();
+                    final AlertDialog.Builder alertdialogBuilder = new AlertDialog.Builder(WingForm.this);
+                    // alertdialogBuilder.setTitle("");
+
+
+                    alertdialogBuilder
+                            .setMessage(message)
+                            .setCancelable(false)
+                            .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    Intent i =  new Intent(WingForm.this,Submitted_Form.class);
+                                    i.putExtra("sname",sname);//passing all names
+                                    i.putExtra("sid",sid);//passing all id
+                                    i.putExtra("noOfStudents",noOfStudents);//passing number of rooms
+                                    startActivity(i);
+                                }
+                            });
+
+                    AlertDialog dialog = alertdialogBuilder.create();
+                    dialog.show();
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(),
+                        error.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        }) {
+
+            @Override
+            protected Map<String, String> getParams() {
+                // Posting params to saved form url
+                int noofstudent = 2*Integer.parseInt(noOfStudents);
+                String creatre = "jbscjas";//send anything part
+                String uid = AppController.getString(WingForm.this,"Student_id");
+                Map<String, String> params = new LinkedHashMap<String, String>();
+                //using LinkedHashmap because backend does not check key value and sees order of variables
+                params.put("createsubmittedform", creatre);
+                params.put("uid",uid);
+                params.put("noofstudent", String.valueOf(noofstudent));
+                for(int m=1;m<3;m++){
+                    String z= String.valueOf(m);
+                    params.put("pfid["+m+"]",z);
+                    params.put("hostelid["+m+"]",hostelid[m-1]);
+                    params.put("floorno["+m+"]",floorno[m-1]);
+                }
+                for (int k = 0; k < noofstudent; k++) {
+                    int m = k/2 +1;
+                    String z= String.valueOf(m);
+                    params.put("sid["+k+"]", sid[k]);
+                    params.put("roominwing["+k+"]",z );
+                }
+
+                return params;
+            }//pori array paas ho rhi hai
+            //debug krke dekho smjh aa jaega ek ke sath ek kaise bheju smjh nh aa rha
+
+        };
+
+        AppController.getInstance().addToRequestQueue(strReq);
     }
    
 }

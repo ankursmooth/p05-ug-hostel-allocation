@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.example.ankurshukla.hostel.R;
 
@@ -20,8 +21,8 @@ public class Saved_Form extends AppCompatActivity {
     String hostelid[] = new String[]{"",""};
     String floor[] = new String[]{"",""};
     LinearLayout sf1,sf2,sf3;
-    EditText[] rname = new EditText[6];//r ==room and n=name
-    EditText [] rollno = new EditText[6]; //r=room and id=rool no
+    TextView[] rname = new TextView[6];//r ==room and n=name
+    TextView [] rollno = new TextView[6]; //r=room and id=rool no
     Button submit;
 
     @Override
@@ -41,18 +42,18 @@ public class Saved_Form extends AppCompatActivity {
         sf1 = (LinearLayout)findViewById(R.id.sfl1);
         sf2 = (LinearLayout)findViewById(R.id.sfl2);
         sf3 = (LinearLayout)findViewById(R.id.sfl3);
-        rname[0] = (EditText) findViewById(R.id.savedfullname1rm1);
-        rname[1] = (EditText) findViewById(R.id.savedfullname2rm1);
-        rname[2] = (EditText) findViewById(R.id.savedfullname1rm2);
-        rname[3] = (EditText) findViewById(R.id.savedfullname2rm2);
-        rname[4] = (EditText) findViewById(R.id.savedfullname1rm3);
-        rname[5] = (EditText) findViewById(R.id.savedfullname2rm3);
-        rollno[0] = (EditText) findViewById(R.id.savedid1rm1);
-        rollno[1] = (EditText) findViewById(R.id.savedid2rm1);
-        rollno[2] = (EditText) findViewById(R.id.savedid1rm2);
-        rollno[3] = (EditText) findViewById(R.id.savedid2rm2);
-        rollno[4] = (EditText) findViewById(R.id.savedid1rm3);
-        rollno[5] = (EditText) findViewById(R.id.savedid2rm3);
+        rname[0] = (TextView) findViewById(R.id.savedfullname1rm1);
+        rname[1] = (TextView) findViewById(R.id.savedfullname2rm1);
+        rname[2] = (TextView) findViewById(R.id.savedfullname1rm2);
+        rname[3] = (TextView) findViewById(R.id.savedfullname2rm2);
+        rname[4] = (TextView) findViewById(R.id.savedfullname1rm3);
+        rname[5] = (TextView) findViewById(R.id.savedfullname2rm3);
+        rollno[0] = (TextView) findViewById(R.id.savedid1rm1);
+        rollno[1] = (TextView) findViewById(R.id.savedid2rm1);
+        rollno[2] = (TextView) findViewById(R.id.savedid1rm2);
+        rollno[3] = (TextView) findViewById(R.id.savedid2rm2);
+        rollno[4] = (TextView) findViewById(R.id.savedid1rm3);
+        rollno[5] = (TextView) findViewById(R.id.savedid2rm3);
         submit = (Button) findViewById(R.id.sf_saved);
 
         if(number.equals("1")){
