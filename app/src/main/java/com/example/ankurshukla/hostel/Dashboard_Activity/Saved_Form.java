@@ -59,12 +59,20 @@ public class Saved_Form extends AppCompatActivity {
             sf3.setVisibility(View.GONE);
         }
 
-        for(int i=0;i<n;i++){//setting the names and roll no from  wingform array to saved from edittext
+        for(int i=0;i<2*n;i++){//setting the names and roll no from  wingform array to saved from edittext
             rname[i].setText(sname[i]);
             rollno[i].setText(sid[i]);
         }
 
+        submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 
+import com.example.ankurshukla.hostel.Controller.AppController;
 import com.example.ankurshukla.hostel.R;
 
 import java.util.Arrays;
@@ -76,6 +77,7 @@ public class Preference extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 number=parent.getItemAtPosition(position).toString().toLowerCase();
+                AppController.setString(Preference.this,"noofrooms",number);
             }
 
             @Override
@@ -144,6 +146,7 @@ public class Preference extends AppCompatActivity {
                 i.putExtra("Hostel_type",hostel);//sending hostel types to wing form class
                 i.putExtra("Floor_type",floor);//sending floor types to wing form class
                 startActivity(i);
+                finish();
             }
         });
 

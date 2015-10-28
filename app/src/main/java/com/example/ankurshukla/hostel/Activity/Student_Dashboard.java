@@ -209,9 +209,11 @@ public class Student_Dashboard extends AppCompatActivity {
                     if(msg.equals("noFormPresent")){
                         Intent i = new Intent(Student_Dashboard.this,Preference.class);
                         startActivity(i);
+                        finish();
                     }else if(msg.equals("savedFormPresent")){
-                        Intent i = new Intent(Student_Dashboard.this,Saved_Form.class);
-                        startActivity(i);
+                       // Intent i = new Intent(Student_Dashboard.this,Saved_Form.class);
+                       // startActivity(i);
+                        getsavedform();
                     }else if(msg.equals("submittedFormPresent")){
                         Intent i = new Intent(Student_Dashboard.this,Submitted_Form.class);
                         startActivity(i);
@@ -246,4 +248,71 @@ public class Student_Dashboard extends AppCompatActivity {
         AppController.getInstance().addToRequestQueue(strReq);
 
     }
+
+
+    private final void  getsavedform(){
+        StringRequest strReq =new StringRequest(Request.Method.POST,
+                AppConfig.URL_GETSAVEDFORM, new Response.Listener<String>() {
+
+            @Override
+            public void onResponse(String response) {
+
+                String pref_noofrooms = AppController.getString(Student_Dashboard.this,"noofrooms");
+      //          int n = Integer.parseInt(number);
+                String savesid[] = new String[6];
+                String savename[] = new String[6];
+
+                ArrayList<String> msg_list = new ArrayList<String>();
+
+                try {
+                    JSONObject jObj = new JSONObject(response);
+                    //Response from server
+                    String number = jObj.getString("noofstudent");
+                    int n = Integer.parseInt(number);
+                    JSONArray entry = jObj.getJSONArray("entry");
+                    for(int i=0;i<n;i++){
+                        JSONObject jobj1 = entry.getJSONObject(i);
+                         savesid[i] = jobj1.getString("sid");
+                        savename[i] = jobj1.getString("sname");
+                    }
+
+                    Intent i = new Intent(Student_Dashboard.this,Saved_Form.class);
+                    i.putExtra("sname",savename);//passing all names
+                    i.putExtra("sid",savesid);//passing all id
+                    i.putExtra("noOfStudents",pref_noofrooms);//passing number of rooms
+                    startActivity(i);
+
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(),
+                        error.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        }) {
+
+            @Override
+            protected Map<String, String> getParams() {
+                // Posting params to register url
+                String form = "numcsa";
+                String uid = AppController.getString(Student_Dashboard.this,"Student_id");
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("getsavedform", form);
+                params.put("uid", uid);
+                return params;
+            }
+
+        };
+
+        AppController.getInstance().addToRequestQueue(strReq);
+
+    }
+
 }

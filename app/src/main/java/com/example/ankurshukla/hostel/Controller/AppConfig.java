@@ -26,4 +26,7 @@ public class AppConfig {
     //for saved form
     public static String URL_SAVEDFORM = "http://192.168.133.1/sepmdb/createsavedform.php";
 
+    //for getting saved form if present
+    public static String URL_GETSAVEDFORM = "http://192.168.133.1/sepmdb/getsavedform.php";
+
 }
