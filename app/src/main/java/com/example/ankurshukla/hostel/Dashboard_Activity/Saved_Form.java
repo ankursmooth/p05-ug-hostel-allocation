@@ -17,6 +17,8 @@ public class Saved_Form extends AppCompatActivity {
     String [] sname = new String[]{"","","","","",""};
     String [] sid = new String[]{"","","","","",""};
     String number;
+    String hostelid[] = new String[]{"",""};
+    String floor[] = new String[]{"",""};
     LinearLayout sf1,sf2,sf3;
     EditText[] rname = new EditText[6];//r ==room and n=name
     EditText [] rollno = new EditText[6]; //r=room and id=rool no
@@ -29,6 +31,8 @@ public class Saved_Form extends AppCompatActivity {
         sname = intent.getStringArrayExtra("sname");
         sid = intent.getStringArrayExtra("sid");
         number = intent.getStringExtra("noOfStudents");
+        hostelid = intent.getStringArrayExtra("Hostel_type");//getting all hostel types for preferneces
+        floor  = intent.getStringArrayExtra("Floor_type");//getting all floor types from preferences
         setContentView(R.layout.activity_saved__form);
 
 
@@ -67,7 +71,13 @@ public class Saved_Form extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent i  = new Intent(Saved_Form.this,WingForm.class);
+                i.putExtra("sname",sname);//passing all names
+                i.putExtra("sid",sid);//passing all id
+                i.putExtra("noOfStudents",number);//passing number of rooms
+                i.putExtra("Hostel_type",hostelid);
+                i.putExtra("Floor_type",floor);
+                startActivity(i);
             }
         });
 

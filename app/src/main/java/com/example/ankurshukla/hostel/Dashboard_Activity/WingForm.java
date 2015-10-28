@@ -32,8 +32,9 @@ import java.util.Map;
  */
 public class WingForm extends AppCompatActivity {
 
-    LinearLayout one,two,three,four,five,six,seven,eight;
-    String number;
+    LinearLayout one,two,three;
+    String snumber;//no coming from prefernce
+    String number; //number direct accesss by shared preference
     String hostel[] = new String[]{"",""};
     String floor[] = new String[]{"",""};
     Button save,submit;
@@ -41,17 +42,19 @@ public class WingForm extends AppCompatActivity {
     EditText [] rollno = new EditText[6]; //r=room and id=rool no
     String roomname [] = new String[]{"","","","","",""};
     String rollId [] = new String[]{"","","","","",""};
-    String sname[] = new String[]{"","","","","",""};
-    String sid[] = new String[]{"","","","","",""};
+    String sname [] = new String[]{"","","","","",""};
+    String sid [] = new String[]{"","","","","",""};
     int n;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Intent intent=getIntent();
-        number=intent.getStringExtra("number");//getting no of rooms in the wing from prference class
+        snumber=intent.getStringExtra("number");//getting no of rooms in the wing from prference class
         hostel = intent.getStringArrayExtra("Hostel_type");//getting all hostel types for preferneces
         floor  = intent.getStringArrayExtra("Floor_type");//getting all floor types from preferences
+        sname = intent.getStringArrayExtra("sname");
+        sid = intent.getStringArrayExtra("sid");
         setContentView(R.layout.wing_form);
 
         android.support.v7.app.ActionBar actionBar=getSupportActionBar();
@@ -75,13 +78,27 @@ public class WingForm extends AppCompatActivity {
         save = (Button)findViewById(R.id.save_but);
         submit = (Button)findViewById(R.id.submit_but);
 
+        number = AppController.getString(WingForm.this,"noofrooms");
 
         if(number.equals("1")){
             two.setVisibility(View.GONE);
             three.setVisibility(View.GONE);
+            for(int i=0;i<2*Integer.parseInt(number);i++){//setting the names and roll no from  wingform array to saved from edittext
+                rname[i].setText(sname[i]);
+                rollno[i].setText(sid[i]);
+            }
         }
         else if(number.equals("2")){
             three.setVisibility(View.GONE);
+            for(int i=0;i<2*Integer.parseInt(number);i++){//setting the names and roll no from  wingform array to saved from edittext
+                rname[i].setText(sname[i]);
+                rollno[i].setText(sid[i]);
+            }
+        }else {
+            for (int i = 0; i < 2 * Integer.parseInt(number); i++) {//setting the names and roll no from  wingform array to saved from edittext
+                rname[i].setText(sname[i]);
+                rollno[i].setText(sid[i]);
+            }
         }
 
         save.setOnClickListener(new View.OnClickListener() {
@@ -121,6 +138,7 @@ public class WingForm extends AppCompatActivity {
         });
     }
 
+    //for saving the form for first time
     private void savedForm(final String sname[],final String sid[],final String noOfStudents,final String hostelid[],final
                            String floorno[]){
 
