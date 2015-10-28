@@ -312,7 +312,6 @@ public class WingForm extends AppCompatActivity {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     Intent i =  new Intent(WingForm.this,Submitted_Form.class);
-                                    i.putExtra("sname",sname);//passing all names
                                     i.putExtra("sid",sid);//passing all id
                                     i.putExtra("noOfStudents",noOfStudents);//passing number of rooms
                                     startActivity(i);

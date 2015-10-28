@@ -30,7 +30,6 @@ public class Submitted_Form extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Intent intent = getIntent();
-        sname = intent.getStringArrayExtra("sname");
         sid = intent.getStringArrayExtra("sid");
         number = intent.getStringExtra("noOfStudents");
         setContentView(R.layout.activity_submitted__form);
@@ -62,7 +61,6 @@ public class Submitted_Form extends AppCompatActivity {
         }
 
         for(int i=0;i<2*n;i++){//setting the names and roll no from  wingform array to saved from edittext
-            rname[i].setText(sname[i]);
             rollno[i].setText(sid[i]);
         }
 

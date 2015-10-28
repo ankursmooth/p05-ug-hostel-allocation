@@ -32,4 +32,8 @@ public class AppConfig {
     //for getting saved form if present
     public static String URL_GETSAVEDFORM = "http://192.168.133.1/sepmdb/getsavedform.php";
 
+    //for getting saved form if present
+    public static String URL_GETSUBMITTEDFORM = "http://192.168.133.1/sepmdb/getsubmittedform.php";
+
+
 }
