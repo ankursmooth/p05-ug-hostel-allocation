@@ -11,6 +11,11 @@ response
   "success": 1,
   "message": "no of notifications for this user",
   "noofnotifications": 2
+  "allocationstdate": returns start date of allocation process default value is 2030-01-01
+  "allocationnddate" : returns end date of allocation process... default value is 2030-01-01
+  // if you get default value of allocationnddate that means that niether wing form nor search is allowed
+  // if allocationnddate is less than current date, search is allowed but filling wing form is not allowed
+  // if currentdate>= allocationstdate && currentdate<=allocationnddate then wing form is allowed but search is not allowed
 }
 
 post
@@ -72,6 +77,21 @@ if(isset($_POST ['getnotification'])){
                 $response["success"] = 1;
                 $response["message"] = "no of notifications for this user";
                 $response["noofnotifications"] = $row['num'];
+                $sql = "SELECT startdate, enddate FROM allocationprocess";
+                $stmt = $pdo->prepare($sql);
+                
+                $stmt->execute();
+                $row = $stmt->fetch(PDO::FETCH_ASSOC);
+                if($row)
+                {
+                  $response["allocationstdate"] = $row['startdate'];
+                  $response["allocationnddate"] = $row['enddate'];
+                }
+                else{
+
+                  $response["allocationstdate"] = "2030-01-01";
+                  $response["allocationnddate"] = "2030-01-01";
+                }
                 
                 echo json_encode($response);
         }
