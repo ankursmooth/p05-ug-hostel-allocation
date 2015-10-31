@@ -26,6 +26,11 @@
         <item>2</item>
         <item>3</item>
     </string-array>
+    <string-array name="Search_Types">
+        <item>Name</item>
+        <item>ID</item>
+        <item>Contact</item>
+    </string-array>
     <string name="title_activity_conflict_ui">Conflicts</string>
     <string name="conflict">The Following Students name is already present in the submitted form:</string>
     <string name="title_activity_notifications">Notifications</string>
@@ -36,6 +41,8 @@
     <string name="title_activity_dashboard">Dashboard</string>
     <string name="title_activity_saved__form">Saved_Form</string>
     <string name="title_activity_submitted__form">Submitted_Form</string>
+    <string name="title_activity_search">Search</string>
+    <string name="title_activity_search_result">SearchResult</string>
 
 
 </resources>

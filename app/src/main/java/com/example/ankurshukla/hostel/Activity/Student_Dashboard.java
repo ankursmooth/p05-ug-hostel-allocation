@@ -20,6 +20,7 @@ import com.example.ankurshukla.hostel.Controller.AppConfig;
 import com.example.ankurshukla.hostel.Controller.AppController;
 import com.example.ankurshukla.hostel.Dashboard_Activity.Preference;
 import com.example.ankurshukla.hostel.Dashboard_Activity.Saved_Form;
+import com.example.ankurshukla.hostel.Dashboard_Activity.Search;
 import com.example.ankurshukla.hostel.Dashboard_Activity.Student_Notify;
 import com.example.ankurshukla.hostel.Dashboard_Activity.Submitted_Form;
 import com.example.ankurshukla.hostel.R;
@@ -27,7 +28,6 @@ import com.example.ankurshukla.hostel.R;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -49,6 +49,7 @@ public class Student_Dashboard extends AppCompatActivity {
 
         wing= (Button) findViewById(R.id.btn_student_wing);
         notification= (Button) findViewById(R.id.btn_student_notify);
+        search = (Button)findViewById(R.id.btn_student_search);
         name=(TextView)findViewById(R.id.display_sname);
         student_notify = (TextView)findViewById(R.id.student_notify);
 
@@ -104,6 +105,14 @@ public class Student_Dashboard extends AppCompatActivity {
                 }
 
 
+        });
+
+        search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(Student_Dashboard.this, Search.class);
+                startActivity(i);
+            }
         });
 
     }
@@ -251,7 +260,7 @@ public class Student_Dashboard extends AppCompatActivity {
     }
 
 
-    private final void  getsavedform(){
+    private  void  getsavedform(){
         StringRequest strReq =new StringRequest(Request.Method.POST,
                 AppConfig.URL_GETSAVEDFORM, new Response.Listener<String>() {
 
@@ -327,7 +336,7 @@ public class Student_Dashboard extends AppCompatActivity {
     }
 
 
-    private final void  getsubmittedform(){
+    private  void  getsubmittedform(){
         StringRequest strReq =new StringRequest(Request.Method.POST,
                 AppConfig.URL_GETSUBMITTEDFORM, new Response.Listener<String>() {
 

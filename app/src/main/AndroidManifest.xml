@@ -7,9 +7,9 @@
     <application
         android:name=".Controller.AppController"
         android:allowBackup="true"
+        android:debuggable="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:debuggable="true"
         android:theme="@style/AppTheme" >
         <activity
             android:name=".Activity.MainActivity"
@@ -67,6 +67,14 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".Dashboard_Activity.Search"
+            android:label="@string/title_activity_search" >
+        </activity>
+        <activity
+            android:name=".Dashboard_Activity.SearchResult"
+            android:label="@string/title_activity_search_result" >
         </activity>
     </application>
 
