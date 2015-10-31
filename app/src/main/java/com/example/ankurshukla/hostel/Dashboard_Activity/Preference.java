@@ -35,6 +35,7 @@ public class Preference extends AppCompatActivity {
 
         android.support.v7.app.ActionBar actionBar=getSupportActionBar();
         actionBar.hide();
+        String sex = AppController.getString(Preference.this,"sex");
 
         next= (Button) findViewById(R.id.nextPref);
         //Inserting values in no of rooms spinner
@@ -43,100 +44,167 @@ public class Preference extends AppCompatActivity {
         floor1 = (Spinner)findViewById(R.id.firstspinerfloor);
         hostel2 = (Spinner)findViewById(R.id.secondspinerhostel);
         floor2 = (Spinner)findViewById(R.id.secondspinerfloor);
-        List<String> types_noOfRooms= Arrays.asList(getResources().getStringArray(R.array.NoOfRooms));
-        List<String> hostel_types = Arrays.asList(getResources().getStringArray(R.array.hostel_name));
-        List<String> floor_types = Arrays.asList(getResources().getStringArray(R.array.floor_types));
 
-        //for no of rooms
-        ArrayAdapter<String> dataAdapter=new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,types_noOfRooms);
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        noOfRoom.setAdapter(dataAdapter);
+        if(sex.equals("M")) {
+            List<String> types_noOfRooms = Arrays.asList(getResources().getStringArray(R.array.NoOfRooms));
+            List<String> hostel_types = Arrays.asList(getResources().getStringArray(R.array.hostel_name_M));
+            List<String> floor_types = Arrays.asList(getResources().getStringArray(R.array.floor_types));
 
-        //for first hostel type spinner
-        ArrayAdapter<String> hostel_type1=new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,hostel_types);
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        hostel1.setAdapter(hostel_type1);
+            //for no of rooms
+            ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, types_noOfRooms);
+            dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            noOfRoom.setAdapter(dataAdapter);
 
-        //for second hostel type spinner
-        ArrayAdapter<String> hostel_type2=new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,hostel_types);
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        hostel2.setAdapter(hostel_type2);
+            //for first hostel type spinner
+            ArrayAdapter<String> hostel_type1 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, hostel_types);
+            dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            hostel1.setAdapter(hostel_type1);
 
-        //for first fllor spinner
-        ArrayAdapter<String> floor_1 = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,floor_types);
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        floor1.setAdapter(floor_1);
+            //for second hostel type spinner
+            ArrayAdapter<String> hostel_type2 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, hostel_types);
+            dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            hostel2.setAdapter(hostel_type2);
 
-        //for second fllor spinner
-        ArrayAdapter<String> floor_2 = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,floor_types);
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        floor2.setAdapter(floor_1);
+            //for first fllor spinner
+            ArrayAdapter<String> floor_1 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, floor_types);
+            dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            floor1.setAdapter(floor_1);
 
-        //getting the number of rooms from no of room by spinner
-        noOfRoom.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                number=parent.getItemAtPosition(position).toString().toLowerCase();
-                AppController.setString(Preference.this,"noofrooms",number);
-            }
+            //for second fllor spinner
+            ArrayAdapter<String> floor_2 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, floor_types);
+            dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            floor2.setAdapter(floor_1);
 
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
+            //getting the number of rooms from no of room by spinner
+            noOfRoom.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    number = parent.getItemAtPosition(position).toString().toLowerCase();
+                    AppController.setString(Preference.this, "noofrooms", number);
+                }
 
-            }
-        });
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
 
-        //getting the hostel types from first spinner of hostel1
-        hostel1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                hostel[0] = parent.getItemAtPosition(position).toString().toLowerCase();
-            }
+                }
+            });
 
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
+            //getting the hostel types from first spinner of hostel1
+            hostel1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    hostel[0] = parent.getItemAtPosition(position).toString().toLowerCase();
+                }
 
-            }
-        });
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
 
-        //getting the hostel type form second spinner i.ee hostel2
-        hostel2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                hostel[1] = parent.getItemAtPosition(position).toString().toLowerCase();
-            }
+                }
+            });
 
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
+            //getting the hostel type form second spinner i.ee hostel2
+            hostel2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    hostel[1] = parent.getItemAtPosition(position).toString().toLowerCase();
+                }
 
-            }
-        });
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
 
-        //getting the floor from floor1 spinner in floor string
-        floor1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                floor[0] = parent.getItemAtPosition(position).toString().toLowerCase();
-            }
+                }
+            });
 
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
+            //getting the floor from floor1 spinner in floor string
+            floor1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    floor[0] = parent.getItemAtPosition(position).toString().toLowerCase();
+                }
 
-            }
-        });
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
 
-        //getting the floor from floor2 spinner in floor string
-        floor2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                floor[1] = parent.getItemAtPosition(position).toString().toLowerCase();
-            }
+                }
+            });
 
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
+            //getting the floor from floor2 spinner in floor string
+            floor2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    floor[1] = parent.getItemAtPosition(position).toString().toLowerCase();
+                }
 
-            }
-        });
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
+
+                }
+            });
+        }else{
+            hostel2.setVisibility(View.GONE);
+            floor2.setVisibility(View.GONE);
+            List<String> types_noOfRooms = Arrays.asList(getResources().getStringArray(R.array.NoOfRooms));
+            List<String> hostel_types = Arrays.asList(getResources().getStringArray(R.array.hostel_name_F));
+            List<String> floor_types = Arrays.asList(getResources().getStringArray(R.array.floor_types));
+
+            //for no of rooms
+            ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, types_noOfRooms);
+            dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            noOfRoom.setAdapter(dataAdapter);
+
+            //for first hostel type spinner
+            ArrayAdapter<String> hostel_type1 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, hostel_types);
+            dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            hostel1.setAdapter(hostel_type1);
+
+            //for first fllor spinner
+            ArrayAdapter<String> floor_1 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, floor_types);
+            dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            floor1.setAdapter(floor_1);
+
+            //getting the number of rooms from no of room by spinner
+            noOfRoom.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    number = parent.getItemAtPosition(position).toString().toLowerCase();
+                    AppController.setString(Preference.this, "noofrooms", number);
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
+
+                }
+            });
+
+            //getting the hostel types from first spinner of hostel1
+            hostel1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    hostel[0] = parent.getItemAtPosition(position).toString().toLowerCase();
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
+
+                }
+            });
+
+
+            //getting the floor from floor1 spinner in floor string
+            floor1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    floor[0] = parent.getItemAtPosition(position).toString().toLowerCase();
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
+
+                }
+            });
+
+
+        }
 
         next.setOnClickListener(new View.OnClickListener() {
             @Override

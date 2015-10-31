@@ -28,5 +28,12 @@
         android:id="@+id/startalloc"
         />
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:text="Do Allotment of Rooms"
+        android:id="@+id/donealloc"/>
+
 
 </LinearLayout>

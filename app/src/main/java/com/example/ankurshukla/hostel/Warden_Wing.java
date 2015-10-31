@@ -30,7 +30,7 @@ import java.util.Map;
 public class Warden_Wing extends AppCompatActivity {
 
     EditText stdate,edate;
-    Button startalloc;
+    Button startalloc,doalloc;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +40,8 @@ public class Warden_Wing extends AppCompatActivity {
         stdate = (EditText) findViewById(R.id.start_date);
         edate = (EditText) findViewById(R.id.end_date);
         startalloc = (Button)findViewById(R.id.startalloc);
-
+        doalloc = (Button)findViewById(R.id.donealloc);
+        doalloc.setEnabled(false);
 
 
         startalloc.setOnClickListener(new View.OnClickListener() {
@@ -50,6 +51,7 @@ public class Warden_Wing extends AppCompatActivity {
                  String sdate = stdate.getText().toString().toLowerCase();
                  String sedate = edate.getText().toString().toLowerCase();
                 createalloprocess(sdate,sedate ,loggedid);
+                doalloc.setEnabled(true);
             }
         });
 

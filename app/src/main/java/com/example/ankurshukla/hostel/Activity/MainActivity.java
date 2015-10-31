@@ -296,9 +296,13 @@ public class MainActivity extends AppCompatActivity {
                     String success = jObj.getString("success");
                     String message = jObj.getString("message");
                     String noOfNotification = jObj.getString("noofnotifications");
+      //              String allocationstdate = jObj.getString("allocationstdate");
+       //             String allocationnddate = jObj.getString("allocationnddate");
 
                     //writing the value to sharedpreference in phone database
                     AppController.setString(MainActivity.this, "noOfNotify", noOfNotification);
+                //    AppController.setString(MainActivity.this,"asdate",allocationstdate);//start date of allocation process
+              //      AppController.setString(MainActivity.this,"andate",allocationnddate);//end date of allocation process
 
                 //    Toast.makeText(MainActivity.this, message ,Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(MainActivity.this, Student_Dashboard.class);

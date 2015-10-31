@@ -76,6 +76,10 @@
             android:name=".Dashboard_Activity.SearchResult"
             android:label="@string/title_activity_search_result" >
         </activity>
+        <activity
+            android:name=".Dashboard_Activity.Special_Request"
+            android:label="@string/title_activity_special__request" >
+        </activity>
     </application>
 
 </manifest>
