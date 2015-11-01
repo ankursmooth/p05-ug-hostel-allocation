@@ -5,8 +5,13 @@ $response = array();
 /*
 changeroom.php
 post
-changeroom=anything
 
+changeroom=anything&sid1=y13uc032&sid2=y13uc033&hostelid=bh2&roomid=a001
+response
+{
+    "success": 1,
+    "message": "changed"
+}
 */
 require 'connect.php';
 
@@ -35,11 +40,11 @@ if(isset($_POST ['changeroom'])){
   $stmtin->execute();
   $sql = "DELETE FROM allocation WHERE sid =:sid1";
   $stmtin = $pdo->prepare($sql);
-  $stmtin->bindValue(':sid1', $innoform["sid1"]);
+  $stmtin->bindValue(':sid1', $sid1);
   $stmtin->execute();
   $sql = "DELETE FROM allocation WHERE sid =:sid2";
   $stmtin = $pdo->prepare($sql);
-  $stmtin->bindValue(':sid2', $innoform["sid2"]);
+  $stmtin->bindValue(':sid2', $sid2);
   $stmtin->execute();
   
   $sql = "INSERT INTO allocation (hostelid, sid, roomid) VALUES (:hostelid, :sid1, :roomid)";
@@ -62,6 +67,10 @@ if(isset($_POST ['changeroom'])){
   
   $stmtin->bindValue(':roomid', $roomid);
   $stmtin->execute();
+  $response["success"] = 1;
+  $response["message"] = "changed";
+
+  echo json_encode($response);
 }  
 else
 {

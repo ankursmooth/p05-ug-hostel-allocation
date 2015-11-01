@@ -4,7 +4,50 @@ session_start();
 $response = array();
 /*
 getsr.php
-post
+post of two types
+first type when student is logged in
+getsr=anything 
+usertype=student 
+uid=y13uc032
+response
+{
+  "requez": [
+    {
+      "rqid": "1",
+      "sid": "y13uc032",
+      "reqmessage": "me and my roomie ankur shukla y13uc033 are fed up of water leakage problem. please change our room",
+      "responsebyid": "neogi",
+      "reqresponse": "ok. changed your room",
+      "rdate": "2015-10-23"
+    }
+  ],
+  "success": 1,
+  "message": "requests for this user",
+  "noofrequests": 1
+}
+
+second type when warden is logged in
+post 
+getsr=anything
+usertype=warden 
+
+response
+{
+    "requez": [
+        {
+            "rqid": "1",
+            "sid": "y13uc032",
+            "reqmessage": "me and my roomie ankur shukla y13uc033 are fed up of water leakage problem. please change our room",
+            "responsebyid": "neogi",
+            "reqresponse": "ok. changed your room",
+            "rdate": "2015-10-23"
+        }
+    ],
+    "success": 1,
+    "message": "requests for this user",
+    "noofrequests": 1
+}
+
 s*/
 
 require 'connect.php';
@@ -56,7 +99,7 @@ if(isset($_POST ['getsr'])){
         $requez=array();
         $requez["rqid"]=$notic["rqid"];
         $requez["sid"]=$notic["sid"];
-        $requez["reqmessage"]=$notic["message"];
+        $requez["reqmessage"]=$notic["reqmessage"];
         $requez["responsebyid"]=$notic["responsebyid"];
         $requez["reqresponse"]=$notic["reqresponse"];
         $requez["rdate"]=$notic["rdate"];
@@ -119,7 +162,7 @@ if(isset($_POST ['getsr'])){
         $requez=array();
         $requez["rqid"]=$notic["rqid"];
         $requez["sid"]=$notic["sid"];
-        $requez["reqmessage"]=$notic["message"];
+        $requez["reqmessage"]=$notic["reqmessage"];
         $requez["responsebyid"]=$notic["responsebyid"];
         $requez["reqresponse"]=$notic["reqresponse"];
         $requez["rdate"]=$notic["rdate"];
