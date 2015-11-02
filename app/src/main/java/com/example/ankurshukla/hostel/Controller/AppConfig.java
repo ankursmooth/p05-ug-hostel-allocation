@@ -38,5 +38,8 @@ public class AppConfig {
     //for getting search result
     public static  String URL_SEARCH="http://192.168.133.1/sepmdb/search.php";
 
+    //for checking conflicts
+    public static String URL_CONFLICTS="http://192.168.133.1/sepmdb/checkconflicts.php";
+
 
 }

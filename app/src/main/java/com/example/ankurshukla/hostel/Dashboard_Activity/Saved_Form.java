@@ -18,8 +18,8 @@ public class Saved_Form extends AppCompatActivity {
     String [] sname = new String[]{"","","","","",""};
     String [] sid = new String[]{"","","","","",""};
     String number;
-    String hostelid[] = new String[]{"",""};
-    String floor[] = new String[]{"",""};
+    String hostelid[] = new String[2];
+    String floor[] = new String[2];
     LinearLayout sf1,sf2,sf3;
     TextView[] rname = new TextView[6];//r ==room and n=name
     TextView [] rollno = new TextView[6]; //r=room and id=rool no

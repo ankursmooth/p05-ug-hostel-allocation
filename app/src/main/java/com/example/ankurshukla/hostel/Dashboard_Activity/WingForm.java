@@ -19,6 +19,7 @@ import com.example.ankurshukla.hostel.Controller.AppConfig;
 import com.example.ankurshukla.hostel.Controller.AppController;
 import com.example.ankurshukla.hostel.R;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -40,11 +41,12 @@ public class WingForm extends AppCompatActivity {
     Button save,submit;
     EditText[] rname = new EditText[6];//r ==room and n=name
     EditText [] rollno = new EditText[6]; //r=room and id=rool no
-    String roomname [] = new String[]{"","","","","",""};
-    String rollId [] = new String[]{"","","","","",""};
-    String sname [] = new String[]{"","","","","",""};
-    String sid [] = new String[]{"","","","","",""};
+    String roomname [] = new String[6];
+    String rollId [] = new String[6];
+    String sname [] = new String[6];
+    String sid [] = new String[6];
     int n;
+    String name = null;//for determining which type of button has called the check conflicts fucntion
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,21 +86,37 @@ public class WingForm extends AppCompatActivity {
             two.setVisibility(View.GONE);
             three.setVisibility(View.GONE);
             for(int i=0;i<2*Integer.parseInt(number);i++){//setting the names and roll no from  wingform array to saved from edittext
-                rname[i].setText(sname[i]);
-                rollno[i].setText(sid[i]);
+                if(sname == null){
+                    rname[i].setText("");
+                    rollno[i].setText("");
+                }else {
+                    rname[i].setText(sname[i]);
+                    rollno[i].setText(sid[i]);
+                }
             }
         }
         else if(number.equals("2")){
             three.setVisibility(View.GONE);
             for(int i=0;i<2*Integer.parseInt(number);i++){//setting the names and roll no from  wingform array to saved from edittext
-                rname[i].setText(sname[i]);
-                rollno[i].setText(sid[i]);
+                if(sname == null){
+                    rname[i].setText("");
+                    rollno[i].setText("");
+                }else {
+                    rname[i].setText(sname[i]);
+                    rollno[i].setText(sid[i]);
+                }
             }
         }else {
             for (int i = 0; i < 2 * Integer.parseInt(number); i++) {//setting the names and roll no from  wingform array to saved from edittext
-                rname[i].setText(sname[i]);
-                rollno[i].setText(sid[i]);
+                if(sname == null){
+                    rname[i].setText("");
+                    rollno[i].setText("");
+                }else {
+                    rname[i].setText(sname[i]);
+                    rollno[i].setText(sid[i]);
+                }
             }
+
         }
 
         save.setOnClickListener(new View.OnClickListener() {
@@ -131,7 +149,7 @@ public class WingForm extends AppCompatActivity {
                     AlertDialog dialog = alertdialogBuilder.create();
                     dialog.show();
                 }else
-                    savedForm(roomname, rollId, number, hostel, floor);
+                   savedForm(roomname, rollId, number, hostel, floor);
             }
         });
 
@@ -174,7 +192,9 @@ public class WingForm extends AppCompatActivity {
                             .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-                                    submitform(roomname,rollId, number, hostel, floor);
+
+                                    checkconflict(roomname, rollId, number, hostel, floor);
+                                 //   submitform(roomname,rollId, number, hostel, floor);
                                 }
                             })
                             .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
@@ -226,6 +246,8 @@ public class WingForm extends AppCompatActivity {
                                     i.putExtra("sname",sname);//passing all names
                                     i.putExtra("sid",sid);//passing all id
                                     i.putExtra("noOfStudents",noOfStudents);//passing number of rooms
+                                    i.putExtra("Hostel_type",hostel);//sending hostel types to wing form class
+                                    i.putExtra("Floor_type",floor);//sending floor types to wing form class
                                     startActivity(i);
                                 }
                             });
@@ -283,6 +305,9 @@ public class WingForm extends AppCompatActivity {
     }
 
 
+
+
+    //here number is no of rooms only so total student will be 2*no of students
     private void submitform(final String sname[],final String sid[],final String noOfStudents,final String hostelid[],final
     String floorno[]){
         StringRequest strReq =new StringRequest(Request.Method.POST,
@@ -358,6 +383,94 @@ public class WingForm extends AppCompatActivity {
                     params.put("sid["+k+"]", sid[k]);
                     params.put("roominwing["+k+"]",z );
                 }
+                return params;
+            }//pori array paas ho rhi hai
+            //debug krke dekho smjh aa jaega ek ke sath ek kaise bheju smjh nh aa rha
+
+        };
+
+        AppController.getInstance().addToRequestQueue(strReq);
+    }
+
+
+
+
+
+    //no of conflicts will be no of students so total conflicts we have to sent is 2*no of conflicts
+    private void checkconflict(final String sname[],final String sid[],final String noofconflicts,final String hostelid[],final
+    String floorno[]){
+        StringRequest strReq =new StringRequest(Request.Method.POST,
+                AppConfig.URL_CONFLICTS, new Response.Listener<String>() {
+
+            @Override
+            public void onResponse(String response) {
+
+
+                try {
+                    JSONObject jObj = new JSONObject(response);
+                    //Response from serveR
+                    String conflicts = jObj.getString("conflicts");//no of conflicts it will show
+                    String [] wfid = new String[Integer.parseInt(conflicts)];
+                    String [] sid = new String[Integer.parseInt(conflicts)];
+                    if(conflicts.equals("0")){
+                        submitform(roomname,rollId, number, hostel, floor);
+                    }else{
+                        JSONArray repeat = jObj.getJSONArray("repeat");
+                        for(int i=0;i<Integer.parseInt(conflicts);i++){
+                            JSONObject jobji = repeat.getJSONObject(i);
+                             wfid[i] = jobji.getString("wfid");
+                            sid[i] = jobji.getString("sid");
+                        }
+                        String m1 = "Following Roll Number Already have been Submitted:-";
+                        for(int i=0;i<Integer.parseInt(conflicts);i++){
+                           name = name + sid[i];
+                        }
+                        String msg = m1 + name;
+                        final AlertDialog.Builder alertdialogBuilder = new AlertDialog.Builder(WingForm.this);
+                        alertdialogBuilder.setTitle("Conflicts!");
+
+
+                        alertdialogBuilder
+                                .setMessage(msg)
+                                .setCancelable(false)
+                                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.dismiss();
+                                    }
+                                });
+                        AlertDialog dialog = alertdialogBuilder.create();
+                        dialog.show();
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(),
+                        error.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        }) {
+
+            @Override
+            protected Map<String, String> getParams() {
+                // Posting params to saved form url
+                int noofstudent = 2*Integer.parseInt(noofconflicts);
+                String checkconflicts = "jbscjas";//send anything part
+                String uid = AppController.getString(WingForm.this,"Student_id");
+                Map<String, String> params = new LinkedHashMap<String, String>();
+                //using LinkedHashmap because backend does not check key value and sees order of variables
+                params.put("checkconflicts", checkconflicts);
+                params.put("noofstudent", String.valueOf(noofstudent));
+                for(int m=0;m<noofstudent;m++){
+                    params.put("sid["+m+"]",sid[m]);
+                }
+
 
                 return params;
             }//pori array paas ho rhi hai
@@ -367,5 +480,5 @@ public class WingForm extends AppCompatActivity {
 
         AppController.getInstance().addToRequestQueue(strReq);
     }
-   
+
 }

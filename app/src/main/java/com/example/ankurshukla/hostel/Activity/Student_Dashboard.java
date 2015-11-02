@@ -206,8 +206,6 @@ public class Student_Dashboard extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
 
-                ArrayList<String> msg_list = new ArrayList<String>();
-
                 try {
                     JSONObject jObj = new JSONObject(response);
                     //Response from server
@@ -268,13 +266,10 @@ public class Student_Dashboard extends AppCompatActivity {
             public void onResponse(String response) {
 
                 String pref_noofrooms = AppController.getString(Student_Dashboard.this,"noofrooms");
-      //          int n = Integer.parseInt(number);
                 String savesid[] = new String[6];
                 String savename[] = new String[6];
                 String hostelid[] = new String[2];
                 String floor[] = new String[2];
-
-                ArrayList<String> msg_list = new ArrayList<String>();
 
                 try {
                     JSONObject jObj = new JSONObject(response);
@@ -363,7 +358,7 @@ public class Student_Dashboard extends AppCompatActivity {
                         savesid[i] = jobj1.getString("sid");
                     }
                     JSONArray pref = jObj.getJSONArray("pref");
-                    for(int j=0;j<n;j++){
+                    for(int j=0;j<2;j++){
                         JSONObject jobj2 = pref.getJSONObject(j);
                         hostelid[j] = jobj2.getString("hostelid");
                         floor[j] = jobj2.getString("floorno");
@@ -372,8 +367,8 @@ public class Student_Dashboard extends AppCompatActivity {
                     Intent i = new Intent(Student_Dashboard.this,Submitted_Form.class);
                     i.putExtra("sid",savesid);//passing all id
                     i.putExtra("noOfStudents",pref_noofrooms);//passing number of rooms
-                   // i.putExtra("Hostel_type",hostelid);
-                   // i.putExtra("Floor_type",floor);
+                    i.putExtra("Hostel_type",hostelid);
+                    i.putExtra("Floor_type",floor);
                     startActivity(i);
                     //pfid hostel id and floor id b paas karao
 
