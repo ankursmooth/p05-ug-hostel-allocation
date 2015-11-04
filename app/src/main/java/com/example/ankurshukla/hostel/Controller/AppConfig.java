@@ -44,5 +44,13 @@ public class AppConfig {
     //for doing allocation
     public static String URL_DOALLOCATION="http://192.168.133.1/sepmdb/doallocation.php";
 
+    //for creating special request
+    public static String URL_CREATESR="http://192.168.133.1/sepmdb/createsr.php";
+
+    //for getting Special request
+    public static String URL_GETSR="http://192.168.133.1/sepmdb/getsr.php";
+
+    //for gettingist of empty rooms
+    public  static  String URL_EMPTYROOMS = "http://192.168.133.1/sepmdb/getemptyrooms.php";
 
 }

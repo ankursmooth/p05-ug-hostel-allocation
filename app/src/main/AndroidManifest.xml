@@ -20,7 +20,7 @@
             android:label="@string/title_activity_dash_board" >
         </activity>
         <activity
-            android:name=".Dashboard_Activity.Preference"
+            android:name=".Student_Dashboard_Activity.Preference"
             android:label="@string/title_activity_wing_form" >
         </activity>
         <activity
@@ -28,11 +28,11 @@
             android:label="@string/title_activity_conflict_ui" >
         </activity>
         <activity
-            android:name=".Dashboard_Activity.WingForm"
+            android:name=".Student_Dashboard_Activity.WingForm"
             android:label="WingForm" >
         </activity>
         <activity
-            android:name=".Dashboard_Activity.Notifications"
+            android:name=".Warden_DashboardActivity.Notifications"
             android:label="@string/title_activity_notifications" >
         </activity>
         <activity
@@ -40,11 +40,11 @@
             android:label="@string/title_activity_student__dashboard" >
         </activity>
         <activity
-            android:name=".Warden_Wing"
+            android:name=".Warden_DashboardActivity.Warden_Wing"
             android:label="@string/title_activity_warden__wing" >
         </activity>
         <activity
-            android:name=".Dashboard_Activity.Student_Notify"
+            android:name=".Student_Dashboard_Activity.Student_Notify"
             android:label="@string/title_activity_student__notify" >
         </activity>
         <activity
@@ -52,11 +52,11 @@
             android:label="@string/title_activity_dashboard" >
         </activity>
         <activity
-            android:name=".Dashboard_Activity.Saved_Form"
+            android:name=".Student_Dashboard_Activity.Saved_Form"
             android:label="@string/title_activity_saved__form" >
         </activity>
         <activity
-            android:name=".Dashboard_Activity.Submitted_Form"
+            android:name=".Student_Dashboard_Activity.Submitted_Form"
             android:label="@string/title_activity_submitted__form" >
         </activity>
         <activity
@@ -69,16 +69,24 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Dashboard_Activity.Search"
+            android:name=".Student_Dashboard_Activity.Search"
             android:label="@string/title_activity_search" >
         </activity>
         <activity
-            android:name=".Dashboard_Activity.SearchResult"
-            android:label="@string/title_activity_search_result" >
+            android:name=".Student_Dashboard_Activity.Special_Request"
+            android:label="@string/title_activity_special__request" >
         </activity>
         <activity
-            android:name=".Dashboard_Activity.Special_Request"
-            android:label="@string/title_activity_special__request" >
+            android:name=".Student_Dashboard_Activity.Submitted_Request"
+            android:label="@string/title_activity_submitted__request" >
+        </activity>
+        <activity
+            android:name=".Warden_DashboardActivity.Warden_Sr"
+            android:label="@string/title_activity_warden__sr" >
+        </activity>
+        <activity
+            android:name=".Warden_DashboardActivity.Empty_Rooms"
+            android:label="@string/title_activity_empty__rooms" >
         </activity>
     </application>
 

@@ -1,4 +1,4 @@
-package com.example.ankurshukla.hostel;
+package com.example.ankurshukla.hostel.Warden_DashboardActivity;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -19,6 +19,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.example.ankurshukla.hostel.Activity.Warden_DashBoard;
 import com.example.ankurshukla.hostel.Controller.AppConfig;
 import com.example.ankurshukla.hostel.Controller.AppController;
+import com.example.ankurshukla.hostel.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -251,19 +252,21 @@ public class Warden_Wing extends AppCompatActivity {
                     String success = jObj.getString("success");
                     String message = jObj.getString("message");
 
-                    final AlertDialog.Builder alertdialogbuilder= new AlertDialog.Builder(Warden_Wing.this);
 
-                    alertdialogbuilder
-                            .setMessage("Wing Allocation Done!")
+                    final android.app.AlertDialog.Builder alertdialog = new android.app.AlertDialog.Builder(Warden_Wing.this);
+
+                    alertdialog
+                            .setMessage("Allocation Done!!")
                             .setCancelable(false)
                             .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-                                    dialog.dismiss();
+                                    Intent i = new Intent(Warden_Wing.this,Warden_DashBoard.class);
+                                    startActivity(i);
                                 }
                             });
 
-                    AlertDialog dialog = alertdialogbuilder.create();
+                    AlertDialog dialog = alertdialog.create();
                     dialog.show();
 
                 } catch (JSONException e) {

@@ -11,7 +11,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:orientation="vertical"
-    tools:context="com.example.ankurshukla.hostel.Dashboard_Activity.Search">
+    tools:context="com.example.ankurshukla.hostel.Student_Dashboard_Activity.Search">
 
 
     <Spinner
@@ -48,7 +48,7 @@
     <android.support.v7.widget.CardView
         xmlns:card_view="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="180dp"
         android:id="@+id/searchcard1"
         android:layout_margin="5dp"
         card_view:cardCornerRadius="2dp"
@@ -68,21 +68,23 @@
                >
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="102dp"
                     android:layout_height="wrap_content"
                     android:text="Hostel :-"
                     android:textSize="25dp"
-                    android:layout_weight="1"/>
+                  />
 
-                <EditText
-                    android:layout_width="207dp"
+                <TextView
+                    android:layout_width="205dp"
                     android:layout_height="wrap_content"
+                    android:textSize="25dp"
                     android:id="@+id/search_hostel1"/>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:orientation="horizontal"
                 >
 
@@ -93,8 +95,9 @@
                     android:textSize="25dp"
                     android:layout_weight="1"/>
 
-                <EditText
-                    android:layout_width="207dp"
+                <TextView
+                    android:layout_width="204dp"
+                    android:textSize="25dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/search_room1"/>
             </LinearLayout>
@@ -103,21 +106,24 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:layout_marginTop="10dp"
                 android:weightSum="2"
                 >
 
-                <EditText
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="SN1"
+                    android:textSize="25dp"
                     android:id="@+id/searchroom1_sn1"
                     android:layout_weight="1"/>
 
-                <EditText
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/searchroom1_id1"
                     android:hint="ID1"
+                    android:textSize="25dp"
                     android:layout_weight="1"/>
             </LinearLayout>
 
@@ -126,21 +132,24 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:layout_marginTop="10dp"
                 android:weightSum="2"
                 >
 
-                <EditText
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="SN2"
+                    android:textSize="25dp"
                     android:id="@+id/searchroom1_sn2"
                     android:layout_weight="1"/>
 
-                <EditText
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/searchroom1_id2"
                     android:hint="ID2"
+                    android:textSize="25dp"
                     android:layout_weight="1"/>
             </LinearLayout>
 
@@ -150,7 +159,7 @@
     <android.support.v7.widget.CardView
         xmlns:card_view="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="180dp"
         android:id="@+id/searchcard2"
         android:layout_margin="5dp"
         card_view:cardCornerRadius="2dp"
@@ -176,15 +185,17 @@
                     android:textSize="25dp"
                     android:layout_weight="1"/>
 
-                <EditText
-                    android:layout_width="207dp"
+                <TextView
+                    android:layout_width="204dp"
                     android:layout_height="wrap_content"
+                    android:textSize="25dp"
                     android:id="@+id/search_hostel2"/>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:orientation="horizontal"
                 >
 
@@ -195,31 +206,35 @@
                     android:textSize="25dp"
                     android:layout_weight="1"/>
 
-                <EditText
-                    android:layout_width="207dp"
+                <TextView
+                    android:layout_width="204dp"
                     android:layout_height="wrap_content"
+                    android:textSize="25dp"
                     android:id="@+id/search_room2"/>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:orientation="horizontal"
                 android:weightSum="2"
                 >
 
-                <EditText
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="SN1"
+                    android:textSize="25dp"
                     android:id="@+id/searchroom2_sn1"
                     android:layout_weight="1"/>
 
-                <EditText
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/searchroom2_id1"
                     android:hint="ID1"
+                    android:textSize="25dp"
                     android:layout_weight="1"/>
             </LinearLayout>
 
@@ -227,22 +242,25 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:orientation="horizontal"
                 android:weightSum="2"
                 >
 
-                <EditText
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="SN2"
+                    android:textSize="25dp"
                     android:id="@+id/searchroom2_sn2"
                     android:layout_weight="1"/>
 
-                <EditText
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/searchroom2_id2"
                     android:hint="ID2"
+                    android:textSize="25dp"
                     android:layout_weight="1"/>
             </LinearLayout>
 
@@ -252,7 +270,7 @@
     <android.support.v7.widget.CardView
         xmlns:card_view="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="180dp"
         android:id="@+id/searchcard3"
         android:layout_margin="5dp"
         card_view:cardCornerRadius="2dp"
@@ -278,8 +296,9 @@
                     android:textSize="25dp"
                     android:layout_weight="1"/>
 
-                <EditText
-                    android:layout_width="207dp"
+                <TextView
+                    android:layout_width="209dp"
+                    android:textSize="25dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/search_hostel3"/>
             </LinearLayout>
@@ -287,6 +306,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:orientation="horizontal"
                 >
 
@@ -297,8 +317,9 @@
                     android:textSize="25dp"
                     android:layout_weight="1"/>
 
-                <EditText
-                    android:layout_width="207dp"
+                <TextView
+                    android:layout_width="213dp"
+                    android:textSize="25dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/search_room3"/>
             </LinearLayout>
@@ -307,21 +328,24 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:layout_marginTop="10dp"
                 android:weightSum="2"
                 >
 
-                <EditText
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="SN1"
+                    android:textSize="25dp"
                     android:id="@+id/searchroom3_sn1"
                     android:layout_weight="1"/>
 
-                <EditText
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/searchroom3_id1"
                     android:hint="ID1"
+                    android:textSize="25dp"
                     android:layout_weight="1"/>
             </LinearLayout>
 
@@ -330,21 +354,24 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:layout_marginTop="10dp"
                 android:weightSum="2"
                 >
 
-                <EditText
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="SN2"
+                    android:textSize="25dp"
                     android:id="@+id/searchroom3_sn2"
                     android:layout_weight="1"/>
 
-                <EditText
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/searchroom3_id2"
                     android:hint="ID2"
+                    android:textSize="25dp"
                     android:layout_weight="1"/>
             </LinearLayout>
 
@@ -358,7 +385,7 @@
     <android.support.v7.widget.CardView
         xmlns:card_view="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="180dp"
         android:id="@+id/searchcard4"
         android:layout_margin="5dp"
         card_view:cardCornerRadius="2dp"
@@ -384,8 +411,9 @@
                     android:textSize="25dp"
                     android:layout_weight="1"/>
 
-                <EditText
+                <TextView
                     android:layout_width="207dp"
+                    android:textSize="25dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/search_hostel4"/>
             </LinearLayout>
@@ -394,6 +422,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:layout_marginTop="10dp"
                 >
 
                 <TextView
@@ -403,8 +432,9 @@
                     android:textSize="25dp"
                     android:layout_weight="1"/>
 
-                <EditText
+                <TextView
                     android:layout_width="207dp"
+                    android:textSize="25dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/search_room4"/>
             </LinearLayout>
@@ -413,21 +443,24 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:layout_marginTop="10dp"
                 android:weightSum="2"
                 >
 
-                <EditText
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="SN1"
+                    android:textSize="25dp"
                     android:id="@+id/searchroom4_sn1"
                     android:layout_weight="1"/>
 
-                <EditText
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/searchroom4_id1"
                     android:hint="ID1"
+                    android:textSize="25dp"
                     android:layout_weight="1"/>
             </LinearLayout>
 
@@ -436,21 +469,24 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:layout_marginTop="10dp"
                 android:weightSum="2"
                 >
 
-                <EditText
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="SN2"
+                    android:textSize="25dp"
                     android:id="@+id/searchroom4_sn2"
                     android:layout_weight="1"/>
 
-                <EditText
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/searchroom4_id2"
                     android:hint="ID2"
+                    android:textSize="25dp"
                     android:layout_weight="1"/>
             </LinearLayout>
 

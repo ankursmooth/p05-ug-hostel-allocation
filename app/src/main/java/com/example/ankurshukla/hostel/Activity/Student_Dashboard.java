@@ -18,12 +18,14 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.example.ankurshukla.hostel.Controller.AppConfig;
 import com.example.ankurshukla.hostel.Controller.AppController;
-import com.example.ankurshukla.hostel.Dashboard_Activity.Preference;
-import com.example.ankurshukla.hostel.Dashboard_Activity.Saved_Form;
-import com.example.ankurshukla.hostel.Dashboard_Activity.Search;
-import com.example.ankurshukla.hostel.Dashboard_Activity.Student_Notify;
-import com.example.ankurshukla.hostel.Dashboard_Activity.Submitted_Form;
+import com.example.ankurshukla.hostel.Student_Dashboard_Activity.Preference;
+import com.example.ankurshukla.hostel.Student_Dashboard_Activity.Saved_Form;
+import com.example.ankurshukla.hostel.Student_Dashboard_Activity.Search;
+import com.example.ankurshukla.hostel.Student_Dashboard_Activity.Special_Request;
+import com.example.ankurshukla.hostel.Student_Dashboard_Activity.Student_Notify;
+import com.example.ankurshukla.hostel.Student_Dashboard_Activity.Submitted_Form;
 import com.example.ankurshukla.hostel.R;
+import com.example.ankurshukla.hostel.Student_Dashboard_Activity.Submitted_Request;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -52,6 +54,7 @@ public class Student_Dashboard extends AppCompatActivity {
         search = (Button)findViewById(R.id.btn_student_search);
         name=(TextView)findViewById(R.id.display_sname);
         student_notify = (TextView)findViewById(R.id.student_notify);
+        special_req = (Button)findViewById(R.id.btn_student_special);
 
         String display = AppController.getString(Student_Dashboard.this, "username");
         name.setText(display);
@@ -112,6 +115,22 @@ public class Student_Dashboard extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(Student_Dashboard.this, Search.class);
                 startActivity(i);
+            }
+        });
+
+        special_req.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String token = AppController.getString(Student_Dashboard.this,"Request_id");
+                if(token.isEmpty()){
+                    Intent i = new Intent(Student_Dashboard.this, Special_Request.class);
+                    startActivity(i);
+                }else{
+                    String uid = AppController.getString(Student_Dashboard.this, "Student_id");
+                    getspecialrequest(uid);
+                    /*Intent i = new Intent(Student_Dashboard.this, Submitted_Request.class);
+                    startActivity(i);*/
+                }
             }
         });
 
@@ -402,5 +421,57 @@ public class Student_Dashboard extends AppCompatActivity {
 
         AppController.getInstance().addToRequestQueue(strReq);
 
+    }
+
+    private void getspecialrequest(final String uid){
+
+        StringRequest strReq =new StringRequest(Request.Method.POST,
+                AppConfig.URL_GETSR, new Response.Listener<String>() {
+
+            @Override
+            public void onResponse(String response) {
+
+                try {
+                    JSONObject jObj = new JSONObject(response);
+                    JSONArray reques = jObj.getJSONArray("requez");
+                    JSONObject jobj1 = reques.getJSONObject(0);
+                    String msg = jobj1.getString("reqmessage");
+                    String rdate = jobj1.getString("rdate");
+                    String reqresponse = jobj1.getString("reqresponse");
+
+                    Intent i = new Intent(Student_Dashboard.this,Submitted_Request.class);
+                    i.putExtra("msg",msg);
+                    i.putExtra("rdate",rdate);
+                    i.putExtra("response",reqresponse);
+                    startActivity(i);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(),
+                        error.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        }) {
+
+            @Override
+            protected Map<String, String> getParams() {
+                // Posting params to register url
+                String usertype = "student";
+                String getsr = "numcsa";
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("getsr", getsr);
+                params.put("uid", uid);
+                params.put("usertype",usertype);
+                return params;
+            }
+
+        };
+
+        AppController.getInstance().addToRequestQueue(strReq);
     }
 }

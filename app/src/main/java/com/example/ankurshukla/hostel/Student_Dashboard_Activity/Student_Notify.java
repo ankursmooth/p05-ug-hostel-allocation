@@ -1,4 +1,4 @@
-package com.example.ankurshukla.hostel.Dashboard_Activity;
+package com.example.ankurshukla.hostel.Student_Dashboard_Activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -6,8 +6,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 
 import com.example.ankurshukla.hostel.Adapter;
 import com.example.ankurshukla.hostel.R;

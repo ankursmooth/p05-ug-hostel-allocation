@@ -1,8 +1,6 @@
-package com.example.ankurshukla.hostel.Dashboard_Activity;
+package com.example.ankurshukla.hostel.Student_Dashboard_Activity;
 
 import android.content.DialogInterface;
-import android.content.Intent;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -29,7 +28,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -42,12 +40,12 @@ public class Search extends AppCompatActivity {
     Button search;
     String stype;
     CardView c1,c2,c3,c4;
-    EditText[] eroom = new EditText[4];
-    EditText[] ehostel = new EditText[4];
-    EditText[] ename1= new EditText[4];//name taken differently
-    EditText[] ename2 = new EditText[4];
-    EditText[] esid2 = new EditText[4];
-    EditText[] esid1 = new EditText[4];//roll no also taken differently same as of respone so that linking can be made easily
+    TextView[] eroom = new TextView[4];
+    TextView[] ehostel = new TextView[4];
+    TextView[] ename1= new TextView[4];//name taken differently
+    TextView[] ename2 = new TextView[4];
+    TextView[] esid2 = new TextView[4];
+    TextView[] esid1 = new TextView[4];//roll no also taken differently same as of respone so that linking can be made easily
     //second array store second name of the room
 
     @Override
@@ -59,30 +57,30 @@ public class Search extends AppCompatActivity {
         c2 = (CardView)findViewById(R.id.searchcard2);
         c3 = (CardView)findViewById(R.id.searchcard3);
         c4 = (CardView)findViewById(R.id.searchcard4);//all card views
-        eroom[0] = (EditText)findViewById(R.id.search_room1);
-        eroom[1] = (EditText)findViewById(R.id.search_room2);
-        eroom[2] = (EditText)findViewById(R.id.search_room3);
-        eroom[3] = (EditText)findViewById(R.id.search_room4);
-        ehostel[0] = (EditText)findViewById(R.id.search_hostel1);
-        ehostel[1] = (EditText)findViewById(R.id.search_hostel2);
-        ehostel[2] = (EditText)findViewById(R.id.search_hostel3);
-        ehostel[3] = (EditText)findViewById(R.id.search_hostel4);
-        ename1[0] = (EditText)findViewById(R.id.searchroom1_sn1);
-        ename2[0] = (EditText)findViewById(R.id.searchroom1_sn2);
-        ename1[1] = (EditText)findViewById(R.id.searchroom2_sn1);
-        ename2[1] = (EditText)findViewById(R.id.searchroom2_sn2);
-        ename1[2] = (EditText)findViewById(R.id.searchroom3_sn1);
-        ename2[2] = (EditText)findViewById(R.id.searchroom3_sn2);
-        ename1[3] = (EditText)findViewById(R.id.searchroom4_sn1);
-        ename2[3] = (EditText)findViewById(R.id.searchroom4_sn2);
-        esid1[0] = (EditText)findViewById(R.id.searchroom1_id1);
-        esid2[0] = (EditText)findViewById(R.id.searchroom1_id2);
-        esid1[1] = (EditText)findViewById(R.id.searchroom2_id1);
-        esid2[1] = (EditText)findViewById(R.id.searchroom2_id2);
-        esid1[2] = (EditText)findViewById(R.id.searchroom3_id1);
-        esid2[2] = (EditText)findViewById(R.id.searchroom3_id2);
-        esid1[3] = (EditText)findViewById(R.id.searchroom4_id1);
-        esid2[3] = (EditText)findViewById(R.id.searchroom4_id2);
+        eroom[0] = (TextView)findViewById(R.id.search_room1);
+        eroom[1] = (TextView)findViewById(R.id.search_room2);
+        eroom[2] = (TextView)findViewById(R.id.search_room3);
+        eroom[3] = (TextView)findViewById(R.id.search_room4);
+        ehostel[0] = (TextView)findViewById(R.id.search_hostel1);
+        ehostel[1] = (TextView)findViewById(R.id.search_hostel2);
+        ehostel[2] = (TextView)findViewById(R.id.search_hostel3);
+        ehostel[3] = (TextView)findViewById(R.id.search_hostel4);
+        ename1[0] = (TextView)findViewById(R.id.searchroom1_sn1);
+        ename2[0] = (TextView)findViewById(R.id.searchroom1_sn2);
+        ename1[1] = (TextView)findViewById(R.id.searchroom2_sn1);
+        ename2[1] = (TextView)findViewById(R.id.searchroom2_sn2);
+        ename1[2] = (TextView)findViewById(R.id.searchroom3_sn1);
+        ename2[2] = (TextView)findViewById(R.id.searchroom3_sn2);
+        ename1[3] = (TextView)findViewById(R.id.searchroom4_sn1);
+        ename2[3] = (TextView)findViewById(R.id.searchroom4_sn2);
+        esid1[0] = (TextView)findViewById(R.id.searchroom1_id1);
+        esid2[0] = (TextView)findViewById(R.id.searchroom1_id2);
+        esid1[1] = (TextView)findViewById(R.id.searchroom2_id1);
+        esid2[1] = (TextView)findViewById(R.id.searchroom2_id2);
+        esid1[2] = (TextView)findViewById(R.id.searchroom3_id1);
+        esid2[2] = (TextView)findViewById(R.id.searchroom3_id2);
+        esid1[3] = (TextView)findViewById(R.id.searchroom4_id1);
+        esid2[3] = (TextView)findViewById(R.id.searchroom4_id2);
         searchtype = (Spinner)findViewById(R.id.search);
         query = (EditText)findViewById(R.id.searchquery);
         search = (Button)findViewById(R.id.btn_Search);

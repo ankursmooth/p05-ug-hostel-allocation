@@ -8,7 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
-import com.example.ankurshukla.hostel.Dashboard_Activity.Preference;
+import com.example.ankurshukla.hostel.Student_Dashboard_Activity.Preference;
 
 public class ConflictUi extends AppCompatActivity {
 

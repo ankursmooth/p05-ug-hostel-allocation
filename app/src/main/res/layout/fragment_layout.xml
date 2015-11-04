@@ -20,7 +20,7 @@
     <Button
         android:id="@+id/btn_warden_wing"
         style="@style/DashboardButton"
-        android:drawableTop="@drawable/wing"
+        android:drawableTop="@drawable/warehuouse"
         android:text="Wing Allocation"
         android:background="@color/lightgrey"
         android:textColor="@color/black"/>
@@ -38,7 +38,7 @@
     <Button
         android:id="@+id/btn_warden_special"
         style="@style/DashboardButton"
-        android:drawableTop="@drawable/wing"
+        android:drawableTop="@drawable/warehuouse"
         android:text="Special Request"
         android:background="@color/lightgrey"
         android:textColor="@color/black"/>

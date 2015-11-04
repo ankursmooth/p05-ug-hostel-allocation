@@ -1,4 +1,4 @@
-package com.example.ankurshukla.hostel.Dashboard_Activity;
+package com.example.ankurshukla.hostel.Student_Dashboard_Activity;
 
 import android.content.Context;
 import android.content.Intent;
