@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.example.ankurshukla.hostel.Controller.AppController;
 import com.example.ankurshukla.hostel.Dashboard_Activity.Notifications;
 import com.example.ankurshukla.hostel.Dashboard_Activity.Preference;
+import com.example.ankurshukla.hostel.Dashboard_Activity.Search;
 import com.example.ankurshukla.hostel.R;
 import com.example.ankurshukla.hostel.Warden_Wing;
 
@@ -31,6 +32,7 @@ public class Warden_DashBoard extends AppCompatActivity {
         wing= (Button) findViewById(R.id.btn_warden_wing);
         notification= (Button) findViewById(R.id.btn_warden_notify);
         name=(TextView)findViewById(R.id.display_name);
+        search = (Button)findViewById(R.id.btn_warden_search);
 
         String display = AppController.getString(Warden_DashBoard.this ,"username");
         name.setText(display);
@@ -38,7 +40,7 @@ public class Warden_DashBoard extends AppCompatActivity {
         wing.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i=new Intent(Warden_DashBoard.this, Warden_Wing.class);
+                Intent i = new Intent(Warden_DashBoard.this, Warden_Wing.class);
                 startActivity(i);
             }
         });
@@ -47,6 +49,14 @@ public class Warden_DashBoard extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i=new Intent(Warden_DashBoard.this, Notifications.class);
+                startActivity(i);
+            }
+        });
+
+        search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(Warden_DashBoard.this, Search.class);
                 startActivity(i);
             }
         });

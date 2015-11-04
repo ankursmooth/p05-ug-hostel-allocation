@@ -174,7 +174,7 @@ public class MainActivity extends AppCompatActivity {
 
                     //writing the value to sharedpreference in phone database
                     AppController.setString(MainActivity.this, "username", name);
-                    AppController.setString(MainActivity.this, "loginId", wid);
+                    AppController.setString(MainActivity.this, "loginId", wid);//warden id as loginId
 
 
                     Toast.makeText(MainActivity.this,message ,Toast.LENGTH_SHORT).show();

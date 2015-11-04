@@ -2,7 +2,8 @@
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
+    android:layout_height="fill_parent"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto">
 
 
 <LinearLayout
@@ -16,92 +17,107 @@
     <include layout="@layout/actionbar_wingform"/>
 
 
-    <LinearLayout
+   <android.support.v7.widget.CardView
+       xmlns:card_view="http://schemas.android.com/apk/res-auto"
+       android:layout_width="match_parent"
+       android:layout_height="150dp"
+       android:id="@+id/wfl1"
+       android:layout_margin="5dp"
+       card_view:cardCornerRadius="2dp"
+       card_view:contentPadding="10dp"
+       android:layout_weight="2.35">
+
+       <LinearLayout android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:orientation="vertical">
+
+       <TextView
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:text="Room Number 1:"
+           android:textSize="20dp"
+           android:paddingLeft="10dp"
+           android:id="@+id/rm1"/>
+
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:orientation="horizontal"
+               >
+
+               <EditText
+                   android:layout_width="match_parent"
+                   android:layout_height="40dp"
+                   android:hint="Full Name"
+                   android:id="@+id/fullname1rm1"
+                   android:paddingLeft="10dp"
+                   android:layout_weight="1"
+
+                   android:singleLine="true"
+                   android:layout_marginTop="20dp"
+                   />
+
+               <EditText
+                   android:layout_width="match_parent"
+                   android:layout_height="40dp"
+                   android:id="@+id/id1rm1"
+                   android:layout_weight="1"
+                   android:layout_marginTop="20dp"
+
+                   android:hint="Roll No"
+                   android:paddingLeft="10dp"/>
+
+           </LinearLayout>
+
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:orientation="horizontal"
+               >
+
+               <EditText
+                   android:layout_width="match_parent"
+                   android:layout_height="40dp"
+                   android:hint="Full Name"
+                   android:id="@+id/fullname2rm1"
+                   android:paddingLeft="10dp"
+                   android:layout_weight="1"
+
+                   android:singleLine="true"
+                   android:layout_marginTop="10dp"
+                   />
+
+               <EditText
+                   android:layout_width="match_parent"
+                   android:layout_height="40dp"
+                   android:id="@+id/id2rm1"
+                   android:layout_weight="1"
+                   android:layout_marginTop="10dp"
+                   android:hint="Roll No"
+                   android:paddingLeft="10dp"/>
+
+           </LinearLayout>
+        </LinearLayout>
+   </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/wfl1"
-        android:orientation="vertical">
+        android:layout_height="150dp"
+        android:id="@+id/wfl2"
+        android:layout_margin="5dp"
+        card_view:cardCornerRadius="2dp"
+        card_view:contentPadding="10dp"
+        android:layout_weight="2.35">
 
-        <TextView
-            android:layout_width="match_parent"
+        <LinearLayout android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Room Number 1:"
-            android:layout_marginTop="30dp"
-            android:textSize="20dp"
-            android:paddingLeft="10dp"
-            android:id="@+id/rm1"/>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            >
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:hint="Full Name"
-                android:id="@+id/fullname1rm1"
-                android:paddingLeft="10dp"
-                android:layout_weight="1"
-                android:background="@layout/edittextlayout"
-                android:singleLine="true"
-                android:layout_marginTop="20dp"
-                />
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:id="@+id/id1rm1"
-                android:layout_weight="1"
-                android:layout_marginTop="20dp"
-                android:background="@layout/edittextlayout"
-                android:hint="Roll No"
-                android:paddingLeft="10dp"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            >
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:hint="Full Name"
-                android:id="@+id/fullname2rm1"
-                android:paddingLeft="10dp"
-                android:layout_weight="1"
-                android:background="@layout/edittextlayout"
-                android:singleLine="true"
-                android:layout_marginTop="20dp"
-                />
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:id="@+id/id2rm1"
-                android:layout_weight="1"
-                android:layout_marginTop="20dp"
-                android:background="@layout/edittextlayout"
-                android:hint="Roll No"
-                android:paddingLeft="10dp"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/wfl2"
             android:orientation="vertical">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Room Number 2:"
-                android:layout_marginTop="30dp"
                 android:textSize="20dp"
                 android:paddingLeft="10dp"
                 android:id="@+id/rm2"/>
@@ -119,7 +135,6 @@
                     android:id="@+id/fullname1rm2"
                     android:paddingLeft="10dp"
                     android:layout_weight="1"
-                    android:background="@layout/edittextlayout"
                     android:singleLine="true"
                     android:layout_marginTop="20dp"
                     />
@@ -130,7 +145,6 @@
                     android:id="@+id/id1rm2"
                     android:layout_weight="1"
                     android:layout_marginTop="20dp"
-                    android:background="@layout/edittextlayout"
                     android:hint="Roll No"
                     android:paddingLeft="10dp"/>
 
@@ -149,9 +163,8 @@
                     android:id="@+id/fullname2rm2"
                     android:paddingLeft="10dp"
                     android:layout_weight="1"
-                    android:background="@layout/edittextlayout"
                     android:singleLine="true"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="10dp"
                     />
 
                 <EditText
@@ -159,28 +172,32 @@
                     android:layout_height="40dp"
                     android:id="@+id/id2rm2"
                     android:layout_weight="1"
-                    android:layout_marginTop="20dp"
-                    android:background="@layout/edittextlayout"
+                    android:layout_marginTop="10dp"
                     android:hint="Roll No"
                     android:paddingLeft="10dp"/>
 
             </LinearLayout>
-
-
-
         </LinearLayout>
+    </android.support.v7.widget.CardView>
 
-        <LinearLayout
-            android:layout_width="match_parent"
+    <android.support.v7.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:id="@+id/wfl3"
+        android:layout_margin="5dp"
+        card_view:cardCornerRadius="2dp"
+        card_view:contentPadding="10dp"
+        android:layout_weight="2.35">
+
+        <LinearLayout android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/wfl3"
             android:orientation="vertical">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Room Number 3:"
-                android:layout_marginTop="30dp"
                 android:textSize="20dp"
                 android:paddingLeft="10dp"
                 android:id="@+id/rm3"/>
@@ -198,7 +215,6 @@
                     android:id="@+id/fullname1rm3"
                     android:paddingLeft="10dp"
                     android:layout_weight="1"
-                    android:background="@layout/edittextlayout"
                     android:singleLine="true"
                     android:layout_marginTop="20dp"
                     />
@@ -209,7 +225,6 @@
                     android:id="@+id/id1rm3"
                     android:layout_weight="1"
                     android:layout_marginTop="20dp"
-                    android:background="@layout/edittextlayout"
                     android:hint="Roll No"
                     android:paddingLeft="10dp"/>
 
@@ -228,9 +243,8 @@
                     android:id="@+id/fullname2rm3"
                     android:paddingLeft="10dp"
                     android:layout_weight="1"
-                    android:background="@layout/edittextlayout"
                     android:singleLine="true"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="10dp"
                     />
 
                 <EditText
@@ -238,14 +252,13 @@
                     android:layout_height="40dp"
                     android:id="@+id/id2rm3"
                     android:layout_weight="1"
-                    android:layout_marginTop="20dp"
-                    android:background="@layout/edittextlayout"
+                    android:layout_marginTop="10dp"
                     android:hint="Roll No"
                     android:paddingLeft="10dp"/>
 
             </LinearLayout>
-            </LinearLayout>
-    </LinearLayout>
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
 
     <LinearLayout
         android:layout_width="match_parent"

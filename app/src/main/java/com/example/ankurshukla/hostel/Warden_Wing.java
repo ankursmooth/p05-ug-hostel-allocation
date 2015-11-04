@@ -48,10 +48,26 @@ public class Warden_Wing extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String loggedid = AppController.getString(Warden_Wing.this, "loginId");
+                String button_pressed = "On";
+                AppController.setString(Warden_Wing.this,"button_pressed",button_pressed);
                  String sdate = stdate.getText().toString().toLowerCase();
                  String sedate = edate.getText().toString().toLowerCase();
-                createalloprocess(sdate,sedate ,loggedid);
-                doalloc.setEnabled(true);
+                createalloprocess(sdate, sedate, loggedid);
+                startalloc.setEnabled(false);
+
+            }
+        });
+
+        if (AppController.getString(Warden_Wing.this,"button_pressed").equals("On")){
+            doalloc.setEnabled(true);
+        }
+
+        doalloc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startalloc.setEnabled(true);
+                String wid = AppController.getString(Warden_Wing.this,"loginId");
+                doAllocation(wid);
             }
         });
 
@@ -212,6 +228,65 @@ public class Warden_Wing extends AppCompatActivity {
                 params.put("creatorid",creator_ID);
                 params.put("ndate", ndate);
                 params.put("message",message);
+                return params;
+            }
+
+        };
+
+        AppController.getInstance().addToRequestQueue(strReq);
+    }
+
+    private void doAllocation(final String warden_id){
+        StringRequest strReq =new StringRequest(Request.Method.POST,
+                AppConfig.URL_DOALLOCATION, new Response.Listener<String>() {
+
+            @Override
+            public void onResponse(String response) {
+
+
+                try {
+                    JSONObject jObj = new JSONObject(response);
+                    //Response from server
+
+                    String success = jObj.getString("success");
+                    String message = jObj.getString("message");
+
+                    final AlertDialog.Builder alertdialogbuilder= new AlertDialog.Builder(Warden_Wing.this);
+
+                    alertdialogbuilder
+                            .setMessage("Wing Allocation Done!")
+                            .setCancelable(false)
+                            .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                }
+                            });
+
+                    AlertDialog dialog = alertdialogbuilder.create();
+                    dialog.show();
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(),
+                        error.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        }) {
+
+            @Override
+            protected Map<String, String> getParams() {
+                // Posting params to register url
+                String allocate = "Hello";
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("doallocation",allocate);
+                params.put("wid", warden_id);
                 return params;
             }
 

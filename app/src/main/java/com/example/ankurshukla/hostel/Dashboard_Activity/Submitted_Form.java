@@ -3,6 +3,7 @@ package com.example.ankurshukla.hostel.Dashboard_Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,8 +21,7 @@ public class Submitted_Form extends AppCompatActivity {
     String number;
     String hostelid[] = new String[]{"",""};
     String floor[] = new String[]{"",""};
-    LinearLayout submitf1,submitf2,submitf3;
-    TextView[] rname = new TextView[6];//r ==room and n=name
+    CardView submitf1,submitf2,submitf3;
     TextView [] rollno = new TextView[6]; //r=room and id=rool no
     Button submit;
 
@@ -35,15 +35,9 @@ public class Submitted_Form extends AppCompatActivity {
         setContentView(R.layout.activity_submitted__form);
 
         int n = Integer.parseInt(number);
-        submitf1 = (LinearLayout)findViewById(R.id.submitfl1);
-        submitf2 = (LinearLayout)findViewById(R.id.submitfl2);
-        submitf3 = (LinearLayout)findViewById(R.id.submitfl3);
-        rname[0] = (TextView) findViewById(R.id.submitfullname1rm1);
-        rname[1] = (TextView) findViewById(R.id.submitfullname2rm1);
-        rname[2] = (TextView) findViewById(R.id.submitfullname1rm2);
-        rname[3] = (TextView) findViewById(R.id.submitfullname2rm2);
-        rname[4] = (TextView) findViewById(R.id.submitfullname1rm3);
-        rname[5] = (TextView) findViewById(R.id.submitfullname2rm3);
+        submitf1 = (CardView)findViewById(R.id.submitfl1);
+        submitf2 = (CardView)findViewById(R.id.submitfl2);
+        submitf3 = (CardView)findViewById(R.id.submitfl3);
         rollno[0] = (TextView) findViewById(R.id.submitid1rm1);
         rollno[1] = (TextView) findViewById(R.id.submitid2rm1);
         rollno[2] = (TextView) findViewById(R.id.submitid1rm2);

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -33,7 +34,7 @@ import java.util.Map;
  */
 public class WingForm extends AppCompatActivity {
 
-    LinearLayout one,two,three;
+    CardView one,two,three;
     String snumber;//no coming from prefernce
     String number; //number direct accesss by shared preference
     String hostel[] = new String[]{"",""};
@@ -46,7 +47,7 @@ public class WingForm extends AppCompatActivity {
     String sname [] = new String[6];
     String sid [] = new String[6];
     int n;
-    String name = null;//for determining which type of button has called the check conflicts fucntion
+    String name = "";//for determining which type of button has called the check conflicts fucntion
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,9 +63,9 @@ public class WingForm extends AppCompatActivity {
         android.support.v7.app.ActionBar actionBar=getSupportActionBar();
         actionBar.hide();
 
-        one= (LinearLayout) findViewById(R.id.wfl1);
-        two= (LinearLayout) findViewById(R.id.wfl2);
-        three= (LinearLayout) findViewById(R.id.wfl3);
+        one= (CardView) findViewById(R.id.wfl1);
+        two= (CardView) findViewById(R.id.wfl2);
+        three= (CardView) findViewById(R.id.wfl3);
         rname[0] = (EditText) findViewById(R.id.fullname1rm1);
         rname[1] = (EditText) findViewById(R.id.fullname2rm1);
         rname[2] = (EditText) findViewById(R.id.fullname1rm2);
@@ -423,7 +424,7 @@ public class WingForm extends AppCompatActivity {
                         }
                         String m1 = "Following Roll Number Already have been Submitted:-";
                         for(int i=0;i<Integer.parseInt(conflicts);i++){
-                           name = name + sid[i];
+                           name = name + sid[i].toUpperCase();
                         }
                         String msg = m1 + name;
                         final AlertDialog.Builder alertdialogBuilder = new AlertDialog.Builder(WingForm.this);

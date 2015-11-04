@@ -6,6 +6,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -40,16 +41,56 @@ public class Search extends AppCompatActivity {
     EditText query;
     Button search;
     String stype;
+    CardView c1,c2,c3,c4;
+    EditText[] eroom = new EditText[4];
+    EditText[] ehostel = new EditText[4];
+    EditText[] ename1= new EditText[4];//name taken differently
+    EditText[] ename2 = new EditText[4];
+    EditText[] esid2 = new EditText[4];
+    EditText[] esid1 = new EditText[4];//roll no also taken differently same as of respone so that linking can be made easily
+    //second array store second name of the room
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
 
+        c1 = (CardView)findViewById(R.id.searchcard1);
+        c2 = (CardView)findViewById(R.id.searchcard2);
+        c3 = (CardView)findViewById(R.id.searchcard3);
+        c4 = (CardView)findViewById(R.id.searchcard4);//all card views
+        eroom[0] = (EditText)findViewById(R.id.search_room1);
+        eroom[1] = (EditText)findViewById(R.id.search_room2);
+        eroom[2] = (EditText)findViewById(R.id.search_room3);
+        eroom[3] = (EditText)findViewById(R.id.search_room4);
+        ehostel[0] = (EditText)findViewById(R.id.search_hostel1);
+        ehostel[1] = (EditText)findViewById(R.id.search_hostel2);
+        ehostel[2] = (EditText)findViewById(R.id.search_hostel3);
+        ehostel[3] = (EditText)findViewById(R.id.search_hostel4);
+        ename1[0] = (EditText)findViewById(R.id.searchroom1_sn1);
+        ename2[0] = (EditText)findViewById(R.id.searchroom1_sn2);
+        ename1[1] = (EditText)findViewById(R.id.searchroom2_sn1);
+        ename2[1] = (EditText)findViewById(R.id.searchroom2_sn2);
+        ename1[2] = (EditText)findViewById(R.id.searchroom3_sn1);
+        ename2[2] = (EditText)findViewById(R.id.searchroom3_sn2);
+        ename1[3] = (EditText)findViewById(R.id.searchroom4_sn1);
+        ename2[3] = (EditText)findViewById(R.id.searchroom4_sn2);
+        esid1[0] = (EditText)findViewById(R.id.searchroom1_id1);
+        esid2[0] = (EditText)findViewById(R.id.searchroom1_id2);
+        esid1[1] = (EditText)findViewById(R.id.searchroom2_id1);
+        esid2[1] = (EditText)findViewById(R.id.searchroom2_id2);
+        esid1[2] = (EditText)findViewById(R.id.searchroom3_id1);
+        esid2[2] = (EditText)findViewById(R.id.searchroom3_id2);
+        esid1[3] = (EditText)findViewById(R.id.searchroom4_id1);
+        esid2[3] = (EditText)findViewById(R.id.searchroom4_id2);
         searchtype = (Spinner)findViewById(R.id.search);
         query = (EditText)findViewById(R.id.searchquery);
         search = (Button)findViewById(R.id.btn_Search);
 
+        c1.setVisibility(View.GONE);
+        c2.setVisibility(View.GONE);
+        c3.setVisibility(View.GONE);
+        c4.setVisibility(View.GONE);
         List<String> types = Arrays.asList(getResources().getStringArray(R.array.Search_Types));
 
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,types);
@@ -115,12 +156,12 @@ public class Search extends AppCompatActivity {
                         dialog.show();
                     }else{
                         int n = Integer.parseInt(noofresults);
-                        String[] hostelid = new String[n];
-                        String[] sid1 = new String[n];
-                        String[] name1 = new String[n];
-                        String[] sid2 = new String[n];
-                        String[] name2 = new String[n];
-                        String[] roomid = new String[n];
+                        String[] hostelid = new String[4];
+                        String[] sid1 = new String[4];
+                        String[] name1 = new String[4];
+                        String[] sid2 = new String[4];
+                        String[] name2 = new String[4];
+                        String[] roomid = new String[4];
 
                         JSONArray res = jObj.getJSONArray("res");
                         for(int i=0;i<n;i++){
@@ -133,15 +174,67 @@ public class Search extends AppCompatActivity {
                              name2[i] = jobj1.getString("name2");
                         }
 
-                        Intent i = new Intent(Search.this,SearchResult.class);
-                        i.putExtra("hostelid",hostelid);
-                        i.putExtra("roomid",roomid);
-                        i.putExtra("sid1",sid1);
-                        i.putExtra("name1",name1);
-                        i.putExtra("sid2",sid2);
-                        i.putExtra("name",name2);
-                        startActivity(i);
+                        if(noofresults.equals("1")){
+                            c1.setVisibility(View.VISIBLE);
+                            for(int i=0;i<1;i++){
+                                ehostel[i].setText(hostelid[i]);
+                                eroom[i].setText(roomid[i]);
+                            }
+                            for(int j=0;j<1;j++){
+                                ename1[j].setText(name1[j]);
+                                ename2[j].setText(name2[j]);
+                                esid1[j].setText(sid1[j]);
+                                esid2[j].setText(sid2[j]);
+                            }
+                        }
 
+                        if(noofresults.equals("2")){
+                            c1.setVisibility(View.VISIBLE);
+                            c2.setVisibility(View.VISIBLE);
+                            for(int i=0;i<2;i++){
+                                ehostel[i].setText(hostelid[i]);
+                                eroom[i].setText(roomid[i]);
+                            }
+                            for(int j=0;j<2;j++){
+                                ename1[j].setText(name1[j]);
+                                ename2[j].setText(name2[j]);
+                                esid1[j].setText(sid1[j]);
+                                esid2[j].setText(sid2[j]);
+                            }
+                        }
+
+                        if(noofresults.equals("3")){
+                            c1.setVisibility(View.VISIBLE);
+                            c2.setVisibility(View.VISIBLE);
+                            c3.setVisibility(View.VISIBLE);
+                            for(int i=0;i<3;i++){
+                                ehostel[i].setText(hostelid[i]);
+                                eroom[i].setText(roomid[i]);
+                            }
+                            for(int j=0;j<3;j++){
+                                ename1[j].setText(name1[j]);
+                                ename2[j].setText(name2[j]);
+                                esid1[j].setText(sid1[j]);
+                                esid2[j].setText(sid2[j]);
+                            }
+                        }
+
+                        if(noofresults.equals("4")){
+                            c1.setVisibility(View.VISIBLE);
+                            c2.setVisibility(View.VISIBLE);
+                            c3.setVisibility(View.VISIBLE);
+                            c4.setVisibility(View.VISIBLE);
+                            for(int i=0;i<4;i++){
+                                ehostel[i].setText(hostelid[i]);
+                                eroom[i].setText(roomid[i]);
+                            }
+                            for(int j=0;j<4;j++){
+                                ename1[j].setText(name1[j]);
+                                ename2[j].setText(name2[j]);
+                                esid1[j].setText(sid1[j]);
+                                esid2[j].setText(sid2[j]);
+                            }
+                        }
                     }
 
                 } catch (JSONException e) {

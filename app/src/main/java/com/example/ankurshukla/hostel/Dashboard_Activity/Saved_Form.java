@@ -3,6 +3,7 @@ package com.example.ankurshukla.hostel.Dashboard_Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,10 +18,10 @@ public class Saved_Form extends AppCompatActivity {
 
     String [] sname = new String[]{"","","","","",""};
     String [] sid = new String[]{"","","","","",""};
-    String number;
+    String number,number1;
     String hostelid[] = new String[2];
     String floor[] = new String[2];
-    LinearLayout sf1,sf2,sf3;
+    CardView sf1,sf2,sf3;
     TextView[] rname = new TextView[6];//r ==room and n=name
     TextView [] rollno = new TextView[6]; //r=room and id=rool no
     Button submit;
@@ -32,16 +33,15 @@ public class Saved_Form extends AppCompatActivity {
         sname = intent.getStringArrayExtra("sname");
         sid = intent.getStringArrayExtra("sid");
         number = intent.getStringExtra("noOfStudents");
+        number1 = intent.getStringExtra("no_Of_Students");
         hostelid = intent.getStringArrayExtra("Hostel_type");//getting all hostel types for preferneces
         floor  = intent.getStringArrayExtra("Floor_type");//getting all floor types from preferences
         setContentView(R.layout.activity_saved__form);
 
 
-
-        int n = Integer.parseInt(number);
-        sf1 = (LinearLayout)findViewById(R.id.sfl1);
-        sf2 = (LinearLayout)findViewById(R.id.sfl2);
-        sf3 = (LinearLayout)findViewById(R.id.sfl3);
+        sf1 = (CardView)findViewById(R.id.sfl1);
+        sf2 = (CardView)findViewById(R.id.sfl2);
+        sf3 =(CardView)findViewById(R.id.sfl3);
         rname[0] = (TextView) findViewById(R.id.savedfullname1rm1);
         rname[1] = (TextView) findViewById(R.id.savedfullname2rm1);
         rname[2] = (TextView) findViewById(R.id.savedfullname1rm2);
@@ -56,6 +56,17 @@ public class Saved_Form extends AppCompatActivity {
         rollno[5] = (TextView) findViewById(R.id.savedid2rm3);
         submit = (Button) findViewById(R.id.sf_saved);
 
+        if(number1 == null){
+
+        }
+        else if(number1.equals("2")){
+            number = "1";
+        }else if(number1.equals("4")){
+             number = "2";
+        }else if(number1.equals("6")){
+             number= "3";
+        }
+
         if(number.equals("1")){
             sf2.setVisibility(View.GONE);
             sf3.setVisibility(View.GONE);
@@ -64,7 +75,7 @@ public class Saved_Form extends AppCompatActivity {
             sf3.setVisibility(View.GONE);
         }
 
-        for(int i=0;i<2*n;i++){//setting the names and roll no from  wingform array to saved from edittext
+        for(int i=0;i<2*Integer.parseInt(number);i++){//setting the names and roll no from  wingform array to saved from edittext
             rname[i].setText(sname[i]);
             rollno[i].setText(sid[i]);
         }

@@ -41,5 +41,8 @@ public class AppConfig {
     //for checking conflicts
     public static String URL_CONFLICTS="http://192.168.133.1/sepmdb/checkconflicts.php";
 
+    //for doing allocation
+    public static String URL_DOALLOCATION="http://192.168.133.1/sepmdb/doallocation.php";
+
 
 }

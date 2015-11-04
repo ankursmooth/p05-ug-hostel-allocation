@@ -146,7 +146,7 @@ public class Student_Dashboard extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
 
-                ArrayList<String> msg_list = new ArrayList<String>();
+                ArrayList<String> data = new ArrayList<>();
 
                 try {
                     JSONObject jObj = new JSONObject(response);
@@ -155,7 +155,7 @@ public class Student_Dashboard extends AppCompatActivity {
                     for(int i=0;i<Integer.parseInt(number);i++){
                         JSONObject jobj1=  notify.getJSONObject(i);
                         /* msg = msg + jobj1.getString("nmessage");*/
-                        msg_list.add(jobj1.getString("nmessage")+" by "+jobj1.getString("creatorid")+ " on "+ jobj1.getString("ndate") + " ("+ jobj1.getString("ntype")+ ").");
+                        data.add(jobj1.getString("nmessage")+" by "+jobj1.getString("creatorid")+ " on "+ jobj1.getString("ndate") + " ("+ jobj1.getString("ntype")+ ").");
                     }
                    /* Toast.makeText(Student_Dashboard.this,msg,Toast.LENGTH_SHORT).show();*/
 
@@ -164,7 +164,7 @@ public class Student_Dashboard extends AppCompatActivity {
 
                     //    Toast.makeText(MainActivity.this, message ,Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(Student_Dashboard.this, Student_Notify.class);
-                    i.putStringArrayListExtra("msg_list", msg_list);
+                    i.putStringArrayListExtra("msg_list", data);
                     startActivity(i);
 
                 } catch (JSONException e) {
@@ -265,7 +265,7 @@ public class Student_Dashboard extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
 
-                String pref_noofrooms = AppController.getString(Student_Dashboard.this,"noofrooms");
+
                 String savesid[] = new String[6];
                 String savename[] = new String[6];
                 String hostelid[] = new String[2];
@@ -283,7 +283,7 @@ public class Student_Dashboard extends AppCompatActivity {
                         savename[i] = jobj1.getString("sname");
                     }
                     JSONArray pref = jObj.getJSONArray("pref");
-                    for(int j=0;j<n;j++){
+                    for(int j=0;j<2;j++){
                         JSONObject jobj2 = pref.getJSONObject(j);
                         hostelid[j] = jobj2.getString("hostelid");
                         floor[j] = jobj2.getString("floorno");
@@ -292,7 +292,7 @@ public class Student_Dashboard extends AppCompatActivity {
                     Intent i = new Intent(Student_Dashboard.this,Saved_Form.class);
                     i.putExtra("sname",savename);//passing all names
                     i.putExtra("sid",savesid);//passing all id
-                    i.putExtra("noOfStudents",pref_noofrooms);//passing number of rooms
+                    i.putExtra("no_Of_Students",number);//passing number of rooms
                     i.putExtra("Hostel_type",hostelid);
                     i.putExtra("Floor_type",floor);
                     startActivity(i);

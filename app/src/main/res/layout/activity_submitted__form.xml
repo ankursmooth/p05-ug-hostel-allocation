@@ -2,7 +2,8 @@
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
+    android:layout_height="fill_parent"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto">
 
 
     <LinearLayout
@@ -11,240 +12,145 @@
         android:layout_height="match_parent"
         android:background="@color/background"
         android:orientation="vertical"
-        android:paddingBottom="@dimen/activity_vertical_margin">
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:weightSum="1">
 
 
-        <LinearLayout
+        <android.support.v7.widget.CardView
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="150dp"
             android:id="@+id/submitfl1"
-            android:orientation="vertical">
+            android:layout_margin="5dp"
+            card_view:cardCornerRadius="2dp"
+            card_view:contentPadding="10dp"
+            android:layout_weight="2.35">
 
-            <TextView
-                android:layout_width="match_parent"
+            <LinearLayout android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Room Number 1:"
-                android:layout_marginTop="30dp"
-                android:textSize="20dp"
-                android:paddingLeft="10dp"
-                android:id="@+id/submitrm1"/>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                >
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:hint="Full Name"
-                    android:id="@+id/submitfullname1rm1"
+                    android:layout_height="wrap_content"
+                    android:text="Room Number 1:"
+                    android:textSize="20dp"
                     android:paddingLeft="10dp"
-                    android:layout_weight="1"
-                    android:background="@layout/edittextlayout"
-                    android:singleLine="true"
-                    android:layout_marginTop="20dp"
-                    />
+                    android:id="@+id/submitrm1"/>
 
                 <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="90dp"
+                    android:hint="Roll No 1"
                     android:id="@+id/submitid1rm1"
-                    android:layout_weight="1"
-                    android:layout_marginTop="20dp"
-                    android:background="@layout/edittextlayout"
-                    android:hint="Roll No"
-                    android:paddingLeft="10dp"/>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                >
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:hint="Full Name"
-                    android:id="@+id/submitfullname2rm1"
                     android:paddingLeft="10dp"
                     android:layout_weight="1"
-                    android:background="@layout/edittextlayout"
                     android:singleLine="true"
                     android:layout_marginTop="20dp"
                     />
 
                 <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="90dp"
                     android:id="@+id/submitid2rm1"
                     android:layout_weight="1"
                     android:layout_marginTop="20dp"
-                    android:background="@layout/edittextlayout"
-                    android:hint="Roll No"
+                    android:hint="Roll No 2"
                     android:paddingLeft="10dp"/>
 
             </LinearLayout>
+        </android.support.v7.widget.CardView>
 
-        </LinearLayout>
-
-        <LinearLayout
+        <android.support.v7.widget.CardView
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="150dp"
             android:id="@+id/submitfl2"
-            android:orientation="vertical">
+            android:layout_margin="5dp"
+            card_view:cardCornerRadius="2dp"
+            card_view:contentPadding="10dp"
+            android:layout_weight="2.35">
 
-            <TextView
-                android:layout_width="match_parent"
+            <LinearLayout android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Room Number 2:"
-                android:layout_marginTop="30dp"
-                android:textSize="20dp"
-                android:paddingLeft="10dp"
-                android:id="@+id/submitrm2"/>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                >
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:hint="Full Name"
-                    android:id="@+id/submitfullname1rm2"
+                    android:layout_height="wrap_content"
+                    android:text="Room Number 2:"
+                    android:textSize="20dp"
                     android:paddingLeft="10dp"
-                    android:layout_weight="1"
-                    android:background="@layout/edittextlayout"
-                    android:singleLine="true"
-                    android:layout_marginTop="20dp"
-                    />
+                    android:id="@+id/submitrm2"/>
 
                 <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="90dp"
+                    android:hint="Roll No 1"
                     android:id="@+id/submitid1rm2"
-                    android:layout_weight="1"
-                    android:layout_marginTop="20dp"
-                    android:background="@layout/edittextlayout"
-                    android:hint="Roll No"
-                    android:paddingLeft="10dp"/>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                >
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:hint="Full Name"
-                    android:id="@+id/submitfullname2rm2"
                     android:paddingLeft="10dp"
                     android:layout_weight="1"
-                    android:background="@layout/edittextlayout"
                     android:singleLine="true"
                     android:layout_marginTop="20dp"
                     />
 
                 <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="90dp"
                     android:id="@+id/submitid2rm2"
                     android:layout_weight="1"
                     android:layout_marginTop="20dp"
-                    android:background="@layout/edittextlayout"
-                    android:hint="Roll No"
+                    android:hint="Roll No 2"
                     android:paddingLeft="10dp"/>
 
             </LinearLayout>
+        </android.support.v7.widget.CardView>
 
-        </LinearLayout>
-
-        <LinearLayout
+        <android.support.v7.widget.CardView
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="150dp"
             android:id="@+id/submitfl3"
-            android:orientation="vertical">
+            android:layout_margin="5dp"
+            card_view:cardCornerRadius="2dp"
+            card_view:contentPadding="10dp"
+            android:layout_weight="2.35">
 
-            <TextView
-                android:layout_width="match_parent"
+            <LinearLayout android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Room Number 3:"
-                android:layout_marginTop="30dp"
-                android:textSize="20dp"
-                android:paddingLeft="10dp"
-                android:id="@+id/submitrm3"/>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                >
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:hint="Full Name"
-                    android:id="@+id/submitfullname1rm3"
+                    android:layout_height="wrap_content"
+                    android:text="Room Number 3:"
+                    android:textSize="20dp"
                     android:paddingLeft="10dp"
-                    android:layout_weight="1"
-                    android:background="@layout/edittextlayout"
-                    android:singleLine="true"
-                    android:layout_marginTop="20dp"
-                    />
+                    android:id="@+id/submitrm3"/>
 
                 <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="90dp"
+                    android:hint="Roll No 1"
                     android:id="@+id/submitid1rm3"
-                    android:layout_weight="1"
-                    android:layout_marginTop="20dp"
-                    android:background="@layout/edittextlayout"
-                    android:hint="Roll No"
-                    android:paddingLeft="10dp"/>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                >
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:hint="Full Name"
-                    android:id="@+id/submitfullname2rm3"
                     android:paddingLeft="10dp"
                     android:layout_weight="1"
-                    android:background="@layout/edittextlayout"
                     android:singleLine="true"
                     android:layout_marginTop="20dp"
                     />
 
                 <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="90dp"
                     android:id="@+id/submitid2rm3"
                     android:layout_weight="1"
                     android:layout_marginTop="20dp"
-                    android:background="@layout/edittextlayout"
-                    android:hint="Roll No"
+                    android:hint="Roll No 2"
                     android:paddingLeft="10dp"/>
 
             </LinearLayout>
-
-        </LinearLayout>
-
+        </android.support.v7.widget.CardView>
 
     </LinearLayout>
 </ScrollView>
