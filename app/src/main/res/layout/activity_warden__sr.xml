@@ -148,6 +148,48 @@
 
     </android.support.v7.widget.CardView>
 
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/wsr_c4"
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:layout_margin="5dp"
+        card_view:cardCornerRadius="2dp"
+        card_view:contentPadding="10dp"
+        android:layout_weight="2.35">
+
+        <LinearLayout android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="25dp"
+                android:text="ankur"
+                android:paddingLeft="8dp"
+                android:id="@+id/wsr_id4"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="25dp"
+                android:text="aaefaf"
+                android:id="@+id/wsr_msg4"
+                android:layout_marginTop="10dp"
+                android:paddingLeft="8dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="agsegsg"
+                android:textSize="25dp"
+                android:paddingLeft="8dp"
+                android:layout_marginTop="10dp"
+                android:id="@+id/wsr_date4"/>
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

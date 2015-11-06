@@ -92,12 +92,15 @@ public class Special_Request extends AppCompatActivity {
                 try {
                     JSONObject jObj = new JSONObject(response);
                     //Response from server
-                    final String rqid = jObj.getString("rqid");
+                   String rqid = jObj.getString("rqid");
                     String success = jObj.getString("success");
                     String message = jObj.getString("message");
 
                     //writing the value to sharedpreference in phone database
-
+                    String id = AppController.getString(Special_Request.this,"Student_id");//getting logineed student id so that
+                    //we can compare whether it has any existing request id or not
+                    rqid = rqid + id;
+                    AppController.setString(Special_Request.this,"rqid",rqid);
                     final android.app.AlertDialog.Builder alertdialogbuilder = new android.app.AlertDialog.Builder(Special_Request.this);
                     alertdialogbuilder
                             .setMessage("Your Request is Submitted!!")
@@ -106,7 +109,7 @@ public class Special_Request extends AppCompatActivity {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     Intent i = new Intent(Special_Request.this, Student_Dashboard.class);
-                                    i.putExtra("rqid",rqid);
+                                 //   i.putExtra("rqid",rqid);
                                     startActivity(i);
                                     finish();
                                 }

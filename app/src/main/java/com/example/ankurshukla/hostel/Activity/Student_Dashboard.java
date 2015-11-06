@@ -51,8 +51,6 @@ public class Student_Dashboard extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Intent intent = getIntent();//for taking value of rqid whether it is present or not
-        rqid = intent.getStringExtra("rqid");
         setContentView(R.layout.activity_student__dashboard);
 
         android.support.v7.app.ActionBar actionBar=getSupportActionBar();
@@ -133,16 +131,19 @@ public class Student_Dashboard extends AppCompatActivity {
 
         //when clicked on special request button it is redirected to screen which is present which is being decided by the rqid if rqid is null then
         //special request screen else then request sent by student is shown
+        rqid = AppController.getString(Student_Dashboard.this,"rqid");//comparing
+        String id = AppController.getString(Student_Dashboard.this,"Student_id");//comparing whether it is equal to login student rqid or not
+        final String compare = "1" + id;//storing the same value as 1y13uc007 login student id
         special_req.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                if(rqid == null){
-                    Intent i = new Intent(Student_Dashboard.this, Special_Request.class);
-                    startActivity(i);
-                }else{
+                if(rqid.equals(compare)){
                     String uid = AppController.getString(Student_Dashboard.this, "Student_id");
                     getspecialrequest(uid);
+                }else{
+                    Intent i = new Intent(Student_Dashboard.this, Special_Request.class);
+                    startActivity(i);
                 }
             }
         });

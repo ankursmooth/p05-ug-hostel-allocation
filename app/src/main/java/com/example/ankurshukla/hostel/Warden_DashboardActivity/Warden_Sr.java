@@ -30,12 +30,12 @@ import java.util.Map;
 
 public class Warden_Sr extends AppCompatActivity {
 
-    TextView[] student_id = new TextView[3];
-    TextView[] tmsg = new TextView[3];
-    TextView[] tdate = new TextView[3];
-    String[] gmsg,gdate,gsid = new String[3];
+    TextView[] student_id = new TextView[4];
+    TextView[] tmsg = new TextView[4];
+    TextView[] tdate = new TextView[4];
+    String[] gmsg,gdate,gsid = new String[4];
     String noofrequests;
-    CardView c1,c2,c3;
+    CardView c1,c2,c3,c4;
     Button list;//list of empty rooms
 
     @Override
@@ -52,18 +52,23 @@ public class Warden_Sr extends AppCompatActivity {
         c1 = (CardView)findViewById(R.id.wsr_c1);
         c2 = (CardView)findViewById(R.id.wsr_c2);
         c3 = (CardView)findViewById(R.id.wsr_c3);
+        c4 = (CardView)findViewById(R.id.wsr_c4);
         student_id[0] = (TextView)findViewById(R.id.wsr_id1);
         student_id[1] = (TextView)findViewById(R.id.wsr_id2);
         student_id[2] = (TextView)findViewById(R.id.wsr_id3);
+        student_id[3] = (TextView)findViewById(R.id.wsr_id4);
         tmsg[0] = (TextView)findViewById(R.id.wsr_msg1);
         tmsg[1] = (TextView)findViewById(R.id.wsr_msg2);
         tmsg[2] = (TextView)findViewById(R.id.wsr_msg3);
+        tmsg[3] = (TextView)findViewById(R.id.wsr_msg4);
         tdate[0] = (TextView)findViewById(R.id.wsr_date1);
         tdate[1] = (TextView)findViewById(R.id.wsr_date2);
         tdate[2] = (TextView)findViewById(R.id.wsr_date3);
+        tdate[3] = (TextView)findViewById(R.id.wsr_date4);
         c1.setVisibility(View.GONE);
         c2.setVisibility(View.GONE);
         c3.setVisibility(View.GONE);
+        c4.setVisibility(View.GONE);
         list = (Button)findViewById(R.id.wsr_btn_empty);
 
         if(noofrequests.equals("1")){
@@ -85,6 +90,16 @@ public class Warden_Sr extends AppCompatActivity {
             c1.setVisibility(View.VISIBLE);
             c2.setVisibility(View.VISIBLE);
             c3.setVisibility(View.VISIBLE);
+            for(int i=0;i<n;i++){
+                student_id[i].setText(gsid[i]);
+                tmsg[i].setText(gmsg[i]);
+                tdate[i].setText(gdate[i]);
+            }
+        }else if(noofrequests.equals("4")){
+            c1.setVisibility(View.VISIBLE);
+            c2.setVisibility(View.VISIBLE);
+            c3.setVisibility(View.VISIBLE);
+            c4.setVisibility(View.VISIBLE);
             for(int i=0;i<n;i++){
                 student_id[i].setText(gsid[i]);
                 tmsg[i].setText(gmsg[i]);
@@ -175,28 +190,55 @@ public class Warden_Sr extends AppCompatActivity {
                     }else{
                         JSONArray room = jObj.getJSONArray("room");
                         int n = Integer.parseInt(noofemptyrooms);
-                        String [] roomid = new String[n];
-                        String [] hostelid = new String[n];
-                        String[] floor = new  String[n];
-                        for(int i=0;i<n;i++){
-                            JSONObject jobj1 = room.getJSONObject(i);
-                            roomid[i] = jobj1.getString("roomid");
-                            hostelid[i] = jobj1.getString("hostelid");
-                             floor[i] = jobj1.getString("floorno");
+                        if(n<=14) {
+                            String[] roomid = new String[n];
+                            String[] hostelid = new String[n];
+                            String[] floor = new String[n];
+                            for (int i = 0; i < n; i++) {
+                                JSONObject jobj1 = room.getJSONObject(i);
+                                roomid[i] = jobj1.getString("roomid");
+                                hostelid[i] = jobj1.getString("hostelid");
+                                floor[i] = jobj1.getString("floorno");
+                            }
+
+                            for (int k = 0; k < n; k++) {
+                                roomid[k] = roomid[k].toUpperCase();
+                                hostelid[k] = hostelid[k].toUpperCase();
+                                floor[k] = floor[k].toUpperCase();
+                            }
+
+                            Intent i = new Intent(Warden_Sr.this,Empty_Rooms.class);
+                            i.putExtra("room",roomid);
+                            i.putExtra("hostel",hostelid);
+                            i.putExtra("floor",floor);
+                            i.putExtra("noofemptyrooms",noofemptyrooms);
+                            startActivity(i);
+                        }else{
+                            String[] roomid = new String[14];
+                            String[] hostelid = new String[14];
+                            String[] floor = new String[14];
+                            for (int i = 0; i < 14; i++) {
+                                JSONObject jobj1 = room.getJSONObject(i);
+                                roomid[i] = jobj1.getString("roomid");
+                                hostelid[i] = jobj1.getString("hostelid");
+                                floor[i] = jobj1.getString("floorno");
+                            }
+
+                            for (int k = 0; k < 14; k++) {
+                                roomid[k] = roomid[k].toUpperCase();
+                                hostelid[k] = hostelid[k].toUpperCase();
+                                floor[k] = floor[k].toUpperCase();
+                            }
+                            String empty = "14";
+                            Intent i = new Intent(Warden_Sr.this,Empty_Rooms.class);
+                            i.putExtra("room",roomid);
+                            i.putExtra("hostel",hostelid);
+                            i.putExtra("floor",floor);
+                            i.putExtra("noofemptyrooms",empty);
+                            startActivity(i);
                         }
 
-                        for(int k=0;k<n;k++){
-                            roomid[k] = roomid[k].toUpperCase();
-                            hostelid[k] = hostelid[k].toUpperCase();
-                            floor[k] = floor[k].toUpperCase();
-                        }
 
-                        Intent i = new Intent(Warden_Sr.this,Empty_Rooms.class);
-                        i.putExtra("room",roomid);
-                        i.putExtra("hostel",hostelid);
-                        i.putExtra("floor",floor);
-                        i.putExtra("noofemptyrooms",noofemptyrooms);
-                        startActivity(i);
 
                     }
 

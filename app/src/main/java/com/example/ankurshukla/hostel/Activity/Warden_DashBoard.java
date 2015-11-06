@@ -115,9 +115,9 @@ public class Warden_DashBoard extends AppCompatActivity {
             public void onResponse(String response) {
 
 
-                String [] msg = new String[3];
-                String [] rdate = new String[3];
-                String [] sid = new String[3];
+                String [] msg = new String[4];
+                String [] rdate = new String[4];
+                String [] sid = new String[4];
                 try {
                     JSONObject jObj = new JSONObject(response);
                     String noofrequests = jObj.getString("noofrequests");
