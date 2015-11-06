@@ -26,6 +26,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class Warden_Sr extends AppCompatActivity {
@@ -33,9 +34,11 @@ public class Warden_Sr extends AppCompatActivity {
     TextView[] student_id = new TextView[4];
     TextView[] tmsg = new TextView[4];
     TextView[] tdate = new TextView[4];
-    String[] gmsg,gdate,gsid = new String[4];
+    TextView[] trqid = new TextView[4];
+    String[] gmsg,gdate,gsid,grqid = new String[4];
     String noofrequests;
     CardView c1,c2,c3,c4;
+    String wid;
     Button list;//list of empty rooms
 
     @Override
@@ -46,6 +49,7 @@ public class Warden_Sr extends AppCompatActivity {
         gmsg = intent.getStringArrayExtra("msg");
         gdate = intent.getStringArrayExtra("rdate");
         gsid = intent.getStringArrayExtra("studentid");
+        grqid = intent.getStringArrayExtra("rqid");
         setContentView(R.layout.activity_warden__sr);
 
         int n = Integer.parseInt(noofrequests);
@@ -65,6 +69,10 @@ public class Warden_Sr extends AppCompatActivity {
         tdate[1] = (TextView)findViewById(R.id.wsr_date2);
         tdate[2] = (TextView)findViewById(R.id.wsr_date3);
         tdate[3] = (TextView)findViewById(R.id.wsr_date4);
+        trqid[0] = (TextView)findViewById(R.id.wsr_rno1);
+        trqid[1] = (TextView)findViewById(R.id.wsr_rno2);
+        trqid[2] = (TextView)findViewById(R.id.wsr_rno3);
+        trqid[3] = (TextView)findViewById(R.id.wsr_rno4);
         c1.setVisibility(View.GONE);
         c2.setVisibility(View.GONE);
         c3.setVisibility(View.GONE);
@@ -77,6 +85,7 @@ public class Warden_Sr extends AppCompatActivity {
                 student_id[i].setText(gsid[i]);
                 tmsg[i].setText(gmsg[i]);
                 tdate[i].setText(gdate[i]);
+                trqid[i].setText("Request No - " + grqid[i]);
             }
         }else if(noofrequests.equals("2")){
             c1.setVisibility(View.VISIBLE);
@@ -84,6 +93,7 @@ public class Warden_Sr extends AppCompatActivity {
             for(int i=0;i<n;i++){
                 student_id[i].setText(gsid[i]);
                 tmsg[i].setText(gmsg[i]);
+                trqid[i].setText("Request No - " + grqid[i]);
                 tdate[i].setText(gdate[i]);
             }
         }else if(noofrequests.equals("3")){
@@ -93,6 +103,7 @@ public class Warden_Sr extends AppCompatActivity {
             for(int i=0;i<n;i++){
                 student_id[i].setText(gsid[i]);
                 tmsg[i].setText(gmsg[i]);
+                trqid[i].setText("Request No - " + grqid[i]);
                 tdate[i].setText(gdate[i]);
             }
         }else if(noofrequests.equals("4")){
@@ -103,37 +114,122 @@ public class Warden_Sr extends AppCompatActivity {
             for(int i=0;i<n;i++){
                 student_id[i].setText(gsid[i]);
                 tmsg[i].setText(gmsg[i]);
+                trqid[i].setText("Request No - " + grqid[i]);
                 tdate[i].setText(gdate[i]);
             }
         }
 
+         wid = AppController.getString(Warden_Sr.this,"loginId");
+
         c1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                listofemptyrooms();
+                final android.app.AlertDialog.Builder adb = new android.app.AlertDialog.Builder(Warden_Sr.this);
+
+                adb
+                        .setMessage("Respond To Request As follows:-")
+                        .setCancelable(false)
+                        .setPositiveButton("Change the Room", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                listofemptyrooms(grqid[0]);
+                            }
+                        })
+                        .setNegativeButton("Don't Change the Room", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                               String response = "Room is Not Changed";
+                                respondtosr(wid,grqid[0],response);
+                                dialog.dismiss();
+                            }
+                        });
+                AlertDialog dialog = adb.create();
+                dialog.show();
             }
         });
 
         c2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                listofemptyrooms();
+                final android.app.AlertDialog.Builder adb = new android.app.AlertDialog.Builder(Warden_Sr.this);
+
+                adb
+                        .setMessage("Respond To Request As follows:-")
+                        .setCancelable(false)
+                        .setPositiveButton("Change the Room", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                listofemptyrooms(grqid[1]);
+                            }
+                        })
+                        .setNegativeButton("Don't Change the Room", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                String response = "Room is Not Changed";
+                                respondtosr(wid,grqid[1],response);
+                                dialog.dismiss();
+                            }
+                        });
+                AlertDialog dialog = adb.create();
+                dialog.show();
             }
         });
 
         c3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                listofemptyrooms();
+                final android.app.AlertDialog.Builder adb = new android.app.AlertDialog.Builder(Warden_Sr.this);
+
+                adb
+                        .setMessage("Respond To Request As follows:-")
+                        .setCancelable(false)
+                        .setPositiveButton("Change the Room", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                listofemptyrooms(grqid[2]);
+                            }
+                        })
+                        .setNegativeButton("Don't Change the Room", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                String response = "Room is Not Changed";
+                                respondtosr(wid,grqid[2],response);
+                                dialog.dismiss();
+                            }
+                        });
+                AlertDialog dialog = adb.create();
+                dialog.show();
             }
         });
 
-        list.setOnClickListener(new View.OnClickListener() {
+        c4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                listofemptyrooms();
+                final android.app.AlertDialog.Builder adb = new android.app.AlertDialog.Builder(Warden_Sr.this);
+
+                adb
+                        .setMessage("Respond To Request As follows:-")
+                        .setCancelable(false)
+                        .setPositiveButton("Change the Room", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                listofemptyrooms(grqid[3]);
+                            }
+                        })
+                        .setNegativeButton("Don't Change the Room", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                String response = "Room is Not Changed";
+                                respondtosr(wid,grqid[3],response);
+                                dialog.dismiss();
+                            }
+                        });
+                AlertDialog dialog = adb.create();
+                dialog.show();
             }
         });
+
+
 
     }
 
@@ -159,7 +255,7 @@ public class Warden_Sr extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void listofemptyrooms(){
+    private void listofemptyrooms(final String rqid){
         StringRequest strReq =new StringRequest(Request.Method.POST,
                 AppConfig.URL_EMPTYROOMS, new Response.Listener<String>() {
 
@@ -235,6 +331,7 @@ public class Warden_Sr extends AppCompatActivity {
                             i.putExtra("hostel",hostelid);
                             i.putExtra("floor",floor);
                             i.putExtra("noofemptyrooms",empty);
+                            i.putExtra("rqid",rqid);//rqid of that particular request
                             startActivity(i);
                         }
 
@@ -270,5 +367,61 @@ public class Warden_Sr extends AppCompatActivity {
         AppController.getInstance().addToRequestQueue(strReq);
 
 
+    }
+
+    private void respondtosr(final String wid,final String rqid,final String reqresponse){
+        StringRequest strReq =new StringRequest(Request.Method.POST,
+                AppConfig.URL_RESPONDSR, new Response.Listener<String>() {
+
+            @Override
+            public void onResponse(String response) {
+
+
+
+                try {
+                    JSONObject jObj = new JSONObject(response);
+                    String msg = jObj.getString("message");
+                    final android.app.AlertDialog.Builder adb = new android.app.AlertDialog.Builder(Warden_Sr.this);
+                    adb
+                            .setMessage(msg)
+                            .setCancelable(false)
+                            .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                }
+                            });
+                    AlertDialog dialog = adb.create();
+                    dialog.show();
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(),
+                        error.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        }) {
+
+            @Override
+            protected Map<String, String> getParams() {
+                // Posting params to register url
+                String respondtosr = "numcsa";
+                Map<String, String> params = new LinkedHashMap<String, String>();
+                params.put("respondtosr", respondtosr);
+                params.put("rqid",rqid);
+                params.put("wid",wid);
+                params.put("reqresponse",reqresponse);
+                return params;
+            }
+
+        };
+
+        AppController.getInstance().addToRequestQueue(strReq);
     }
 }

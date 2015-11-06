@@ -118,6 +118,7 @@ public class Warden_DashBoard extends AppCompatActivity {
                 String [] msg = new String[4];
                 String [] rdate = new String[4];
                 String [] sid = new String[4];
+                String [] rqid = new String[4];
                 try {
                     JSONObject jObj = new JSONObject(response);
                     String noofrequests = jObj.getString("noofrequests");
@@ -129,6 +130,7 @@ public class Warden_DashBoard extends AppCompatActivity {
                         for(int l=0;l<k;l++){
                             JSONObject jobj1 = reques.getJSONObject(l);
                             msg[l] = jobj1.getString("reqmessage");
+                            rqid[l] =  jobj1.getString("rqid");
                             rdate[l] = "Request Made On: "+jobj1.getString("rdate");
                             sid[l] = "Request Made by- "+jobj1.getString("sid");
                         }
@@ -139,6 +141,7 @@ public class Warden_DashBoard extends AppCompatActivity {
                         i.putExtra("msg",msg);
                         i.putExtra("rdate",rdate);
                         i.putExtra("studentid",sid);
+                        i.putExtra("rqid",rqid);
                         startActivity(i);
                     }
 

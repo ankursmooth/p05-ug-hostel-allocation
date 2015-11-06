@@ -48,6 +48,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        android.support.v7.app.ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
+
         login = (Button) findViewById(R.id.login);
         uid = (EditText) findViewById(R.id.username);
         password = (EditText) findViewById(R.id.psswrd);
@@ -115,27 +118,6 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-  /*  @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }*/
 
     private void showDialog() {
         if (!pDialog.isShowing())
@@ -296,13 +278,13 @@ public class MainActivity extends AppCompatActivity {
                     String success = jObj.getString("success");
                     String message = jObj.getString("message");
                     String noOfNotification = jObj.getString("noofnotifications");
-      //              String allocationstdate = jObj.getString("allocationstdate");
-       //             String allocationnddate = jObj.getString("allocationnddate");
+                    String allocationstdate = jObj.getString("allocationstdate");
+                    String allocationnddate = jObj.getString("allocationnddate");
 
                     //writing the value to sharedpreference in phone database
                     AppController.setString(MainActivity.this, "noOfNotify", noOfNotification);
-                //    AppController.setString(MainActivity.this,"asdate",allocationstdate);//start date of allocation process
-              //      AppController.setString(MainActivity.this,"andate",allocationnddate);//end date of allocation process
+                    AppController.setString(MainActivity.this,"asdate",allocationstdate);//start date of allocation process
+                    AppController.setString(MainActivity.this,"andate",allocationnddate);//end date of allocation process
 
                 //    Toast.makeText(MainActivity.this, message ,Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(MainActivity.this, Student_Dashboard.class);

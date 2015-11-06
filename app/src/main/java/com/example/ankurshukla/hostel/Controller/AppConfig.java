@@ -56,4 +56,7 @@ public class AppConfig {
     //for changing room
     public  static  String URL_CHANGEROOM = "http://192.168.133.1/sepmdb/changeroom.php";
 
+    //for responding to sr
+    public static String URL_RESPONDSR = "http://192.168.133.1/sepmdb/respondtosr.php";
+
 }

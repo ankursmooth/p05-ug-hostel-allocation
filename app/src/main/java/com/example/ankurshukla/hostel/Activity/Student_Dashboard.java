@@ -31,7 +31,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -45,8 +48,11 @@ public class Student_Dashboard extends AppCompatActivity {
     TextView name,student_notify;
     // name testview showing the name of login user after taking from server
     //notify tells the no of notification if present
-    String rqid;
+    String rqid,sea_wing="bkjj",wing_allowed="notallowed",search_allowed="notallowed";//sea_wing tells whether both are allowed or not
+    String adate,aedate,pdate,pedate;//adate and aedate are dates from response given by server
+    //pdate and pedate are present dates
     //rqid is used to redirect the submitted request if present else redirect them to fill one request
+    Date presentdate,allocationenddate,allocationstartdate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +62,8 @@ public class Student_Dashboard extends AppCompatActivity {
         android.support.v7.app.ActionBar actionBar=getSupportActionBar();
         actionBar.hide();
 
+        adate = AppController.getString(Student_Dashboard.this,"asdate");
+        aedate = AppController.getString(Student_Dashboard.this,"andate");
         wing= (Button) findViewById(R.id.btn_student_wing);//link of the wing form button in xml to use in java
         notification= (Button) findViewById(R.id.btn_student_notify);//link of the notification  button in xml to us in java
         search = (Button)findViewById(R.id.btn_student_search);//link of the w search button in xml to us in java
@@ -75,14 +83,77 @@ public class Student_Dashboard extends AppCompatActivity {
             student_notify.setText(notifym_msg);
         }
 
+        java.util.Date date=new java.util.Date();
+        SimpleDateFormat sdf;
+        sdf=new SimpleDateFormat("yyyy-MM-dd");
+        String ndate = (sdf.format(date)).toString();
+        try {
+            presentdate = sdf.parse(ndate);
+             allocationstartdate = sdf.parse(adate);
+             allocationenddate = sdf.parse(aedate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+
+
+
+        if(adate.equals("2030-01-01") && aedate.equals("2030-01-01")){
+            sea_wing = "notallowed";
+        }
+
+        if(presentdate.compareTo(allocationenddate)>0){
+            search_allowed = "allowed";
+        }
+
+        if(presentdate.compareTo(allocationstartdate)>0 && allocationenddate.compareTo(presentdate)>0){
+            wing_allowed="allowed";
+        }else if(presentdate.compareTo(allocationenddate)>0){
+            wing_allowed="notallowed";
+        }
+
         //checkform is called first to check whether is there any saved or submiited form present or not
         //when clicked on wing from button and checkform receives the response from server according to which it is redirected
         wing.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(sea_wing.equals("notallowed")){
+                    final android.app.AlertDialog.Builder adb = new
+                            android.app.AlertDialog.Builder(Student_Dashboard.this);
 
-                String uid = AppController.getString(Student_Dashboard.this,"Student_id");
-                CheckForm(uid);
+                    adb
+                            .setMessage("Wing Allocation has not started,So you can't fill form now!!")
+                            .setCancelable(false)
+                            .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                }
+                            });
+
+                    AlertDialog dialog = adb.create();
+                    dialog.show();
+                }else if(wing_allowed.equals("notallowed")){
+                    final android.app.AlertDialog.Builder adb = new
+                            android.app.AlertDialog.Builder(Student_Dashboard.this);
+
+                    adb
+                            .setMessage("Wing Allocation has been done,So you can't fill form now!!")
+                            .setCancelable(false)
+                            .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                }
+                            });
+
+                    AlertDialog dialog = adb.create();
+                    dialog.show();
+                }
+                else {
+                    String uid = AppController.getString(Student_Dashboard.this, "Student_id");
+                    CheckForm(uid);
+                }
             }
         });
 
@@ -124,8 +195,43 @@ public class Student_Dashboard extends AppCompatActivity {
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(Student_Dashboard.this, Search.class);
-                startActivity(i);
+                if (sea_wing.equals("notallowed")) {
+                    final android.app.AlertDialog.Builder adb = new
+                            android.app.AlertDialog.Builder(Student_Dashboard.this);
+
+                    adb
+                            .setMessage("Wing Allocation not done,So search is not allowed!!")
+                            .setCancelable(false)
+                            .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                }
+                            });
+
+                    AlertDialog dialog = adb.create();
+                    dialog.show();
+                }else if(search_allowed.equals("not allowed")){
+                    final android.app.AlertDialog.Builder adb = new
+                            android.app.AlertDialog.Builder(Student_Dashboard.this);
+
+                    adb
+                            .setMessage("Wing Allocation not done,So search is not allowed!!")
+                            .setCancelable(false)
+                            .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                }
+                            });
+
+                    AlertDialog dialog = adb.create();
+                    dialog.show();
+                }
+                else {
+                    Intent i = new Intent(Student_Dashboard.this, Search.class);
+                    startActivity(i);
+                }
             }
         });
 
@@ -499,4 +605,6 @@ public class Student_Dashboard extends AppCompatActivity {
 
         AppController.getInstance().addToRequestQueue(strReq);
     }
+
+
 }

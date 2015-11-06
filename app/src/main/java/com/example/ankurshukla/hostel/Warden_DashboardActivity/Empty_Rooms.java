@@ -17,7 +17,7 @@ public class Empty_Rooms extends AppCompatActivity {
     TextView[] room = new TextView[14];
     TextView[] floor = new TextView[14];
     String[] ghostel,groom,gfloor = new String[25];
-    String noofemptyrooms;
+    String noofemptyrooms,rqid;
     CardView[] c = new CardView[14];
 
     @Override
@@ -28,6 +28,7 @@ public class Empty_Rooms extends AppCompatActivity {
         groom = intent.getStringArrayExtra("room");
         gfloor = intent.getStringArrayExtra("floor");
         noofemptyrooms = intent.getStringExtra("noofemptyrooms");
+        rqid = intent.getStringExtra("rqid");
         setContentView(R.layout.activity_empty__rooms);
 
         c[0] = (CardView)findViewById(R.id.erc1);
@@ -104,6 +105,7 @@ public class Empty_Rooms extends AppCompatActivity {
                 Intent i = new Intent(Empty_Rooms.this,Room_Allotment.class);
                 i.putExtra("hostel",ghostel[0]);
                 i.putExtra("room",groom[0]);
+                i.putExtra("rqid",rqid);//passing the rqid to the screen where the respond to sr in calledd
                 startActivity(i);
             }
         });
@@ -114,6 +116,7 @@ public class Empty_Rooms extends AppCompatActivity {
                 Intent i = new Intent(Empty_Rooms.this,Room_Allotment.class);
                 i.putExtra("hostel",ghostel[1]);
                 i.putExtra("room",groom[1]);
+                i.putExtra("rqid",rqid);
                 startActivity(i);
             }
         });
@@ -124,6 +127,7 @@ public class Empty_Rooms extends AppCompatActivity {
                 Intent i = new Intent(Empty_Rooms.this, Room_Allotment.class);
                 i.putExtra("hostel", ghostel[2]);
                 i.putExtra("room", groom[2]);
+                i.putExtra("rqid",rqid);
                 startActivity(i);
             }
         });
@@ -134,6 +138,7 @@ public class Empty_Rooms extends AppCompatActivity {
                 Intent i = new Intent(Empty_Rooms.this, Room_Allotment.class);
                 i.putExtra("hostel", ghostel[3]);
                 i.putExtra("room", groom[3]);
+                i.putExtra("rqid",rqid);
                 startActivity(i);
             }
         });
@@ -144,6 +149,7 @@ public class Empty_Rooms extends AppCompatActivity {
                 Intent i = new Intent(Empty_Rooms.this, Room_Allotment.class);
                 i.putExtra("hostel", ghostel[4]);
                 i.putExtra("room", groom[4]);
+                i.putExtra("rqid",rqid);
                 startActivity(i);
             }
         });
@@ -154,6 +160,7 @@ public class Empty_Rooms extends AppCompatActivity {
                 Intent i = new Intent(Empty_Rooms.this, Room_Allotment.class);
                 i.putExtra("hostel", ghostel[5]);
                 i.putExtra("room", groom[5]);
+                i.putExtra("rqid",rqid);
                 startActivity(i);
             }
         });
@@ -165,6 +172,7 @@ public class Empty_Rooms extends AppCompatActivity {
                 Intent i = new Intent(Empty_Rooms.this, Room_Allotment.class);
                 i.putExtra("hostel", ghostel[6]);
                 i.putExtra("room", groom[6]);
+                i.putExtra("rqid",rqid);
                 startActivity(i);
             }
         });
@@ -176,6 +184,7 @@ public class Empty_Rooms extends AppCompatActivity {
                 Intent i = new Intent(Empty_Rooms.this, Room_Allotment.class);
                 i.putExtra("hostel", ghostel[7]);
                 i.putExtra("room", groom[7]);
+                i.putExtra("rqid",rqid);
                 startActivity(i);
             }
         });
@@ -186,6 +195,7 @@ public class Empty_Rooms extends AppCompatActivity {
                 Intent i = new Intent(Empty_Rooms.this, Room_Allotment.class);
                 i.putExtra("hostel", ghostel[8]);
                 i.putExtra("room", groom[8]);
+                i.putExtra("rqid",rqid);
                 startActivity(i);
             }
         });
@@ -197,6 +207,7 @@ public class Empty_Rooms extends AppCompatActivity {
                 Intent i = new Intent(Empty_Rooms.this, Room_Allotment.class);
                 i.putExtra("hostel", ghostel[9]);
                 i.putExtra("room", groom[9]);
+                i.putExtra("rqid",rqid);
                 startActivity(i);
             }
         });
@@ -207,6 +218,7 @@ public class Empty_Rooms extends AppCompatActivity {
                 Intent i = new Intent(Empty_Rooms.this, Room_Allotment.class);
                 i.putExtra("hostel", ghostel[10]);
                 i.putExtra("room", groom[10]);
+                i.putExtra("rqid",rqid);
                 startActivity(i);
             }
         });
@@ -217,6 +229,7 @@ public class Empty_Rooms extends AppCompatActivity {
                 Intent i = new Intent(Empty_Rooms.this,Room_Allotment.class);
                 i.putExtra("hostel",ghostel[11]);
                 i.putExtra("room",groom[11]);
+                i.putExtra("rqid",rqid);
                 startActivity(i);
             }
         });
@@ -227,6 +240,7 @@ public class Empty_Rooms extends AppCompatActivity {
                 Intent i = new Intent(Empty_Rooms.this,Room_Allotment.class);
                 i.putExtra("hostel",ghostel[12]);
                 i.putExtra("room",groom[12]);
+                i.putExtra("rqid",rqid);
                 startActivity(i);
             }
         });
@@ -237,6 +251,7 @@ public class Empty_Rooms extends AppCompatActivity {
                 Intent i = new Intent(Empty_Rooms.this,Room_Allotment.class);
                 i.putExtra("hostel",ghostel[13]);
                 i.putExtra("room",groom[13]);
+                i.putExtra("rqid",rqid);
                 startActivity(i);
             }
         });

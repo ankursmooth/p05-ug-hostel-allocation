@@ -35,10 +35,18 @@
         <LinearLayout android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15dp"
+                android:text="ankur"
+                android:paddingLeft="10dp"
+                android:id="@+id/wsr_rno1"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="25dp"
+        android:textSize="20dp"
         android:text="ankur"
         android:paddingLeft="8dp"
         android:id="@+id/wsr_id1"/>
@@ -46,7 +54,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="25dp"
+        android:textSize="20dp"
         android:text="aaefaf"
         android:id="@+id/wsr_msg1"
         android:layout_marginTop="10dp"
@@ -56,7 +64,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="agsegsg"
-        android:textSize="25dp"
+        android:textSize="20dp"
         android:paddingLeft="8dp"
         android:layout_marginTop="10dp"
         android:id="@+id/wsr_date1"/>
@@ -77,10 +85,19 @@
         <LinearLayout android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="25dp"
+                android:textSize="15dp"
+                android:text="ankur"
+                android:paddingLeft="10dp"
+                android:id="@+id/wsr_rno2"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
                 android:text="ankur"
                 android:paddingLeft="8dp"
                 android:id="@+id/wsr_id2"/>
@@ -88,7 +105,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="25dp"
+                android:textSize="20dp"
                 android:text="aaefaf"
                 android:id="@+id/wsr_msg2"
                 android:layout_marginTop="10dp"
@@ -98,7 +115,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="agsegsg"
-                android:textSize="25dp"
+                android:textSize="20dp"
                 android:paddingLeft="8dp"
                 android:layout_marginTop="10dp"
                 android:id="@+id/wsr_date2"/>
@@ -119,10 +136,19 @@
         <LinearLayout android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="25dp"
+                android:textSize="15dp"
+                android:text="ankur"
+                android:paddingLeft="10dp"
+                android:id="@+id/wsr_rno3"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
                 android:text="ankur"
                 android:paddingLeft="8dp"
                 android:id="@+id/wsr_id3"/>
@@ -130,7 +156,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="25dp"
+                android:textSize="20dp"
                 android:text="aaefaf"
                 android:id="@+id/wsr_msg3"
                 android:layout_marginTop="10dp"
@@ -140,7 +166,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="agsegsg"
-                android:textSize="25dp"
+                android:textSize="20dp"
                 android:paddingLeft="8dp"
                 android:layout_marginTop="10dp"
                 android:id="@+id/wsr_date3"/>
@@ -161,10 +187,19 @@
         <LinearLayout android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="25dp"
+                android:textSize="15dp"
+                android:text="ankur"
+                android:paddingLeft="10dp"
+                android:id="@+id/wsr_rno4"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
                 android:text="ankur"
                 android:paddingLeft="8dp"
                 android:id="@+id/wsr_id4"/>
@@ -172,7 +207,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="25dp"
+                android:textSize="20dp"
                 android:text="aaefaf"
                 android:id="@+id/wsr_msg4"
                 android:layout_marginTop="10dp"
@@ -182,7 +217,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="agsegsg"
-                android:textSize="25dp"
+                android:textSize="20dp"
                 android:paddingLeft="8dp"
                 android:layout_marginTop="10dp"
                 android:id="@+id/wsr_date4"/>

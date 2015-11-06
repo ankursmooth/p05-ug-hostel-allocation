@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -32,8 +33,9 @@ import java.util.Map;
 public class Room_Allotment extends AppCompatActivity {
 
     EditText id1,id2,hostel,room;
-    String shostel,sroom,sid1,sid2;
+    String shostel,sroom,sid1,sid2,rqid;
     Button allot;
+    TextView trqid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,9 +43,11 @@ public class Room_Allotment extends AppCompatActivity {
         Intent intent = getIntent();
         shostel = intent.getStringExtra("hostel");
         sroom = intent.getStringExtra("room");
+        rqid = intent.getStringExtra("rqid");
         setContentView(R.layout.activity_room__allotment);
 
 
+        trqid = (TextView)findViewById(R.id.ra_rqid);
         id1 = (EditText)findViewById(R.id.ra_id1);
         id2 = (EditText)findViewById(R.id.ra_id2);
         hostel = (EditText)findViewById(R.id.ra_hostel);
@@ -52,6 +56,7 @@ public class Room_Allotment extends AppCompatActivity {
 
         hostel.setText(shostel);
         room.setText(sroom);
+        trqid.setText(rqid);
 
         allot.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,7 +67,7 @@ public class Room_Allotment extends AppCompatActivity {
                 sroom = room.getText().toString().toLowerCase();
 
                 if(!sid1.isEmpty() && !sid2.isEmpty() && !shostel.isEmpty() && !sroom.isEmpty()){
-                    changeroom(sid1,sid2,shostel,sroom);
+                    changeroom(sid1,sid2,shostel,sroom,rqid);
                 }else{
                     Snackbar.make(v,"Enter All Credentials",Snackbar.LENGTH_SHORT).show();
                 }
@@ -94,7 +99,7 @@ public class Room_Allotment extends AppCompatActivity {
     }
 
     private void changeroom(final String sid1,final String sid2,
-                                    final String hostel, final String room ){
+                                    final String hostel, final String room,final String rqid ){
 
             StringRequest strReq =new StringRequest(Request.Method.POST,
                     AppConfig.URL_CHANGEROOM, new Response.Listener<String>() {
@@ -109,24 +114,7 @@ public class Room_Allotment extends AppCompatActivity {
                         String message = jObj.getString("message");
 
 
-
-                        final AlertDialog.Builder alertdialogBuilder = new AlertDialog.Builder(Room_Allotment.this);
-                        // alertdialogBuilder.setTitle("");
-
-
-                        alertdialogBuilder
-                                .setMessage(message)
-                                .setCancelable(false)
-                                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        Intent i =  new Intent(Room_Allotment.this,Warden_DashBoard.class);
-                                        startActivity(i);
-                                    }
-                                });
-
-                        AlertDialog dialog = alertdialogBuilder.create();
-                        dialog.show();
+                        respondtosr(rqid);
 
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -164,5 +152,62 @@ public class Room_Allotment extends AppCompatActivity {
 
     }
 
+    private void respondtosr(final String rqid){
+        StringRequest strReq =new StringRequest(Request.Method.POST,
+                AppConfig.URL_RESPONDSR, new Response.Listener<String>() {
+
+            @Override
+            public void onResponse(String response) {
+
+
+
+                try {
+                    JSONObject jObj = new JSONObject(response);
+                    String msg = jObj.getString("message");
+                    final android.app.AlertDialog.Builder adb = new android.app.AlertDialog.Builder(Room_Allotment.this);
+                    adb
+                            .setMessage(msg)
+                            .setCancelable(false)
+                            .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                }
+                            });
+                    android.app.AlertDialog dialog = adb.create();
+                    dialog.show();
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(),
+                        error.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        }) {
+
+            @Override
+            protected Map<String, String> getParams() {
+                // Posting params to register url
+                String wid = AppController.getString(Room_Allotment.this,"loginId");
+                String reqresponse = "Ok ,Your room is changed";
+                String respondtosr = "numcsa";
+                Map<String, String> params = new LinkedHashMap<String, String>();
+                params.put("respondtosr", respondtosr);
+                params.put("rqid",rqid);
+                params.put("wid",wid);
+                params.put("reqresponse",reqresponse);
+                return params;
+            }
+
+        };
+
+        AppController.getInstance().addToRequestQueue(strReq);
+    }
 
 }
