@@ -92,7 +92,7 @@ public class Special_Request extends AppCompatActivity {
                 try {
                     JSONObject jObj = new JSONObject(response);
                     //Response from server
-                    String rqid = jObj.getString("rqid");
+                    final String rqid = jObj.getString("rqid");
                     String success = jObj.getString("success");
                     String message = jObj.getString("message");
 
@@ -106,6 +106,7 @@ public class Special_Request extends AppCompatActivity {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     Intent i = new Intent(Special_Request.this, Student_Dashboard.class);
+                                    i.putExtra("rqid",rqid);
                                     startActivity(i);
                                     finish();
                                 }

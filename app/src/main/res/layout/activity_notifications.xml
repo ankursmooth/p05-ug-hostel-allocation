@@ -8,6 +8,19 @@
     tools:context="com.example.ankurshukla.hostel.Warden_DashboardActivity.Notifications"
     android:weightSum="1">
 
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="181dp"
+        android:hint="Enter Notification to send"
+        android:id="@+id/wardnotify_msg"
+        android:background="@drawable/rect_text_edit"
+        android:gravity="top"/>
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Send Request"
+        android:id="@+id/wardnotify_send"
+        android:layout_marginTop="15dp"/>
 
 </LinearLayout>

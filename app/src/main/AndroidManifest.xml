@@ -3,6 +3,7 @@
     package="com.example.ankurshukla.hostel" >
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:name=".Controller.AppController"
@@ -22,10 +23,6 @@
         <activity
             android:name=".Student_Dashboard_Activity.Preference"
             android:label="@string/title_activity_wing_form" >
-        </activity>
-        <activity
-            android:name=".ConflictUi"
-            android:label="@string/title_activity_conflict_ui" >
         </activity>
         <activity
             android:name=".Student_Dashboard_Activity.WingForm"
@@ -87,6 +84,10 @@
         <activity
             android:name=".Warden_DashboardActivity.Empty_Rooms"
             android:label="@string/title_activity_empty__rooms" >
+        </activity>
+        <activity
+            android:name=".Warden_DashboardActivity.Room_Allotment"
+            android:label="@string/title_activity_room__allotment" >
         </activity>
     </application>
 

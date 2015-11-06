@@ -30,6 +30,8 @@ public class Submitted_Form extends AppCompatActivity {
         Intent intent = getIntent();
         sid = intent.getStringArrayExtra("sid");
         number = intent.getStringExtra("noOfStudents");
+        hostelid = intent.getStringArrayExtra("Hostel_type");
+        floor = intent.getStringArrayExtra("Floor_type");
         setContentView(R.layout.activity_submitted__form);
 
         int n = Integer.parseInt(number);

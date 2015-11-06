@@ -3,6 +3,7 @@ package com.example.ankurshukla.hostel.Warden_DashboardActivity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -53,7 +54,11 @@ public class Warden_Wing extends AppCompatActivity {
                 AppController.setString(Warden_Wing.this,"button_pressed",button_pressed);
                  String sdate = stdate.getText().toString().toLowerCase();
                  String sedate = edate.getText().toString().toLowerCase();
-                createalloprocess(sdate, sedate, loggedid);
+                if(!sdate.isEmpty() && !sedate.isEmpty()) {
+                    createalloprocess(sdate, sedate, loggedid);
+                }else{
+                    Snackbar.make(v,"Enter All Credentials",Snackbar.LENGTH_SHORT).show();
+                }
                 startalloc.setEnabled(false);
 
             }

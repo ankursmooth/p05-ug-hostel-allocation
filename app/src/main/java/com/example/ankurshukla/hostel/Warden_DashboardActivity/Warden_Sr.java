@@ -92,6 +92,27 @@ public class Warden_Sr extends AppCompatActivity {
             }
         }
 
+        c1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listofemptyrooms();
+            }
+        });
+
+        c2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listofemptyrooms();
+            }
+        });
+
+        c3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listofemptyrooms();
+            }
+        });
+
         list.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -161,10 +182,21 @@ public class Warden_Sr extends AppCompatActivity {
                             JSONObject jobj1 = room.getJSONObject(i);
                             roomid[i] = jobj1.getString("roomid");
                             hostelid[i] = jobj1.getString("hostelid");
-                            floor[i] = jobj1.getString("floorno");
+                             floor[i] = jobj1.getString("floorno");
                         }
 
+                        for(int k=0;k<n;k++){
+                            roomid[k] = roomid[k].toUpperCase();
+                            hostelid[k] = hostelid[k].toUpperCase();
+                            floor[k] = floor[k].toUpperCase();
+                        }
 
+                        Intent i = new Intent(Warden_Sr.this,Empty_Rooms.class);
+                        i.putExtra("room",roomid);
+                        i.putExtra("hostel",hostelid);
+                        i.putExtra("floor",floor);
+                        i.putExtra("noofemptyrooms",noofemptyrooms);
+                        startActivity(i);
 
                     }
 

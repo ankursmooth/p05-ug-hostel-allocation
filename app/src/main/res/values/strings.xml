@@ -49,6 +49,7 @@
     <string name="title_activity_submitted__request">Submitted_Request</string>
     <string name="title_activity_warden__sr">Warden_Sr</string>
     <string name="title_activity_empty__rooms">Empty_Rooms</string>
+    <string name="title_activity_room__allotment">Room_Allotment</string>
 
 
 </resources>

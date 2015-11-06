@@ -53,4 +53,7 @@ public class AppConfig {
     //for gettingist of empty rooms
     public  static  String URL_EMPTYROOMS = "http://192.168.133.1/sepmdb/getemptyrooms.php";
 
+    //for changing room
+    public  static  String URL_CHANGEROOM = "http://192.168.133.1/sepmdb/changeroom.php";
+
 }

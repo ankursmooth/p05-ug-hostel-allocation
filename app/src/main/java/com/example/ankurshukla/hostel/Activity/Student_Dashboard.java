@@ -37,29 +37,38 @@ import java.util.Map;
 
 public class Student_Dashboard extends AppCompatActivity {
 
-    Button wing,notification,search,special_req;
+    Button wing,notification,search,special_req;//buttons by which student will access the different functionality
+    //wing button direct it to the wing form if allocation has started and redirect to the wing form or saved form as present
+    //notification show the no of notifications if present
+    //search allows them to search for students room no hostel after allocation
+    //special req allows them to end request for room change after allocation
     TextView name,student_notify;
-
+    // name testview showing the name of login user after taking from server
+    //notify tells the no of notification if present
+    String rqid;
+    //rqid is used to redirect the submitted request if present else redirect them to fill one request
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Intent intent = getIntent();//for taking value of rqid whether it is present or not
+        rqid = intent.getStringExtra("rqid");
         setContentView(R.layout.activity_student__dashboard);
 
         android.support.v7.app.ActionBar actionBar=getSupportActionBar();
         actionBar.hide();
 
-        wing= (Button) findViewById(R.id.btn_student_wing);
-        notification= (Button) findViewById(R.id.btn_student_notify);
-        search = (Button)findViewById(R.id.btn_student_search);
-        name=(TextView)findViewById(R.id.display_sname);
-        student_notify = (TextView)findViewById(R.id.student_notify);
-        special_req = (Button)findViewById(R.id.btn_student_special);
+        wing= (Button) findViewById(R.id.btn_student_wing);//link of the wing form button in xml to use in java
+        notification= (Button) findViewById(R.id.btn_student_notify);//link of the notification  button in xml to us in java
+        search = (Button)findViewById(R.id.btn_student_search);//link of the w search button in xml to us in java
+        name=(TextView)findViewById(R.id.display_sname);//link of textview to show name of the login user
+        student_notify = (TextView)findViewById(R.id.student_notify);//no of notifications is hshown by this
+        special_req = (Button)findViewById(R.id.btn_student_special);//link of the special request form button in xml to us in java
 
-        String display = AppController.getString(Student_Dashboard.this, "username");
-        name.setText(display);
+        String display = AppController.getString(Student_Dashboard.this, "username");//taking the name of user stored in the phone database
+        name.setText(display);//displaying the name of user in dashboard
 
-        //number takees the number of notification in database
+        //number takees the number of notification in database and according to it is showing the no of notification if present
         final String number = AppController.getString(Student_Dashboard.this, "noOfNotify");
         if(number.equals("0")){
             student_notify.setText("");
@@ -69,6 +78,7 @@ public class Student_Dashboard extends AppCompatActivity {
         }
 
         //checkform is called first to check whether is there any saved or submiited form present or not
+        //when clicked on wing from button and checkform receives the response from server according to which it is redirected
         wing.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -78,6 +88,7 @@ public class Student_Dashboard extends AppCompatActivity {
             }
         });
 
+        //it shows the notification if present by calling get notification method when clicked else show msg that no notification is present
         notification.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -103,13 +114,15 @@ public class Student_Dashboard extends AppCompatActivity {
                     alertDialog.show();
                 }else {
                     String uid = AppController.getString(Student_Dashboard.this, "Student_id");
-                    get_notification(uid, number);
+                    get_notification(uid, number);//student is id of student by which he has login and number is the no of notification
+                    // which is taken  by in response from server
                 }
                 }
 
 
         });
 
+        //search button redirected to the search screen from where if student can search for details about student room and hostel after allocation been done
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -118,18 +131,18 @@ public class Student_Dashboard extends AppCompatActivity {
             }
         });
 
+        //when clicked on special request button it is redirected to screen which is present which is being decided by the rqid if rqid is null then
+        //special request screen else then request sent by student is shown
         special_req.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String token = AppController.getString(Student_Dashboard.this,"Request_id");
-                if(token.isEmpty()){
+
+                if(rqid == null){
                     Intent i = new Intent(Student_Dashboard.this, Special_Request.class);
                     startActivity(i);
                 }else{
                     String uid = AppController.getString(Student_Dashboard.this, "Student_id");
                     getspecialrequest(uid);
-                    /*Intent i = new Intent(Student_Dashboard.this, Submitted_Request.class);
-                    startActivity(i);*/
                 }
             }
         });
@@ -158,32 +171,32 @@ public class Student_Dashboard extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    /*  get notification is called when student click on notification button
+    * it gives the response by sending student id and usergroup as student and in response it shows all the notification given by warden*/
     private void get_notification(final String uid,final String number){
         StringRequest strReq =new StringRequest(Request.Method.POST,
                 AppConfig.URL_GET_NOTIFY, new Response.Listener<String>() {
+                //url is called which is currently stored in appconfig class
 
             @Override
             public void onResponse(String response) {
 
-                ArrayList<String> data = new ArrayList<>();
+                ArrayList<String> data = new ArrayList<>();//arraylist to store all msg we get in response from server
 
                 try {
-                    JSONObject jObj = new JSONObject(response);
+                    JSONObject jObj = new JSONObject(response);//make json object jobj to take data from getnotification.php file
                     //Response from server
-                    JSONArray notify = jObj.getJSONArray("notiz");
+                    JSONArray notify = jObj.getJSONArray("notiz");//make json array notify of jobj as data is received in array form because there can be many noifications
                     for(int i=0;i<Integer.parseInt(number);i++){
-                        JSONObject jobj1=  notify.getJSONObject(i);
-                        /* msg = msg + jobj1.getString("nmessage");*/
+                        JSONObject jobj1=  notify.getJSONObject(i);//make json object of that array and take all the msg present in each notification and who created the notification and notification type
+                        //which gets stored in arraylist
                         data.add(jobj1.getString("nmessage")+" by "+jobj1.getString("creatorid")+ " on "+ jobj1.getString("ndate") + " ("+ jobj1.getString("ntype")+ ").");
                     }
-                   /* Toast.makeText(Student_Dashboard.this,msg,Toast.LENGTH_SHORT).show();*/
-
-                    //writing the value to sharedpreference in phone database
 
 
-                    //    Toast.makeText(MainActivity.this, message ,Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(Student_Dashboard.this, Student_Notify.class);
-                    i.putStringArrayListExtra("msg_list", data);
+                    Intent i = new Intent(Student_Dashboard.this, Student_Notify.class);//notification class is called where the student will see the notification present and their creator id
+                    // and when notification is created adn type of notification
+                    i.putStringArrayListExtra("msg_list", data);//array list is passed to the notification class
                     startActivity(i);
 
                 } catch (JSONException e) {
@@ -217,6 +230,8 @@ public class Student_Dashboard extends AppCompatActivity {
         AppController.getInstance().addToRequestQueue(strReq);
     }
 
+
+    //checkforn is called when student clicks on wing form button
     private void CheckForm(final String uid){
 
         StringRequest strReq =new StringRequest(Request.Method.POST,
@@ -226,10 +241,12 @@ public class Student_Dashboard extends AppCompatActivity {
             public void onResponse(String response) {
 
                 try {
-                    JSONObject jObj = new JSONObject(response);
+                    JSONObject jObj = new JSONObject(response);//for storing their response when called checkform api
                     //Response from server
                     String success = jObj.getString("success");
-                    String msg = jObj.getString("message");
+                    String msg = jObj.getString("message");//we take response msg and according to redirect the student to three different class
+                    //if no form present then procedure of wing form details submission
+                    //if saved form present then getsaved form function is called else getsubmitted form function is called
 
                     //redirecting to the class according to which class is present
                     if(msg.equals("noFormPresent")){
@@ -237,12 +254,8 @@ public class Student_Dashboard extends AppCompatActivity {
                         startActivity(i);
                         finish();
                     }else if(msg.equals("savedFormPresent")){
-                       // Intent i = new Intent(Student_Dashboard.this,Saved_Form.class);
-                       // startActivity(i);
                         getsavedform();
                     }else if(msg.equals("submittedFormPresent")){
-                        /*Intent i = new Intent(Student_Dashboard.this,Submitted_Form.class);
-                        startActivity(i);*/
                         getsubmittedform();
                     }
 
@@ -260,7 +273,7 @@ public class Student_Dashboard extends AppCompatActivity {
             }
         }) {
 
-            @Override
+            @Override//response getting after calling checkform.php link and sending student id and checkform string to the server
             protected Map<String, String> getParams() {
                 // Posting params to register url
                 String checkform = "numcsa";
@@ -276,7 +289,7 @@ public class Student_Dashboard extends AppCompatActivity {
 
     }
 
-
+//based in the response of checkform this function is called if saved form is present of that student in database
     private  void  getsavedform(){
         StringRequest strReq =new StringRequest(Request.Method.POST,
                 AppConfig.URL_GETSAVEDFORM, new Response.Listener<String>() {
@@ -293,19 +306,20 @@ public class Student_Dashboard extends AppCompatActivity {
                 try {
                     JSONObject jObj = new JSONObject(response);
                     //Response from server
-                    String number = jObj.getString("noofstudent");
+                    String number = jObj.getString("noofstudent");//no of student in the wing from which he filled
                     int n = Integer.parseInt(number);
-                    JSONArray entry = jObj.getJSONArray("entry");
+                    JSONArray entry = jObj.getJSONArray("entry");//json array of above json object to store name and student id
+                    //in string array and then passing to saved form for diplay
                     for(int i=0;i<n;i++){
                         JSONObject jobj1 = entry.getJSONObject(i);
                          savesid[i] = jobj1.getString("sid");
                         savename[i] = jobj1.getString("sname");
                     }
-                    JSONArray pref = jObj.getJSONArray("pref");
+                    JSONArray pref = jObj.getJSONArray("pref");//no of preferences filled in the form
                     for(int j=0;j<2;j++){
                         JSONObject jobj2 = pref.getJSONObject(j);
-                        hostelid[j] = jobj2.getString("hostelid");
-                        floor[j] = jobj2.getString("floorno");
+                        hostelid[j] = jobj2.getString("hostelid");//storing the preferrred hostel from getsavedform.php file response
+                        floor[j] = jobj2.getString("floorno");//storing the preferrred floor from getsavedform.php file response
                     }
 
                     Intent i = new Intent(Student_Dashboard.this,Saved_Form.class);
@@ -315,7 +329,7 @@ public class Student_Dashboard extends AppCompatActivity {
                     i.putExtra("Hostel_type",hostelid);
                     i.putExtra("Floor_type",floor);
                     startActivity(i);
-                    //pfid hostel id and floor id b paas karao
+                    //pfid hostel id and floor id is also passing from this activity to saved form activity
 
 
                 } catch (JSONException e) {
@@ -332,7 +346,8 @@ public class Student_Dashboard extends AppCompatActivity {
             }
         }) {
 
-            @Override
+            @Override//getting response after sending string getsavedform and uid of that student
+            //it gives saved form if present in database
             protected Map<String, String> getParams() {
                 // Posting params to register url
                 String form = "numcsa";
@@ -350,6 +365,7 @@ public class Student_Dashboard extends AppCompatActivity {
     }
 
 
+    //based in the response of checkform this function is called if submit  form is present of that student in database
     private  void  getsubmittedform(){
         StringRequest strReq =new StringRequest(Request.Method.POST,
                 AppConfig.URL_GETSUBMITTEDFORM, new Response.Listener<String>() {
@@ -357,21 +373,19 @@ public class Student_Dashboard extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
 
-                String pref_noofrooms = AppController.getString(Student_Dashboard.this,"noofrooms");
-                //          int n = Integer.parseInt(number);
                 String savesid[] = new String[6];
-                String savename[] = new String[6];
                 String hostelid[] = new String[2];
                 String floor[] = new String[2];
-
-                ArrayList<String> msg_list = new ArrayList<String>();
 
                 try {
                     JSONObject jObj = new JSONObject(response);
                     //Response from server
                     String number = jObj.getString("noofstudent");
-                    int n = Integer.parseInt(number);
-                    JSONArray entry = jObj.getJSONArray("entry");
+                    int n = Integer.parseInt(number);//no of student in the wing from which he filled
+                    int m = n/2;//m will show the no of rooms required for displaying in submitted form
+                    String pref_noofrooms = String.valueOf(m);//convert in string so that we can pass via intent to submitted form class
+                    JSONArray entry = jObj.getJSONArray("entry");//json array of above json object to store student id
+                    //in string array and then passing to submitted form for diplay
                     for(int i=0;i<n;i++){
                         JSONObject jobj1 = entry.getJSONObject(i);
                         savesid[i] = jobj1.getString("sid");
@@ -379,8 +393,8 @@ public class Student_Dashboard extends AppCompatActivity {
                     JSONArray pref = jObj.getJSONArray("pref");
                     for(int j=0;j<2;j++){
                         JSONObject jobj2 = pref.getJSONObject(j);
-                        hostelid[j] = jobj2.getString("hostelid");
-                        floor[j] = jobj2.getString("floorno");
+                        hostelid[j] = jobj2.getString("hostelid");//storing the preferrred hostel from getsubmittedform.php file response
+                        floor[j] = jobj2.getString("floorno");//storing the preferrred hostel from getsubmittedform.php file response
                     }
 
                     Intent i = new Intent(Student_Dashboard.this,Submitted_Form.class);
@@ -389,7 +403,8 @@ public class Student_Dashboard extends AppCompatActivity {
                     i.putExtra("Hostel_type",hostelid);
                     i.putExtra("Floor_type",floor);
                     startActivity(i);
-                    //pfid hostel id and floor id b paas karao
+                    //pfid hostel id and floor id is also passing from this activity to saved form activity
+
 
 
                 } catch (JSONException e) {
@@ -406,7 +421,8 @@ public class Student_Dashboard extends AppCompatActivity {
             }
         }) {
 
-            @Override
+            @Override//getting response after sending string getsubmittedform and uid of that student
+            //it gives submitted form if present in database
             protected Map<String, String> getParams() {
                 // Posting params to register url
                 String form = "numcsa";
@@ -423,6 +439,8 @@ public class Student_Dashboard extends AppCompatActivity {
 
     }
 
+    //special request is called when student clicks on the special request button
+    // and based on rqid this function is called
     private void getspecialrequest(final String uid){
 
         StringRequest strReq =new StringRequest(Request.Method.POST,
@@ -433,12 +451,17 @@ public class Student_Dashboard extends AppCompatActivity {
 
                 try {
                     JSONObject jObj = new JSONObject(response);
+                    //response from sever
                     JSONArray reques = jObj.getJSONArray("requez");
                     JSONObject jobj1 = reques.getJSONObject(0);
-                    String msg = jobj1.getString("reqmessage");
+                    String msg = jobj1.getString("reqmessage");//getting the stored msg present which he sent while sending special request
+                    //rdate is the date on which he sent the request
                     String rdate = jobj1.getString("rdate");
+                    //it shows the response of that request whether yet responded or not and what action taken if responeded
                     String reqresponse = jobj1.getString("reqresponse");
 
+                    //passing all above data to submitted request class and showing the request if present else
+                    //redirected to the screen from where he will send the request
                     Intent i = new Intent(Student_Dashboard.this,Submitted_Request.class);
                     i.putExtra("msg",msg);
                     i.putExtra("rdate",rdate);
@@ -458,7 +481,8 @@ public class Student_Dashboard extends AppCompatActivity {
             }
         }) {
 
-            @Override
+            @Override//sending getsr and usergroup and student type to see whether
+            //any special request is present in databse or not for that student
             protected Map<String, String> getParams() {
                 // Posting params to register url
                 String usertype = "student";

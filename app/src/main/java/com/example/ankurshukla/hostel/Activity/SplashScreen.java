@@ -1,6 +1,7 @@
 package com.example.ankurshukla.hostel.Activity;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -12,6 +13,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.example.ankurshukla.hostel.ConnectionDetector;
 import com.example.ankurshukla.hostel.Controller.AppConfig;
 import com.example.ankurshukla.hostel.Controller.AppController;
 import com.example.ankurshukla.hostel.R;
@@ -22,6 +24,11 @@ import java.util.Map;
 
 public class SplashScreen extends AppCompatActivity {
 
+    // flag for Internet connection status
+    Boolean isInternetPresent = false;
+
+    // Connection detector class
+    ConnectionDetector cd;
 
 
     @Override
@@ -29,9 +36,10 @@ public class SplashScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
 
-        android.support.v7.app.ActionBar actionBar=getSupportActionBar();
+        android.support.v7.app.ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
 
+        cd = new ConnectionDetector(getApplicationContext());
         Thread logoTimer = new Thread() {
             public void run() {
                 try {
@@ -39,32 +47,20 @@ public class SplashScreen extends AppCompatActivity {
                 } catch (InterruptedException e) {
                     Log.d("Exception", "Exception" + e);
                 } finally {
-                   /*     checkconnect();
-                    String connect = AppController.getString(SplashScreen.this,"token");
-                    if(connect.equals("1")){
-                        Intent i =new Intent(SplashScreen.this ,MainActivity.class);
+                    // get Internet status
+                    isInternetPresent = cd.isConnectingToInternet();
+                    // check for Internet status
+                    if (isInternetPresent) {
+                        // Internet Connection is Present
+                        Intent i = new Intent(SplashScreen.this, MainActivity.class);
                         startActivity(i);
-                    }else {
-                        AlertDialog.Builder alertdialogBuilder = new AlertDialog.Builder(SplashScreen.this);
-                        // alertdialogBuilder.setTitle("");
+                    } else {
+                        // Internet connection is not present
+                        // Ask user to connect to Internet
+                        showAlertDialog(SplashScreen.this, "No Internet Connection",
+                                "You don't have internet connection.", false);
+                    }
 
-                        alertdialogBuilder
-                                .setMessage("Connection to Database not established.Try again!!")
-                                .setCancelable(false)
-                                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        finish();
-                                    }
-                                });
-
-                        AlertDialog alertDialog = alertdialogBuilder.create();
-
-                        // show it
-                        alertDialog.show();
-                    }*/
-                    Intent i =new Intent(SplashScreen.this ,MainActivity.class);
-                    startActivity(i);
                 }
                 finish();
             }
@@ -72,69 +68,33 @@ public class SplashScreen extends AppCompatActivity {
         logoTimer.start();
     }
 
-    //function to check whether connect to databse has been made or not
-    private void checkconnect(){
-        StringRequest strReq =new StringRequest(Request.Method.POST,
-                AppConfig.URL_CHECKCONNECT, new Response.Listener<String>() {
+    /**
+     * Function to display simple Alert Dialog
+     * @param context - application context
+     * @param title - alert dialog title
+     * @param message - alert message
+     * @param status - success/failure (used to set icon)
+     * */
+    public void showAlertDialog(Context context, String title, String message, Boolean status) {
+        AlertDialog alertDialog = new AlertDialog.Builder(context).create();
 
-            @Override
-            public void onResponse(String response) {
+        // Setting Dialog Title
+        alertDialog.setTitle(title);
 
+        // Setting Dialog Message
+        alertDialog.setMessage(message);
 
+        // Setting alert dialog icon
+        alertDialog.setIcon((status) ? R.drawable.success : R.drawable.fail);
 
-                try {
-                    JSONObject jObj = new JSONObject(response);
-                    //Response from server
-                    String success = jObj.getString("success");
-                    /*if(success.equals("1")){
-                        Intent i =new Intent(SplashScreen.this ,MainActivity.class);
-                        startActivity(i);
-                    }else{
-                        AlertDialog.Builder alertdialogBuilder=new AlertDialog.Builder(SplashScreen.this);
-                        // alertdialogBuilder.setTitle("");
-
-                        alertdialogBuilder
-                                .setMessage("Connection to Database not established.Try again!!")
-                                .setCancelable(false)
-                                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        finish();
-                                    }
-                                });
-
-                        AlertDialog alertDialog = alertdialogBuilder.create();
-
-                        // show it
-                        alertDialog.show();*/
-                    AppController.setString(SplashScreen.this,"token",success);
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
+        // Setting OK Button
+        alertDialog.setButton("OK", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
             }
-        }, new Response.ErrorListener() {
+        });
 
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(),
-                        error.getMessage(), Toast.LENGTH_LONG).show();
-            }
-        }) {
-
-            @Override
-            protected Map<String, String> getParams() {
-                // Posting params to register url
-                String checkconnect = "numcsa";
-                Map<String, String> params = new HashMap<String, String>();
-                params.put("checkconnect", checkconnect);
-                return params;
-            }
-
-        };
-
-        AppController.getInstance().addToRequestQueue(strReq);
+        // Showing Alert Message
+        alertDialog.show();
     }
 
 }
