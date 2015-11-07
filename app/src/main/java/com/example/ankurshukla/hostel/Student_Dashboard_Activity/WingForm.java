@@ -248,6 +248,7 @@ public class WingForm extends AppCompatActivity {
                                     i.putExtra("Hostel_type",hostel);//sending hostel types to wing form class
                                     i.putExtra("Floor_type",floor);//sending floor types to wing form class
                                     startActivity(i);
+                                    finish();
                                 }
                             });
 
@@ -339,6 +340,7 @@ public class WingForm extends AppCompatActivity {
                                     i.putExtra("sid",sid);//passing all id
                                     i.putExtra("noOfStudents",noOfStudents);//passing number of rooms
                                     startActivity(i);
+                                    finish();
                                 }
                             });
 

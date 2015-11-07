@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Login</string>
+    <string name="app_name">UG Hostel Allocation</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
@@ -36,7 +36,7 @@
     <string name="title_activity_conflict_ui">Conflicts</string>
     <string name="conflict">The Following Students name is already present in the submitted form:</string>
     <string name="title_activity_notifications">Notifications</string>
-    <string name="title_activity_splash_screen">SplashScreen</string>
+    <string name="title_activity_splash_screen">UG Hostel Allocation</string>
     <string name="title_activity_student__dashboard">Student_Dashboard</string>
     <string name="title_activity_warden__wing">Warden_Wing</string>
     <string name="title_activity_student__notify">Student_Notify</string>

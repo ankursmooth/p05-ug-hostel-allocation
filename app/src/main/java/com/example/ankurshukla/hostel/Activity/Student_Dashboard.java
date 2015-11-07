@@ -53,7 +53,7 @@ public class Student_Dashboard extends AppCompatActivity {
     TextView name,student_notify;
     // name testview showing the name of login user after taking from server
     //notify tells the no of notification if present
-    String rqid,sea_wing="bkjj",wing_allowed="notallowed",search_allowed="notallowed";//sea_wing tells whether both are allowed or not
+    String rqid,sea_wing="bkjj",wing_allowed="notallowed",search_allowed="notallowed",special_request="notallowed";//sea_wing tells whether both are allowed or not
     String adate,aedate,pdate,pedate;//adate and aedate are dates from response given by server
     //pdate and pedate are present dates
     //rqid is used to redirect the submitted request if present else redirect them to fill one request
@@ -117,6 +117,10 @@ public class Student_Dashboard extends AppCompatActivity {
 
         if(presentdate.compareTo(allocationenddate)>0){
             search_allowed = "allowed";
+            special_request="allowed";
+        }else{
+            search_allowed = "notallowed";
+            special_request = "notallowed";
         }
 
         if(presentdate.compareTo(allocationstartdate)>0 && allocationenddate.compareTo(presentdate)>0){
@@ -153,7 +157,7 @@ public class Student_Dashboard extends AppCompatActivity {
                             android.app.AlertDialog.Builder(Student_Dashboard.this);
 
                     adb
-                            .setMessage("Wing Allocation has been done,So you can't fill form now!!")
+                            .setMessage("Wing Allocation has been done,You can't fill form now!!")
                             .setCancelable(false)
                             .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                                 @Override
@@ -215,7 +219,7 @@ public class Student_Dashboard extends AppCompatActivity {
                             android.app.AlertDialog.Builder(Student_Dashboard.this);
 
                     adb
-                            .setMessage("Wing Allocation not done,So search is not allowed!!")
+                            .setMessage("Wing Allocation not started,Search is not allowed!!")
                             .setCancelable(false)
                             .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                                 @Override
@@ -226,7 +230,7 @@ public class Student_Dashboard extends AppCompatActivity {
 
                     AlertDialog dialog = adb.create();
                     dialog.show();
-                }else if(search_allowed.equals("not allowed")){
+                }else if(search_allowed.equals("notallowed")){
                     final android.app.AlertDialog.Builder adb = new
                             android.app.AlertDialog.Builder(Student_Dashboard.this);
 
@@ -256,8 +260,25 @@ public class Student_Dashboard extends AppCompatActivity {
         special_req.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    String uid = AppController.getString(Student_Dashboard.this, "Student_id");
-                    getspecialrequest(uid);
+
+                    if(special_request.equals("notallowed")){
+                        final android.app.AlertDialog.Builder adb = new android.app.AlertDialog.Builder(Student_Dashboard.this);
+                        adb
+                                .setMessage("You can change your room after Wing Allocation!!")
+                                .setCancelable(false)
+                                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.dismiss();
+                                    }
+                                });
+
+                        AlertDialog dialog = adb.create();
+                        dialog.show();
+                    }else {
+                        String uid = AppController.getString(Student_Dashboard.this, "Student_id");
+                        getspecialrequest(uid);
+                    }
             }
         });
 
@@ -371,7 +392,6 @@ public class Student_Dashboard extends AppCompatActivity {
                     if(msg.equals("noFormPresent")){
                         Intent i = new Intent(Student_Dashboard.this,Preference.class);
                         startActivity(i);
-                        finish();
                     }else if(msg.equals("savedFormPresent")){
                         getsavedform();
                     }else if(msg.equals("submittedFormPresent")){
@@ -448,6 +468,7 @@ public class Student_Dashboard extends AppCompatActivity {
                     i.putExtra("Hostel_type",hostelid);
                     i.putExtra("Floor_type",floor);
                     startActivity(i);
+                    finish();
                     //pfid hostel id and floor id is also passing from this activity to saved form activity
 
 

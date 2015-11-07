@@ -33,8 +33,7 @@ public class Preference extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.preference);
 
-        android.support.v7.app.ActionBar actionBar=getSupportActionBar();
-        actionBar.hide();
+
         String sex = AppController.getString(Preference.this,"sex");
 
         next= (Button) findViewById(R.id.nextPref);

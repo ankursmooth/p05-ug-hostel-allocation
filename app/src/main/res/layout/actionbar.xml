@@ -28,12 +28,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="right"
-        android:text="FeedBack"
+        android:text="Give FeedBack"
         android:layout_weight="1"
         android:paddingRight="15dp"
         android:id="@+id/toolbar_fb"
         android:textColor="@color/background"
-        android:textSize="24dp"/>
+        android:textSize="12dp"/>
 
     </LinearLayout>
 </android.support.v7.widget.Toolbar>

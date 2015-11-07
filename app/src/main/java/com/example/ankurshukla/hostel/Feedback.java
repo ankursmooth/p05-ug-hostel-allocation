@@ -11,28 +11,33 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 public class Feedback extends AppCompatActivity {
-    EditText subject,message;
+    EditText message;
     Button send;
     String esubject,emessage;
+    TextView tvsubject;
+    String totalsubject;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_feedback);
 
-        subject = (EditText)findViewById(R.id.editTextSubject);
         message = (EditText)findViewById(R.id.editTextMessage);
         send = (Button)findViewById(R.id.buttonSend);
+        tvsubject = (TextView)findViewById(R.id.fbsubject);
 
         send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                esubject = subject.getText().toString().toLowerCase();
+                String subject1 = tvsubject.getText().toString().toLowerCase();
+
                 emessage = message.getText().toString().toLowerCase();
+
+                totalsubject = esubject;
 
                 Intent email = new Intent(Intent.ACTION_SEND);
                 email.putExtra(Intent.EXTRA_EMAIL,new String[]{"lnmiit@hostel.16mb.com"});
-                email.putExtra(Intent.EXTRA_SUBJECT,esubject);
+                email.putExtra(Intent.EXTRA_SUBJECT,totalsubject);
                 email.putExtra(Intent.EXTRA_TEXT,emessage);
                 startActivity(Intent.createChooser(email,"Choose an Email Client"));
             }

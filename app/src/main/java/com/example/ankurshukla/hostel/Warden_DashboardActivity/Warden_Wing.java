@@ -268,6 +268,7 @@ public class Warden_Wing extends AppCompatActivity {
                                 public void onClick(DialogInterface dialog, int which) {
                                     Intent i = new Intent(Warden_Wing.this,Warden_DashBoard.class);
                                     startActivity(i);
+                                    finish();
                                 }
                             });
 
