@@ -21,6 +21,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.example.ankurshukla.hostel.ConnectionDetector;
 import com.example.ankurshukla.hostel.Controller.AppConfig;
 import com.example.ankurshukla.hostel.Controller.AppController;
 import com.example.ankurshukla.hostel.R;
@@ -42,19 +43,23 @@ public class MainActivity extends AppCompatActivity {
     final Context context=this;
     String usergroup;
     private ProgressDialog pDialog;
+    // flag for Internet connection status
+    Boolean isInternetPresent = false;
+
+    // Connection detector class
+    ConnectionDetector cd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        android.support.v7.app.ActionBar actionBar = getSupportActionBar();
-        actionBar.hide();
 
         login = (Button) findViewById(R.id.login);
         uid = (EditText) findViewById(R.id.username);
         password = (EditText) findViewById(R.id.psswrd);
         logingroup = (Spinner) findViewById(R.id.spinnermain);
+        cd = new ConnectionDetector(getApplicationContext());
 
         // Progress dialog
         pDialog = new ProgressDialog(this);
@@ -65,6 +70,18 @@ public class MainActivity extends AppCompatActivity {
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, types);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         logingroup.setAdapter(dataAdapter);
+
+        // get Internet status
+        isInternetPresent = cd.isConnectingToInternet();
+        // check for Internet status
+        if (!isInternetPresent) {
+            // Internet connection is not present
+            // Ask user to connect to Internet
+            showAlertDialog(MainActivity.this, "No Internet Connection",
+                    "You don't have internet connection.", false);
+        }
+
+
 
         logingroup.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -382,6 +399,36 @@ public class MainActivity extends AppCompatActivity {
         AppController.getInstance().addToRequestQueue(strReq);
         hideDialog();
 
+    }
+
+
+    /**
+     * Function to display simple Alert Dialog
+     * @param context - application context
+     * @param title - alert dialog title
+     * @param message - alert message
+     * @param status - success/failure (used to set icon)
+     * */
+    public void showAlertDialog(Context context, String title, String message, Boolean status) {
+        AlertDialog alertDialog = new AlertDialog.Builder(context).create();
+
+        // Setting Dialog Title
+        alertDialog.setTitle(title);
+
+        // Setting Dialog Message
+        alertDialog.setMessage(message);
+
+        // Setting alert dialog icon
+        alertDialog.setIcon((status) ? R.drawable.success : R.drawable.fail);
+
+        // Setting OK Button
+        alertDialog.setButton("OK", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+            }
+        });
+
+        // Showing Alert Message
+        alertDialog.show();
     }
 
 }

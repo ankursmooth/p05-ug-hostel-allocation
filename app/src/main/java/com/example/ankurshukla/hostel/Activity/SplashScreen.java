@@ -24,11 +24,7 @@ import java.util.Map;
 
 public class SplashScreen extends AppCompatActivity {
 
-    // flag for Internet connection status
-    Boolean isInternetPresent = false;
 
-    // Connection detector class
-    ConnectionDetector cd;
 
 
     @Override
@@ -36,10 +32,8 @@ public class SplashScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
 
-        android.support.v7.app.ActionBar actionBar = getSupportActionBar();
-        actionBar.hide();
 
-        cd = new ConnectionDetector(getApplicationContext());
+
         Thread logoTimer = new Thread() {
             public void run() {
                 try {
@@ -47,19 +41,8 @@ public class SplashScreen extends AppCompatActivity {
                 } catch (InterruptedException e) {
                     Log.d("Exception", "Exception" + e);
                 } finally {
-                    // get Internet status
-                    isInternetPresent = cd.isConnectingToInternet();
-                    // check for Internet status
-                    if (isInternetPresent) {
-                        // Internet Connection is Present
-                        Intent i = new Intent(SplashScreen.this, MainActivity.class);
-                        startActivity(i);
-                    } else {
-                        // Internet connection is not present
-                        // Ask user to connect to Internet
-                        showAlertDialog(SplashScreen.this, "No Internet Connection",
-                                "You don't have internet connection.", false);
-                    }
+                    Intent i = new Intent(SplashScreen.this, MainActivity.class);
+                    startActivity(i);
 
                 }
                 finish();
@@ -68,33 +51,5 @@ public class SplashScreen extends AppCompatActivity {
         logoTimer.start();
     }
 
-    /**
-     * Function to display simple Alert Dialog
-     * @param context - application context
-     * @param title - alert dialog title
-     * @param message - alert message
-     * @param status - success/failure (used to set icon)
-     * */
-    public void showAlertDialog(Context context, String title, String message, Boolean status) {
-        AlertDialog alertDialog = new AlertDialog.Builder(context).create();
-
-        // Setting Dialog Title
-        alertDialog.setTitle(title);
-
-        // Setting Dialog Message
-        alertDialog.setMessage(message);
-
-        // Setting alert dialog icon
-        alertDialog.setIcon((status) ? R.drawable.success : R.drawable.fail);
-
-        // Setting OK Button
-        alertDialog.setButton("OK", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-            }
-        });
-
-        // Showing Alert Message
-        alertDialog.show();
-    }
 
 }

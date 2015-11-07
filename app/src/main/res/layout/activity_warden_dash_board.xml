@@ -11,12 +11,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="UserName"
-        android:layout_marginTop="15dp"
+        android:paddingTop="10dp"
         android:background="@color/background"
         android:layout_gravity="center"
         android:id="@+id/display_name"
         android:gravity="center"
-        android:textSize="30dp"/>
+        android:textSize="25dp"/>
     <include layout="@layout/fragment_layout"/>
 
 

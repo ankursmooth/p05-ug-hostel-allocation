@@ -89,6 +89,10 @@
             android:name=".Warden_DashboardActivity.Room_Allotment"
             android:label="@string/title_activity_room__allotment" >
         </activity>
+        <activity
+            android:name=".Feedback"
+            android:label="@string/title_activity_feedback" >
+        </activity>
     </application>
 
 </manifest>

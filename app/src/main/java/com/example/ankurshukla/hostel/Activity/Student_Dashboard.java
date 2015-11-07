@@ -1,13 +1,16 @@
 package com.example.ankurshukla.hostel.Activity;
 
 import android.app.AlertDialog;
+import android.app.FragmentManager;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewConfiguration;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,6 +21,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.example.ankurshukla.hostel.Controller.AppConfig;
 import com.example.ankurshukla.hostel.Controller.AppController;
+import com.example.ankurshukla.hostel.Feedback;
 import com.example.ankurshukla.hostel.Student_Dashboard_Activity.Preference;
 import com.example.ankurshukla.hostel.Student_Dashboard_Activity.Saved_Form;
 import com.example.ankurshukla.hostel.Student_Dashboard_Activity.Search;
@@ -31,6 +35,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.lang.reflect.Field;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -53,15 +58,14 @@ public class Student_Dashboard extends AppCompatActivity {
     //pdate and pedate are present dates
     //rqid is used to redirect the submitted request if present else redirect them to fill one request
     Date presentdate,allocationenddate,allocationstartdate;
+    TextView feedback;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student__dashboard);
 
-        android.support.v7.app.ActionBar actionBar=getSupportActionBar();
-        actionBar.hide();
-
+        feedback = (TextView)findViewById(R.id.toolbar_fb);
         adate = AppController.getString(Student_Dashboard.this,"asdate");
         aedate = AppController.getString(Student_Dashboard.this,"andate");
         wing= (Button) findViewById(R.id.btn_student_wing);//link of the wing form button in xml to use in java
@@ -73,6 +77,15 @@ public class Student_Dashboard extends AppCompatActivity {
 
         String display = AppController.getString(Student_Dashboard.this, "username");//taking the name of user stored in the phone database
         name.setText(display);//displaying the name of user in dashboard
+
+        feedback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(Student_Dashboard.this,Feedback.class);
+                startActivity(i);
+            }
+        });
+
 
         //number takees the number of notification in database and according to it is showing the no of notification if present
         final String number = AppController.getString(Student_Dashboard.this, "noOfNotify");
@@ -111,6 +124,8 @@ public class Student_Dashboard extends AppCompatActivity {
         }else if(presentdate.compareTo(allocationenddate)>0){
             wing_allowed="notallowed";
         }
+
+
 
         //checkform is called first to check whether is there any saved or submiited form present or not
         //when clicked on wing from button and checkform receives the response from server according to which it is redirected
@@ -237,22 +252,16 @@ public class Student_Dashboard extends AppCompatActivity {
 
         //when clicked on special request button it is redirected to screen which is present which is being decided by the rqid if rqid is null then
         //special request screen else then request sent by student is shown
-        rqid = AppController.getString(Student_Dashboard.this,"rqid");//comparing
-        String id = AppController.getString(Student_Dashboard.this,"Student_id");//comparing whether it is equal to login student rqid or not
-        final String compare = "1" + id;//storing the same value as 1y13uc007 login student id
+
         special_req.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                if(rqid.equals(compare)){
                     String uid = AppController.getString(Student_Dashboard.this, "Student_id");
                     getspecialrequest(uid);
-                }else{
-                    Intent i = new Intent(Student_Dashboard.this, Special_Request.class);
-                    startActivity(i);
-                }
             }
         });
+
+
 
     }
 
@@ -273,6 +282,9 @@ public class Student_Dashboard extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
+        }else if(id == R.id.feedback){
+            Intent i =new Intent(Student_Dashboard.this, Feedback.class);
+            startActivity(i);
         }
 
         return super.onOptionsItemSelected(item);
@@ -558,22 +570,28 @@ public class Student_Dashboard extends AppCompatActivity {
 
                 try {
                     JSONObject jObj = new JSONObject(response);
+                    String nofofrequests = jObj.getString("noofrequests");
                     //response from sever
-                    JSONArray reques = jObj.getJSONArray("requez");
-                    JSONObject jobj1 = reques.getJSONObject(0);
-                    String msg = jobj1.getString("reqmessage");//getting the stored msg present which he sent while sending special request
-                    //rdate is the date on which he sent the request
-                    String rdate = jobj1.getString("rdate");
-                    //it shows the response of that request whether yet responded or not and what action taken if responeded
-                    String reqresponse = jobj1.getString("reqresponse");
+                    if(nofofrequests.equals("0")){
+                        Intent i = new Intent(Student_Dashboard.this, Special_Request.class);
+                        startActivity(i);
+                    }else {
+                        JSONArray reques = jObj.getJSONArray("requez");
+                        JSONObject jobj1 = reques.getJSONObject(0);
+                        String msg = jobj1.getString("reqmessage");//getting the stored msg present which he sent while sending special request
+                        //rdate is the date on which he sent the request
+                        String rdate = jobj1.getString("rdate");
+                        //it shows the response of that request whether yet responded or not and what action taken if responeded
+                        String reqresponse = jobj1.getString("reqresponse");
 
-                    //passing all above data to submitted request class and showing the request if present else
-                    //redirected to the screen from where he will send the request
-                    Intent i = new Intent(Student_Dashboard.this,Submitted_Request.class);
-                    i.putExtra("msg",msg);
-                    i.putExtra("rdate",rdate);
-                    i.putExtra("response",reqresponse);
-                    startActivity(i);
+                        //passing all above data to submitted request class and showing the request if present else
+                        //redirected to the screen from where he will send the request
+                        Intent i = new Intent(Student_Dashboard.this, Submitted_Request.class);
+                        i.putExtra("msg", msg);
+                        i.putExtra("rdate", rdate);
+                        i.putExtra("response", reqresponse);
+                        startActivity(i);
+                    }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -604,6 +622,34 @@ public class Student_Dashboard extends AppCompatActivity {
         };
 
         AppController.getInstance().addToRequestQueue(strReq);
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(Student_Dashboard.this);
+        builder.setCancelable(false);
+        builder.setMessage("Do you want to exit the Application?");
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //if user pressed "yes", then he is allowed to exit from application
+                Intent intent = new Intent(Intent.ACTION_MAIN);
+                intent.addCategory(Intent.CATEGORY_HOME);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+                System.exit(0);
+            }
+        });
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //if user select "No", just cancel this dialog and continue with app
+                dialog.cancel();
+            }
+        });
+        AlertDialog alert=builder.create();
+        alert.show();
     }
 
 
