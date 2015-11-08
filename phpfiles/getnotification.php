@@ -102,7 +102,7 @@ if(isset($_POST ['getnotification'])){
                 $stmt->execute();
                 
                 $row = $stmt->fetch(PDO::FETCH_ASSOC);
-                if(row['num']>0)
+                if($row['num']>0)
                   $response["searchallowed"]=1;
                 else
                   $response["searchallowed"]=0;
@@ -144,7 +144,7 @@ if(isset($_POST ['getnotification'])){
         $stmt->execute();
         
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
-        if(row['num']>0)
+        if($row['num']>0)
           $notizes["searchallowed"]=1;
         else
           $notizes["searchallowed"]=0;
