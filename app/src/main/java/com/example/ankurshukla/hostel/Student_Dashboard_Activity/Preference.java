@@ -1,6 +1,8 @@
 package com.example.ankurshukla.hostel.Student_Dashboard_Activity;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -208,12 +210,27 @@ public class Preference extends AppCompatActivity {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i =new Intent(Preference.this,WingForm.class);
-                i.putExtra("number",number);//sending no of rooms to wing form class
-                i.putExtra("Hostel_type",hostel);//sending hostel types to wing form class
-                i.putExtra("Floor_type",floor);//sending floor types to wing form class
-                startActivity(i);
-                finish();
+                final android.app.AlertDialog.Builder adb = new android.app.AlertDialog.Builder(Preference.this);
+
+                adb
+                        .setMessage("Please Enter Roll No Carefully , As room allocation will be done on that basis!!")
+                        .setCancelable(false)
+                        .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Intent i = new Intent(Preference.this, WingForm.class);
+                                i.putExtra("number", number);//sending no of rooms to wing form class
+                                i.putExtra("Hostel_type", hostel);//sending hostel types to wing form class
+                                i.putExtra("Floor_type", floor);//sending floor types to wing form class
+                                startActivity(i);
+                                finish();
+                            }
+                        });
+
+                AlertDialog dialog = adb.create();
+                dialog.show();
+
+
             }
         });
 

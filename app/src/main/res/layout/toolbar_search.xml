@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:text="Search"
         android:gravity="center"
-        android:textColor="@color/background"
+        android:textColor="@color/black"
         android:textSize="24dp"
         android:textStyle="bold"/>
 

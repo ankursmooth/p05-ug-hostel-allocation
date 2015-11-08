@@ -15,7 +15,8 @@
         android:layout_height="wrap_content"
         android:text="Submitted Form"
         android:gravity="center"
-        android:textColor="@color/background"
+        android:textStyle="bold"
+        android:textColor="@color/black"
         android:textSize="24dp"/>
 
 </android.support.v7.widget.Toolbar>

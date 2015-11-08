@@ -107,6 +107,7 @@ public class Empty_Rooms extends AppCompatActivity {
                 i.putExtra("room",groom[0]);
                 i.putExtra("rqid",rqid);//passing the rqid to the screen where the respond to sr in calledd
                 startActivity(i);
+                finish();
             }
         });
 
@@ -118,6 +119,7 @@ public class Empty_Rooms extends AppCompatActivity {
                 i.putExtra("room",groom[1]);
                 i.putExtra("rqid",rqid);
                 startActivity(i);
+                finish();
             }
         });
 
@@ -129,6 +131,7 @@ public class Empty_Rooms extends AppCompatActivity {
                 i.putExtra("room", groom[2]);
                 i.putExtra("rqid",rqid);
                 startActivity(i);
+                finish();
             }
         });
 
@@ -140,6 +143,7 @@ public class Empty_Rooms extends AppCompatActivity {
                 i.putExtra("room", groom[3]);
                 i.putExtra("rqid",rqid);
                 startActivity(i);
+                finish();
             }
         });
 
@@ -151,6 +155,7 @@ public class Empty_Rooms extends AppCompatActivity {
                 i.putExtra("room", groom[4]);
                 i.putExtra("rqid",rqid);
                 startActivity(i);
+                finish();
             }
         });
 
@@ -162,6 +167,7 @@ public class Empty_Rooms extends AppCompatActivity {
                 i.putExtra("room", groom[5]);
                 i.putExtra("rqid",rqid);
                 startActivity(i);
+                finish();
             }
         });
 
@@ -174,6 +180,7 @@ public class Empty_Rooms extends AppCompatActivity {
                 i.putExtra("room", groom[6]);
                 i.putExtra("rqid",rqid);
                 startActivity(i);
+                finish();
             }
         });
 
@@ -186,6 +193,7 @@ public class Empty_Rooms extends AppCompatActivity {
                 i.putExtra("room", groom[7]);
                 i.putExtra("rqid",rqid);
                 startActivity(i);
+                finish();
             }
         });
 
@@ -197,6 +205,7 @@ public class Empty_Rooms extends AppCompatActivity {
                 i.putExtra("room", groom[8]);
                 i.putExtra("rqid",rqid);
                 startActivity(i);
+                finish();
             }
         });
 
@@ -209,6 +218,7 @@ public class Empty_Rooms extends AppCompatActivity {
                 i.putExtra("room", groom[9]);
                 i.putExtra("rqid",rqid);
                 startActivity(i);
+                finish();
             }
         });
 
@@ -220,6 +230,7 @@ public class Empty_Rooms extends AppCompatActivity {
                 i.putExtra("room", groom[10]);
                 i.putExtra("rqid",rqid);
                 startActivity(i);
+                finish();
             }
         });
 
@@ -231,6 +242,7 @@ public class Empty_Rooms extends AppCompatActivity {
                 i.putExtra("room",groom[11]);
                 i.putExtra("rqid",rqid);
                 startActivity(i);
+                finish();
             }
         });
 
@@ -242,6 +254,7 @@ public class Empty_Rooms extends AppCompatActivity {
                 i.putExtra("room",groom[12]);
                 i.putExtra("rqid",rqid);
                 startActivity(i);
+                finish();
             }
         });
 
@@ -253,6 +266,7 @@ public class Empty_Rooms extends AppCompatActivity {
                 i.putExtra("room",groom[13]);
                 i.putExtra("rqid",rqid);
                 startActivity(i);
+                finish();
             }
         });
 

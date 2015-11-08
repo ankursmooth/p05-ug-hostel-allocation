@@ -3,7 +3,7 @@
 <android.support.v7.widget.Toolbar
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/toolbar"
+    android:id="@+id/toolbar_wrnotify"
     android:layout_height="?attr/actionBarSize"
     android:background="#007FCF"
     android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
@@ -13,7 +13,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Wing Form"
+        android:text="Allocation Process"
         android:gravity="center"
         android:textStyle="bold"
         android:textColor="@color/black"

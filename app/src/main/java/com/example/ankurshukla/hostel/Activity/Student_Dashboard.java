@@ -172,6 +172,7 @@ public class Student_Dashboard extends AppCompatActivity {
                 if(number.equals("0")){
                     AlertDialog.Builder alertdialogBuilder=new AlertDialog.Builder(Student_Dashboard.this);
                     // alertdialogBuilder.setTitle("");
+                    final AlertDialog alertDialog = alertdialogBuilder.create();
 
                     alertdialogBuilder
                             .setMessage("No Notifications")
@@ -179,13 +180,11 @@ public class Student_Dashboard extends AppCompatActivity {
                             .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-                                    Intent i = new Intent(Student_Dashboard.this, Student_Dashboard.class);
-                                    startActivity(i);
-                                    finish();
+                                   alertDialog.dismiss();
                                 }
                             });
 
-                    AlertDialog alertDialog = alertdialogBuilder.create();
+
 
                     // show it
                     alertDialog.show();
@@ -239,7 +238,6 @@ public class Student_Dashboard extends AppCompatActivity {
                 else {
                     Intent i = new Intent(Student_Dashboard.this, Search.class);
                     startActivity(i);
-                    finish();
                 }
             }
         });
@@ -586,6 +584,7 @@ public class Student_Dashboard extends AppCompatActivity {
                     if(nofofrequests.equals("0")){
                         Intent i = new Intent(Student_Dashboard.this, Special_Request.class);
                         startActivity(i);
+                        finish();
                     }else {
                         JSONArray reques = jObj.getJSONArray("requez");
                         JSONObject jobj1 = reques.getJSONObject(0);
@@ -602,7 +601,6 @@ public class Student_Dashboard extends AppCompatActivity {
                         i.putExtra("rdate", rdate);
                         i.putExtra("response", reqresponse);
                         startActivity(i);
-                        finish();
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();

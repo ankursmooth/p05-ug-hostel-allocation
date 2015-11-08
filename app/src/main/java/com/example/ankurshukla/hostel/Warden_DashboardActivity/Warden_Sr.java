@@ -17,6 +17,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.example.ankurshukla.hostel.Activity.Warden_DashBoard;
 import com.example.ankurshukla.hostel.Controller.AppConfig;
 import com.example.ankurshukla.hostel.Controller.AppController;
 import com.example.ankurshukla.hostel.R;
@@ -385,12 +386,14 @@ public class Warden_Sr extends AppCompatActivity {
                     String msg = jObj.getString("message");
                     final android.app.AlertDialog.Builder adb = new android.app.AlertDialog.Builder(Warden_Sr.this);
                     adb
-                            .setMessage(msg)
+                            .setMessage("Request responded")
                             .setCancelable(false)
                             .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-                                    dialog.dismiss();
+                                    Intent i = new Intent(Warden_Sr.this, Warden_DashBoard.class);
+                                    startActivity(i);
+                                    finish();
                                 }
                             });
                     AlertDialog dialog = adb.create();

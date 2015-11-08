@@ -17,6 +17,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.example.ankurshukla.hostel.Controller.AppConfig;
 import com.example.ankurshukla.hostel.Controller.AppController;
+import com.example.ankurshukla.hostel.Feedback;
 import com.example.ankurshukla.hostel.Student_Dashboard_Activity.Submitted_Request;
 import com.example.ankurshukla.hostel.Warden_DashboardActivity.Notifications;
 import com.example.ankurshukla.hostel.Student_Dashboard_Activity.Search;
@@ -35,13 +36,14 @@ public class Warden_DashBoard extends AppCompatActivity {
 
     Button wing,notification,search,special_req;
     TextView name;
+    TextView feedback;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_warden_dash_board);
 
-
+        feedback = (TextView)findViewById(R.id.toolbar_fb);
         wing= (Button) findViewById(R.id.btn_warden_wing);
         notification= (Button) findViewById(R.id.btn_warden_notify);
         name=(TextView)findViewById(R.id.display_name);
@@ -50,6 +52,14 @@ public class Warden_DashBoard extends AppCompatActivity {
 
         String display = AppController.getString(Warden_DashBoard.this ,"username");
         name.setText(display);
+
+        feedback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(Warden_DashBoard.this, Feedback.class);
+                startActivity(i);
+            }
+        });
 
         wing.setOnClickListener(new View.OnClickListener() {
             @Override
