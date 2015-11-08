@@ -1,6 +1,7 @@
 package com.example.ankurshukla.hostel;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -24,21 +25,22 @@ public class Feedback extends AppCompatActivity {
 
         message = (EditText)findViewById(R.id.editTextMessage);
         send = (Button)findViewById(R.id.buttonSend);
-        tvsubject = (TextView)findViewById(R.id.fbsubject);
+
 
         send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String subject1 = tvsubject.getText().toString().toLowerCase();
+
 
                 emessage = message.getText().toString().toLowerCase();
 
-                totalsubject = esubject;
-
                 Intent email = new Intent(Intent.ACTION_SEND);
-                email.putExtra(Intent.EXTRA_EMAIL,new String[]{"lnmiit@hostel.16mb.com"});
-                email.putExtra(Intent.EXTRA_SUBJECT,totalsubject);
+                email.setData(Uri.parse("mailto:"));
+                email.putExtra(Intent.EXTRA_EMAIL, new String[]{"lnmiit@hostel.16mb.com"});
+                email.putExtra(Intent.EXTRA_SUBJECT,new String[]{"FeedBack For UG Hostel"} );
                 email.putExtra(Intent.EXTRA_TEXT,emessage);
+
+                email.setType("message/rfc822");
                 startActivity(Intent.createChooser(email,"Choose an Email Client"));
             }
         });

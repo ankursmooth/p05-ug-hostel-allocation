@@ -39,7 +39,7 @@ public class Warden_Sr extends AppCompatActivity {
     String noofrequests;
     CardView c1,c2,c3,c4;
     String wid;
-    Button list;//list of empty rooms
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,7 +77,7 @@ public class Warden_Sr extends AppCompatActivity {
         c2.setVisibility(View.GONE);
         c3.setVisibility(View.GONE);
         c4.setVisibility(View.GONE);
-        list = (Button)findViewById(R.id.wsr_btn_empty);
+
 
         if(noofrequests.equals("1")){
             c1.setVisibility(View.VISIBLE);

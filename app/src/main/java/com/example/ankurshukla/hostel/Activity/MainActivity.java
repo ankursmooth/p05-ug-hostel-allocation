@@ -79,11 +79,7 @@ public class MainActivity extends AppCompatActivity {
             // Ask user to connect to Internet
             showAlertDialog(MainActivity.this, "No Internet Connection",
                     "You don't have internet connection.", false);
-            Intent intent = new Intent(Intent.ACTION_MAIN);
-            intent.addCategory(Intent.CATEGORY_HOME);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(intent);
-            System.exit(0);
+
         }
 
 
@@ -429,6 +425,11 @@ public class MainActivity extends AppCompatActivity {
         // Setting OK Button
         alertDialog.setButton("OK", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
+                Intent intent = new Intent(Intent.ACTION_MAIN);
+                intent.addCategory(Intent.CATEGORY_HOME);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+                System.exit(0);
             }
         });
 

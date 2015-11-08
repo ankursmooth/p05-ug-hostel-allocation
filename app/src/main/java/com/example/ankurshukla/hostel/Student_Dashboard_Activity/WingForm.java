@@ -58,8 +58,6 @@ public class WingForm extends AppCompatActivity {
         sid = intent.getStringArrayExtra("sid");
         setContentView(R.layout.wing_form);
 
-        android.support.v7.app.ActionBar actionBar=getSupportActionBar();
-        actionBar.hide();
 
         one= (CardView) findViewById(R.id.wfl1);
         two= (CardView) findViewById(R.id.wfl2);

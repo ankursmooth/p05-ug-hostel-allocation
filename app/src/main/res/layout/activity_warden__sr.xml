@@ -225,12 +225,7 @@
 
     </android.support.v7.widget.CardView>
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="List Of empty rooms"
-        android:layout_marginTop="10dp"
-        android:id="@+id/wsr_btn_empty"/>
+
 
 </LinearLayout>
 </ScrollView>
