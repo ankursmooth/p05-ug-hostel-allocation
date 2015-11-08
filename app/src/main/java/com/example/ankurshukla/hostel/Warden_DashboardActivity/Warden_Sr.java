@@ -309,6 +309,7 @@ public class Warden_Sr extends AppCompatActivity {
                             i.putExtra("floor",floor);
                             i.putExtra("noofemptyrooms",noofemptyrooms);
                             startActivity(i);
+                            finish();
                         }else{
                             String[] roomid = new String[14];
                             String[] hostelid = new String[14];
@@ -333,6 +334,7 @@ public class Warden_Sr extends AppCompatActivity {
                             i.putExtra("noofemptyrooms",empty);
                             i.putExtra("rqid",rqid);//rqid of that particular request
                             startActivity(i);
+                            finish();
                         }
 
 

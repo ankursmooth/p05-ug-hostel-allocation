@@ -43,7 +43,7 @@ public class Warden_Wing extends AppCompatActivity {
         edate = (EditText) findViewById(R.id.end_date);
         startalloc = (Button)findViewById(R.id.startalloc);
         doalloc = (Button)findViewById(R.id.donealloc);
-        doalloc.setEnabled(false);
+
 
 
         startalloc.setOnClickListener(new View.OnClickListener() {

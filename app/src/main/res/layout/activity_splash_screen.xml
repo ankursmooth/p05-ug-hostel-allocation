@@ -17,7 +17,7 @@
 
 
     <ImageView
-        android:layout_width="130dp"
+        android:layout_width="110dp"
         android:layout_height="100dp"
 
         android:src="@drawable/lnmiitlogo2"

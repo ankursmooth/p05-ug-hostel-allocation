@@ -88,6 +88,7 @@ public class Saved_Form extends AppCompatActivity {
                 i.putExtra("Hostel_type",hostelid);
                 i.putExtra("Floor_type",floor);
                 startActivity(i);
+                finish();
             }
         });
 

@@ -228,13 +228,12 @@ public class WingForm extends AppCompatActivity {
 
                     //writing the value to sharedpreference in phone database
 
-                    Toast.makeText(WingForm.this,message ,Toast.LENGTH_SHORT).show();
                     final AlertDialog.Builder alertdialogBuilder = new AlertDialog.Builder(WingForm.this);
                     // alertdialogBuilder.setTitle("");
 
 
                     alertdialogBuilder
-                            .setMessage(message)
+                            .setMessage("Wing Form Have been Saved!!")
                             .setCancelable(false)
                             .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                                 @Override
@@ -323,13 +322,12 @@ public class WingForm extends AppCompatActivity {
 
                     //writing the value to sharedpreference in phone database
 
-                    Toast.makeText(WingForm.this,message ,Toast.LENGTH_SHORT).show();
                     final AlertDialog.Builder alertdialogBuilder = new AlertDialog.Builder(WingForm.this);
                     // alertdialogBuilder.setTitle("");
 
 
                     alertdialogBuilder
-                            .setMessage(message)
+                            .setMessage("Wing Form Have Been Submitted!!")
                             .setCancelable(false)
                             .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                                 @Override

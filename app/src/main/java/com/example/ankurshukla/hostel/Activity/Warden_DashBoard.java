@@ -41,8 +41,6 @@ public class Warden_DashBoard extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_warden_dash_board);
 
-        android.support.v7.app.ActionBar actionBar=getSupportActionBar();
-        actionBar.hide();
 
         wing= (Button) findViewById(R.id.btn_warden_wing);
         notification= (Button) findViewById(R.id.btn_warden_notify);
@@ -58,6 +56,7 @@ public class Warden_DashBoard extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(Warden_DashBoard.this, Warden_Wing.class);
                 startActivity(i);
+                finish();
             }
         });
 
@@ -66,6 +65,7 @@ public class Warden_DashBoard extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i=new Intent(Warden_DashBoard.this, Notifications.class);
                 startActivity(i);
+                finish();
             }
         });
 
@@ -143,6 +143,7 @@ public class Warden_DashBoard extends AppCompatActivity {
                         i.putExtra("studentid",sid);
                         i.putExtra("rqid",rqid);
                         startActivity(i);
+                        finish();
                     }
 
                 } catch (JSONException e) {

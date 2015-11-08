@@ -2,10 +2,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="10dp"
     android:orientation="vertical"
-    android:background="@color/bg_login"
+    android:background="@drawable/download1"
     tools:context=".MainActivity">
+
 
 
     <EditText
@@ -14,6 +14,8 @@
         android:hint="User ID"
         android:id="@+id/username"
         android:padding="10dp"
+       android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
         android:singleLine="true"
         android:layout_marginBottom="10dp"
         android:background="@color/white"
@@ -28,6 +30,8 @@
         android:id="@+id/psswrd"
         android:inputType="textPassword"
         android:layout_marginTop="20dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
         android:layout_marginBottom="10dp"
         android:background="@color/white"
         android:hint="Password"
@@ -43,8 +47,9 @@
         android:textSize="30dp"
         android:layout_gravity="center"
         android:gravity="center"
+        android:textStyle="bold"
         android:layout_marginTop="20dp"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         />
 
     <Spinner
@@ -52,6 +57,8 @@
         android:layout_height="40dp"
         android:layout_marginTop="30dp"
         android:background="@color/lightgrey"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
         android:padding="10dp"
         android:textColor="@color/input_login"
         android:textColorHint="@color/input_login_hint"

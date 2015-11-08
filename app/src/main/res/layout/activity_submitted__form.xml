@@ -12,10 +12,11 @@
         android:layout_height="match_parent"
         android:background="@color/background"
         android:orientation="vertical"
-        android:paddingTop="@dimen/activity_vertical_margin"
+
         android:paddingBottom="@dimen/activity_vertical_margin"
         android:weightSum="1">
 
+        <include layout="@layout/toolbar_submit"/>
 
         <android.support.v7.widget.CardView
             xmlns:card_view="http://schemas.android.com/apk/res-auto"
@@ -36,6 +37,7 @@
                     android:layout_height="wrap_content"
                     android:text="Room Number 1:"
                     android:textSize="20dp"
+                    android:textStyle="bold|italic"
                     android:paddingLeft="10dp"
                     android:id="@+id/submitrm1"/>
 
@@ -45,6 +47,7 @@
                     android:hint="Roll No 1"
                     android:id="@+id/submitid1rm1"
                     android:paddingLeft="10dp"
+                    android:textStyle="bold"
                     android:layout_weight="1"
                     android:singleLine="true"
                     android:layout_marginTop="20dp"
@@ -56,6 +59,7 @@
                     android:id="@+id/submitid2rm1"
                     android:layout_weight="1"
                     android:layout_marginTop="20dp"
+                    android:textStyle="bold"
                     android:hint="Roll No 2"
                     android:paddingLeft="10dp"/>
 
@@ -84,6 +88,7 @@
                     android:layout_height="wrap_content"
                     android:text="Room Number 2:"
                     android:textSize="20dp"
+                    android:textStyle="bold|italic"
                     android:paddingLeft="10dp"
                     android:id="@+id/submitrm2"/>
 
@@ -92,6 +97,7 @@
                     android:layout_height="90dp"
                     android:hint="Roll No 1"
                     android:id="@+id/submitid1rm2"
+                    android:textStyle="bold"
                     android:paddingLeft="10dp"
                     android:layout_weight="1"
                     android:singleLine="true"
@@ -105,6 +111,7 @@
                     android:layout_weight="1"
                     android:layout_marginTop="20dp"
                     android:hint="Roll No 2"
+                    android:textStyle="bold"
                     android:paddingLeft="10dp"/>
 
             </LinearLayout>
@@ -130,6 +137,7 @@
                     android:text="Room Number 3:"
                     android:textSize="20dp"
                     android:paddingLeft="10dp"
+                    android:textStyle="bold|italic"
                     android:id="@+id/submitrm3"/>
 
                 <TextView
@@ -140,6 +148,7 @@
                     android:paddingLeft="10dp"
                     android:layout_weight="1"
                     android:singleLine="true"
+                    android:textStyle="bold"
                     android:layout_marginTop="20dp"
                     />
 
@@ -148,6 +157,7 @@
                     android:layout_height="90dp"
                     android:id="@+id/submitid2rm3"
                     android:layout_weight="1"
+                    android:textStyle="bold"
                     android:layout_marginTop="20dp"
                     android:hint="Roll No 2"
                     android:paddingLeft="10dp"/>

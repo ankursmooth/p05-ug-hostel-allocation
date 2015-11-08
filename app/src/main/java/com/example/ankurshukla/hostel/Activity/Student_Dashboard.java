@@ -53,7 +53,7 @@ public class Student_Dashboard extends AppCompatActivity {
     TextView name,student_notify;
     // name testview showing the name of login user after taking from server
     //notify tells the no of notification if present
-    String rqid,sea_wing="bkjj",wing_allowed="notallowed",search_allowed="notallowed",special_request="notallowed";//sea_wing tells whether both are allowed or not
+    String rqid,sea_wing="allowed",search_allowed;//sea_wing tells whether both are allowed or not
     String adate,aedate,pdate,pedate;//adate and aedate are dates from response given by server
     //pdate and pedate are present dates
     //rqid is used to redirect the submitted request if present else redirect them to fill one request
@@ -63,6 +63,8 @@ public class Student_Dashboard extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Intent intent = getIntent();
+        search_allowed = intent.getStringExtra("searchallowed");
         setContentView(R.layout.activity_student__dashboard);
 
         feedback = (TextView)findViewById(R.id.toolbar_fb);
@@ -92,7 +94,7 @@ public class Student_Dashboard extends AppCompatActivity {
         if(number.equals("0")){
             student_notify.setText("");
         }else{
-            String notifym_msg = "You Have total " +number+ " number of Notifications!";
+            String notifym_msg = "You Have " +number+ " Notifications!";
             student_notify.setText(notifym_msg);
         }
 
@@ -115,19 +117,6 @@ public class Student_Dashboard extends AppCompatActivity {
             sea_wing = "notallowed";
         }
 
-        if(presentdate.compareTo(allocationenddate)>0){
-            search_allowed = "allowed";
-            special_request="allowed";
-        }else{
-            search_allowed = "notallowed";
-            special_request = "notallowed";
-        }
-
-        if(presentdate.compareTo(allocationstartdate)>0 && allocationenddate.compareTo(presentdate)>0){
-            wing_allowed="allowed";
-        }else if(presentdate.compareTo(allocationenddate)>0){
-            wing_allowed="notallowed";
-        }
 
 
 
@@ -152,7 +141,7 @@ public class Student_Dashboard extends AppCompatActivity {
 
                     AlertDialog dialog = adb.create();
                     dialog.show();
-                }else if(wing_allowed.equals("notallowed")){
+                }else if(search_allowed.equals("1")){
                     final android.app.AlertDialog.Builder adb = new
                             android.app.AlertDialog.Builder(Student_Dashboard.this);
 
@@ -230,7 +219,7 @@ public class Student_Dashboard extends AppCompatActivity {
 
                     AlertDialog dialog = adb.create();
                     dialog.show();
-                }else if(search_allowed.equals("notallowed")){
+                }else if(search_allowed.equals("0")){
                     final android.app.AlertDialog.Builder adb = new
                             android.app.AlertDialog.Builder(Student_Dashboard.this);
 
@@ -250,6 +239,7 @@ public class Student_Dashboard extends AppCompatActivity {
                 else {
                     Intent i = new Intent(Student_Dashboard.this, Search.class);
                     startActivity(i);
+                    finish();
                 }
             }
         });
@@ -261,7 +251,7 @@ public class Student_Dashboard extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                    if(special_request.equals("notallowed")){
+                    if(search_allowed.equals("0")){
                         final android.app.AlertDialog.Builder adb = new android.app.AlertDialog.Builder(Student_Dashboard.this);
                         adb
                                 .setMessage("You can change your room after Wing Allocation!!")
@@ -612,6 +602,7 @@ public class Student_Dashboard extends AppCompatActivity {
                         i.putExtra("rdate", rdate);
                         i.putExtra("response", reqresponse);
                         startActivity(i);
+                        finish();
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -645,33 +636,6 @@ public class Student_Dashboard extends AppCompatActivity {
         AppController.getInstance().addToRequestQueue(strReq);
     }
 
-
-    @Override
-    public void onBackPressed() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(Student_Dashboard.this);
-        builder.setCancelable(false);
-        builder.setMessage("Do you want to exit the Application?");
-        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                //if user pressed "yes", then he is allowed to exit from application
-                Intent intent = new Intent(Intent.ACTION_MAIN);
-                intent.addCategory(Intent.CATEGORY_HOME);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
-                System.exit(0);
-            }
-        });
-        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                //if user select "No", just cancel this dialog and continue with app
-                dialog.cancel();
-            }
-        });
-        AlertDialog alert=builder.create();
-        alert.show();
-    }
 
 
 }

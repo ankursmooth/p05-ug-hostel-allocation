@@ -166,12 +166,14 @@ public class Room_Allotment extends AppCompatActivity {
                     String msg = jObj.getString("message");
                     final android.app.AlertDialog.Builder adb = new android.app.AlertDialog.Builder(Room_Allotment.this);
                     adb
-                            .setMessage(msg)
+                            .setMessage("Request Responeded!!")
                             .setCancelable(false)
                             .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-                                    dialog.dismiss();
+                                   Intent i = new Intent(Room_Allotment.this,Warden_DashBoard.class);
+                                    startActivity(i);
+                                    finish();
                                 }
                             });
                     android.app.AlertDialog dialog = adb.create();

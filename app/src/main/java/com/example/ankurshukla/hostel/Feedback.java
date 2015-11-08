@@ -1,5 +1,7 @@
 package com.example.ankurshukla.hostel;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
@@ -25,23 +27,41 @@ public class Feedback extends AppCompatActivity {
 
         message = (EditText)findViewById(R.id.editTextMessage);
         send = (Button)findViewById(R.id.buttonSend);
+        tvsubject = (TextView)findViewById(R.id.fbsubject);
 
 
         send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-
+                totalsubject = tvsubject.getText().toString().toLowerCase();
                 emessage = message.getText().toString().toLowerCase();
 
-                Intent email = new Intent(Intent.ACTION_SEND);
-                email.setData(Uri.parse("mailto:"));
-                email.putExtra(Intent.EXTRA_EMAIL, new String[]{"lnmiit@hostel.16mb.com"});
-                email.putExtra(Intent.EXTRA_SUBJECT,new String[]{"FeedBack For UG Hostel"} );
-                email.putExtra(Intent.EXTRA_TEXT,emessage);
+                if(!emessage.isEmpty()) {
+                    Intent email = new Intent(Intent.ACTION_SEND);
+                    email.setData(Uri.parse("mailto:"));
+                    email.putExtra(Intent.EXTRA_EMAIL, new String[]{"lnmiit@hostel.16mb.com"});
+                    email.putExtra(Intent.EXTRA_SUBJECT, totalsubject);
+                    email.putExtra(Intent.EXTRA_TEXT, emessage);
 
-                email.setType("message/rfc822");
-                startActivity(Intent.createChooser(email,"Choose an Email Client"));
+                    email.setType("message/rfc822");
+                    startActivity(Intent.createChooser(email, "Choose an Email Client"));
+                }else{
+                    final android.app.AlertDialog.Builder adb = new android.app.AlertDialog.Builder(Feedback.this);
+
+                    adb
+                            .setMessage("Enter Meesage")
+                            .setCancelable(false)
+                            .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                }
+                            });
+
+                    AlertDialog dialog = adb.create();
+                    dialog.show();
+                }
             }
         });
 

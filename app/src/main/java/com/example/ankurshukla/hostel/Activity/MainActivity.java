@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -37,6 +38,7 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
+    private Toolbar toollogin;
     Button login;
     EditText uid,password;
     Spinner logingroup;
@@ -60,6 +62,8 @@ public class MainActivity extends AppCompatActivity {
         password = (EditText) findViewById(R.id.psswrd);
         logingroup = (Spinner) findViewById(R.id.spinnermain);
         cd = new ConnectionDetector(getApplicationContext());
+        toollogin = (Toolbar)findViewById(R.id.toolbar_login);
+        getSupportActionBar();
 
         // Progress dialog
         pDialog = new ProgressDialog(this);
@@ -241,6 +245,10 @@ public class MainActivity extends AppCompatActivity {
                     String DOB = jObj.getString("DOB");
 
                     //writing the value to sharedpreference in phone database
+                    //to convert first letter of name as Capital
+                    String sname = name.substring(0,1).toUpperCase();
+                    String remname = name.substring(1,name.length());
+                    name = sname + remname;
                     AppController.setString(MainActivity.this, "username", name);
                     AppController.setString(MainActivity.this, "Student_id", sid);
                     AppController.setString(MainActivity.this, "sex", sex);
@@ -298,6 +306,7 @@ public class MainActivity extends AppCompatActivity {
                     String noOfNotification = jObj.getString("noofnotifications");
                     String allocationstdate = jObj.getString("allocationstdate");
                     String allocationnddate = jObj.getString("allocationnddate");
+                    String searchallowed = jObj.getString("searchallowed");
 
                     //writing the value to sharedpreference in phone database
                     AppController.setString(MainActivity.this, "noOfNotify", noOfNotification);
@@ -306,6 +315,7 @@ public class MainActivity extends AppCompatActivity {
 
                 //    Toast.makeText(MainActivity.this, message ,Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(MainActivity.this, Student_Dashboard.class);
+                    i.putExtra("searchallowed",searchallowed);
                     startActivity(i);
 
                 } catch (JSONException e) {

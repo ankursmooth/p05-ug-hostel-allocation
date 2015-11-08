@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/toolbar_saved"
     android:layout_height="?attr/actionBarSize"
-    android:background="#007FCF"
+    android:background="#03A9F4"
     android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
     app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
     android:layout_width="match_parent">
@@ -14,7 +14,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Saved Form"
-        android:textColor="@color/background"
+        android:gravity="center"
+        android:textColor="@color/black"
         android:textSize="24dp"/>
 
 </android.support.v7.widget.Toolbar>

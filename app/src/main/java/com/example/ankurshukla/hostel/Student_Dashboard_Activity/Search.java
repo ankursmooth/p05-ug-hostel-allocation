@@ -175,14 +175,14 @@ public class Search extends AppCompatActivity {
                         if(noofresults.equals("1")){
                             c1.setVisibility(View.VISIBLE);
                             for(int i=0;i<1;i++){
-                                ehostel[i].setText(hostelid[i]);
-                                eroom[i].setText(roomid[i]);
+                                ehostel[i].setText(hostelid[i].toUpperCase());
+                                eroom[i].setText(roomid[i].toUpperCase());
                             }
                             for(int j=0;j<1;j++){
-                                ename1[j].setText(name1[j]);
-                                ename2[j].setText(name2[j]);
-                                esid1[j].setText(sid1[j]);
-                                esid2[j].setText(sid2[j]);
+                                ename1[j].setText(name1[j].toUpperCase());
+                                ename2[j].setText(name2[j].toUpperCase());
+                                esid1[j].setText(sid1[j].toUpperCase());
+                                esid2[j].setText(sid2[j].toUpperCase());
                             }
                         }
 
@@ -190,14 +190,14 @@ public class Search extends AppCompatActivity {
                             c1.setVisibility(View.VISIBLE);
                             c2.setVisibility(View.VISIBLE);
                             for(int i=0;i<2;i++){
-                                ehostel[i].setText(hostelid[i]);
-                                eroom[i].setText(roomid[i]);
+                                ehostel[i].setText(hostelid[i].toUpperCase());
+                                eroom[i].setText(roomid[i].toUpperCase());
                             }
                             for(int j=0;j<2;j++){
-                                ename1[j].setText(name1[j]);
-                                ename2[j].setText(name2[j]);
-                                esid1[j].setText(sid1[j]);
-                                esid2[j].setText(sid2[j]);
+                                ename1[j].setText(name1[j].toUpperCase());
+                                ename2[j].setText(name2[j].toUpperCase());
+                                esid1[j].setText(sid1[j].toUpperCase());
+                                esid2[j].setText(sid2[j].toUpperCase());
                             }
                         }
 
@@ -206,14 +206,14 @@ public class Search extends AppCompatActivity {
                             c2.setVisibility(View.VISIBLE);
                             c3.setVisibility(View.VISIBLE);
                             for(int i=0;i<3;i++){
-                                ehostel[i].setText(hostelid[i]);
-                                eroom[i].setText(roomid[i]);
+                                ehostel[i].setText(hostelid[i].toUpperCase());
+                                eroom[i].setText(roomid[i].toUpperCase());
                             }
                             for(int j=0;j<3;j++){
-                                ename1[j].setText(name1[j]);
-                                ename2[j].setText(name2[j]);
-                                esid1[j].setText(sid1[j]);
-                                esid2[j].setText(sid2[j]);
+                                ename1[j].setText(name1[j].toUpperCase());
+                                ename2[j].setText(name2[j].toUpperCase());
+                                esid1[j].setText(sid1[j].toUpperCase());
+                                esid2[j].setText(sid2[j].toUpperCase());
                             }
                         }
 
@@ -223,14 +223,14 @@ public class Search extends AppCompatActivity {
                             c3.setVisibility(View.VISIBLE);
                             c4.setVisibility(View.VISIBLE);
                             for(int i=0;i<4;i++){
-                                ehostel[i].setText(hostelid[i]);
-                                eroom[i].setText(roomid[i]);
+                                ehostel[i].setText(hostelid[i].toUpperCase());
+                                eroom[i].setText(roomid[i].toUpperCase());
                             }
                             for(int j=0;j<4;j++){
-                                ename1[j].setText(name1[j]);
-                                ename2[j].setText(name2[j]);
-                                esid1[j].setText(sid1[j]);
-                                esid2[j].setText(sid2[j]);
+                                ename1[j].setText(name1[j].toUpperCase());
+                                ename2[j].setText(name2[j].toUpperCase());
+                                esid1[j].setText(sid1[j].toUpperCase());
+                                esid2[j].setText(sid2[j].toUpperCase());
                             }
                         }
                     }

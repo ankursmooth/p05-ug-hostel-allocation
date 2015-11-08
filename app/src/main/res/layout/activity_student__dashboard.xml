@@ -3,7 +3,7 @@
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:orientation="vertical"
-    android:background="@color/background"
+    android:background="@color/white"
     tools:context="com.example.ankurshukla.hostel.Activity.Student_Dashboard">
 
     <!-- including the customized toolbar replacing the actionbar
@@ -16,7 +16,6 @@
         android:layout_height="wrap_content"
         android:text="UserName"
         android:layout_marginTop="15dp"
-        android:background="@color/background"
         android:layout_gravity="center"
         android:id="@+id/display_sname"
         android:gravity="center"
@@ -25,11 +24,14 @@
     <!-- for displaying the no of notification
     if present so that student can check the notifications is present   -->
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="298dp"
         android:layout_height="wrap_content"
         android:id="@+id/student_notify"
+        android:text="afa ef "
         android:textSize="22dp"
         android:paddingLeft="10dp"/>
+
+
 
     <!--including layout which has all the buttons
     through which student can call and do all functions present in the app

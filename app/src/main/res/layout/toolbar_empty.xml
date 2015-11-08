@@ -13,8 +13,8 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Empy Rooms Available"
-        android:textColor="@color/background"
+        android:text="Available Empty Rooms"
+        android:textColor="@color/black"
         android:textSize="24dp"/>
 
 </android.support.v7.widget.Toolbar>

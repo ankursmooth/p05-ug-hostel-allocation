@@ -5,22 +5,22 @@
     xmlns:card_view="http://schemas.android.com/apk/res-auto">
 
 
+
 <LinearLayout  android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:layout_height="match_parent"
+
     android:orientation="vertical"
     tools:context="com.example.ankurshukla.hostel.Student_Dashboard_Activity.Search">
 
+    <include layout="@layout/toolbar_search"/>
 
     <Spinner
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:background="@color/lightgrey"
         android:id="@+id/search"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:paddingLeft="10dp"
         android:layout_marginTop="10dp"
         ></Spinner>
@@ -34,6 +34,8 @@
         android:paddingLeft="10dp"
         android:background="@layout/edittextlayout"
         android:singleLine="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:layout_marginTop="20dp"
         />
 
@@ -43,6 +45,8 @@
         android:layout_marginTop="20dp"
         android:layout_marginBottom="5dp"
         android:id="@+id/btn_Search"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:text="Search"/>
 
     <android.support.v7.widget.CardView
@@ -50,7 +54,9 @@
         android:layout_width="match_parent"
         android:layout_height="180dp"
         android:id="@+id/searchcard1"
-        android:layout_margin="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
         card_view:cardCornerRadius="2dp"
         card_view:contentPadding="10dp"
         android:layout_weight="0.61"
@@ -68,16 +74,19 @@
                >
 
                 <TextView
-                    android:layout_width="102dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Hostel :-"
+                    android:layout_weight="1"
+                    android:textStyle="bold"
                     android:textSize="25dp"
                   />
 
                 <TextView
-                    android:layout_width="205dp"
+                    android:layout_width="201dp"
                     android:layout_height="wrap_content"
                     android:textSize="25dp"
+                    android:textStyle="bold"
                     android:id="@+id/search_hostel1"/>
             </LinearLayout>
 
@@ -93,11 +102,13 @@
                     android:layout_height="wrap_content"
                     android:text="Room  :-"
                     android:textSize="25dp"
+                    android:textStyle="bold"
                     android:layout_weight="1"/>
 
                 <TextView
                     android:layout_width="204dp"
                     android:textSize="25dp"
+                    android:textStyle="bold"
                     android:layout_height="wrap_content"
                     android:id="@+id/search_room1"/>
             </LinearLayout>
@@ -114,7 +125,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="SN1"
-                    android:textSize="25dp"
+                    android:textStyle="bold"
+                    android:textSize="20dp"
                     android:id="@+id/searchroom1_sn1"
                     android:layout_weight="1"/>
 
@@ -123,7 +135,8 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/searchroom1_id1"
                     android:hint="ID1"
-                    android:textSize="25dp"
+                    android:textStyle="bold"
+                    android:textSize="20dp"
                     android:layout_weight="1"/>
             </LinearLayout>
 
@@ -140,7 +153,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="SN2"
-                    android:textSize="25dp"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
                     android:id="@+id/searchroom1_sn2"
                     android:layout_weight="1"/>
 
@@ -149,7 +163,8 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/searchroom1_id2"
                     android:hint="ID2"
-                    android:textSize="25dp"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
                     android:layout_weight="1"/>
             </LinearLayout>
 
@@ -161,7 +176,9 @@
         android:layout_width="match_parent"
         android:layout_height="180dp"
         android:id="@+id/searchcard2"
-        android:layout_margin="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
         card_view:cardCornerRadius="2dp"
         card_view:contentPadding="10dp"
         android:layout_weight="0.61"
@@ -182,6 +199,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Hostel :-"
+                    android:textStyle="bold"
                     android:textSize="25dp"
                     android:layout_weight="1"/>
 
@@ -189,6 +207,7 @@
                     android:layout_width="204dp"
                     android:layout_height="wrap_content"
                     android:textSize="25dp"
+                    android:textStyle="bold"
                     android:id="@+id/search_hostel2"/>
             </LinearLayout>
 
@@ -203,11 +222,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Room  :-"
+                    android:textStyle="bold"
                     android:textSize="25dp"
                     android:layout_weight="1"/>
 
                 <TextView
                     android:layout_width="204dp"
+                    android:textStyle="bold"
                     android:layout_height="wrap_content"
                     android:textSize="25dp"
                     android:id="@+id/search_room2"/>
@@ -225,7 +246,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="SN1"
-                    android:textSize="25dp"
+                    android:textStyle="bold"
+                    android:textSize="20dp"
                     android:id="@+id/searchroom2_sn1"
                     android:layout_weight="1"/>
 
@@ -234,7 +256,8 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/searchroom2_id1"
                     android:hint="ID1"
-                    android:textSize="25dp"
+                    android:textStyle="bold"
+                    android:textSize="20dp"
                     android:layout_weight="1"/>
             </LinearLayout>
 
@@ -251,7 +274,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="SN2"
-                    android:textSize="25dp"
+                    android:textStyle="bold"
+                    android:textSize="20dp"
                     android:id="@+id/searchroom2_sn2"
                     android:layout_weight="1"/>
 
@@ -260,7 +284,8 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/searchroom2_id2"
                     android:hint="ID2"
-                    android:textSize="25dp"
+                    android:textStyle="bold"
+                    android:textSize="20dp"
                     android:layout_weight="1"/>
             </LinearLayout>
 
@@ -272,7 +297,9 @@
         android:layout_width="match_parent"
         android:layout_height="180dp"
         android:id="@+id/searchcard3"
-        android:layout_margin="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
         card_view:cardCornerRadius="2dp"
         card_view:contentPadding="10dp"
         android:layout_weight="0.61"
@@ -294,11 +321,13 @@
                     android:layout_height="wrap_content"
                     android:text="Hostel :-"
                     android:textSize="25dp"
+                    android:textStyle="bold"
                     android:layout_weight="1"/>
 
                 <TextView
                     android:layout_width="209dp"
                     android:textSize="25dp"
+                    android:textStyle="bold"
                     android:layout_height="wrap_content"
                     android:id="@+id/search_hostel3"/>
             </LinearLayout>
@@ -315,11 +344,13 @@
                     android:layout_height="wrap_content"
                     android:text="Room  :-"
                     android:textSize="25dp"
+                    android:textStyle="bold"
                     android:layout_weight="1"/>
 
                 <TextView
                     android:layout_width="213dp"
                     android:textSize="25dp"
+                    android:textStyle="bold"
                     android:layout_height="wrap_content"
                     android:id="@+id/search_room3"/>
             </LinearLayout>
@@ -336,7 +367,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="SN1"
-                    android:textSize="25dp"
+                    android:textStyle="bold"
+                    android:textSize="20dp"
                     android:id="@+id/searchroom3_sn1"
                     android:layout_weight="1"/>
 
@@ -345,7 +377,8 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/searchroom3_id1"
                     android:hint="ID1"
-                    android:textSize="25dp"
+                    android:textStyle="bold"
+                    android:textSize="20dp"
                     android:layout_weight="1"/>
             </LinearLayout>
 
@@ -362,7 +395,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="SN2"
-                    android:textSize="25dp"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
                     android:id="@+id/searchroom3_sn2"
                     android:layout_weight="1"/>
 
@@ -371,7 +405,8 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/searchroom3_id2"
                     android:hint="ID2"
-                    android:textSize="25dp"
+                    android:textStyle="bold"
+                    android:textSize="20dp"
                     android:layout_weight="1"/>
             </LinearLayout>
 
@@ -387,7 +422,9 @@
         android:layout_width="match_parent"
         android:layout_height="180dp"
         android:id="@+id/searchcard4"
-        android:layout_margin="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
         card_view:cardCornerRadius="2dp"
         card_view:contentPadding="10dp"
         android:layout_weight="0.61"
@@ -409,11 +446,13 @@
                     android:layout_height="wrap_content"
                     android:text="Hostel :-"
                     android:textSize="25dp"
+                    android:textStyle="bold"
                     android:layout_weight="1"/>
 
                 <TextView
                     android:layout_width="207dp"
                     android:textSize="25dp"
+                    android:textStyle="bold"
                     android:layout_height="wrap_content"
                     android:id="@+id/search_hostel4"/>
             </LinearLayout>
@@ -429,12 +468,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Room  :-"
+                    android:textStyle="bold"
                     android:textSize="25dp"
                     android:layout_weight="1"/>
 
                 <TextView
                     android:layout_width="207dp"
                     android:textSize="25dp"
+                    android:textStyle="bold"
                     android:layout_height="wrap_content"
                     android:id="@+id/search_room4"/>
             </LinearLayout>
@@ -451,7 +492,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="SN1"
-                    android:textSize="25dp"
+                    android:textStyle="bold"
+                    android:textSize="20dp"
                     android:id="@+id/searchroom4_sn1"
                     android:layout_weight="1"/>
 
@@ -460,7 +502,8 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/searchroom4_id1"
                     android:hint="ID1"
-                    android:textSize="25dp"
+                    android:textStyle="bold"
+                    android:textSize="20dp"
                     android:layout_weight="1"/>
             </LinearLayout>
 
@@ -477,7 +520,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="SN2"
-                    android:textSize="25dp"
+                    android:textStyle="bold"
+                    android:textSize="20dp"
                     android:id="@+id/searchroom4_sn2"
                     android:layout_weight="1"/>
 
@@ -486,7 +530,8 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/searchroom4_id2"
                     android:hint="ID2"
-                    android:textSize="25dp"
+                    android:textStyle="bold"
+                    android:textSize="20dp"
                     android:layout_weight="1"/>
             </LinearLayout>
 
