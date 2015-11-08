@@ -13,6 +13,7 @@
         style="@style/DashboardButton"
         android:drawableTop="@drawable/notify"
         android:text="Notifications"
+        android:paddingTop="15dp"
         android:background="@color/lightgrey"
         android:textColor="@color/black"/>
 
@@ -22,6 +23,8 @@
         style="@style/DashboardButton"
         android:drawableTop="@drawable/warehuouse"
         android:text="Wing Allocation"
+        android:textSize="15dp"
+        android:paddingTop="10dp"
         android:background="@color/lightgrey"
         android:textColor="@color/black"/>
 
@@ -31,6 +34,7 @@
         style="@style/DashboardButton"
         android:drawableTop="@drawable/search"
         android:text="Search"
+        android:paddingTop="10dp"
         android:background="@color/lightgrey"
         android:textColor="@color/black"/>
 

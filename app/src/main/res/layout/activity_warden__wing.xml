@@ -45,5 +45,14 @@
         android:text="Do Allotment of Rooms"
         android:id="@+id/donealloc"/>
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="25dp"
+        android:text="Reset DataBase"
+        android:id="@+id/resetdb"/>
+
 
 </LinearLayout>

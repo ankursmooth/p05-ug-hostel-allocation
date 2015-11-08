@@ -7,8 +7,6 @@
     >
 
 
-
-
     <!--  Profile Button -->
     <Button
         android:id="@+id/btn_student_notify"

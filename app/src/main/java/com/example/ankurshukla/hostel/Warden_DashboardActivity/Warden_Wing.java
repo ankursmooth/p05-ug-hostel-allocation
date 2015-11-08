@@ -32,7 +32,7 @@ import java.util.Map;
 public class Warden_Wing extends AppCompatActivity {
 
     EditText stdate,edate;
-    Button startalloc,doalloc;
+    Button startalloc,doalloc,resetdb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +43,7 @@ public class Warden_Wing extends AppCompatActivity {
         edate = (EditText) findViewById(R.id.end_date);
         startalloc = (Button)findViewById(R.id.startalloc);
         doalloc = (Button)findViewById(R.id.donealloc);
+        resetdb = (Button)findViewById(R.id.resetdb);
 
 
 
@@ -74,6 +75,13 @@ public class Warden_Wing extends AppCompatActivity {
                 startalloc.setEnabled(true);
                 String wid = AppController.getString(Warden_Wing.this,"loginId");
                 doAllocation(wid);
+            }
+        });
+
+        resetdb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                resetDB();
             }
         });
 
@@ -296,6 +304,70 @@ public class Warden_Wing extends AppCompatActivity {
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("doallocation",allocate);
                 params.put("wid", warden_id);
+                return params;
+            }
+
+        };
+
+        AppController.getInstance().addToRequestQueue(strReq);
+    }
+
+    private  void resetDB(){
+        StringRequest strReq =new StringRequest(Request.Method.POST,
+                AppConfig.URL_RESET, new Response.Listener<String>() {
+
+            @Override
+            public void onResponse(String response) {
+
+
+                try {
+                    JSONObject jObj = new JSONObject(response);
+                    //Response from server
+
+                    String success = jObj.getString("success");
+                    String message = jObj.getString("message");
+
+                    final android.app.AlertDialog.Builder adb = new android.app.AlertDialog.Builder(Warden_Wing.this);
+
+                    adb
+                            .setMessage("DataBase Reset!!")
+                            .setCancelable(false)
+                            .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    Intent i = new Intent(Warden_Wing.this,Warden_DashBoard.class);
+                                    startActivity(i);
+                                    finish();
+                                }
+                            });
+
+                    AlertDialog dialog = adb.create();
+                    dialog.show();
+
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(),
+                        error.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        }) {
+
+            @Override
+            protected Map<String, String> getParams() {
+                // Posting params to register url
+                String resetDB = "Hello";
+                String pass = "12345";
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("doallocation",resetDB);
+                params.put("pass", pass);
                 return params;
             }
 

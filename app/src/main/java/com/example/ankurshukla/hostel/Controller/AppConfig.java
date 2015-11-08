@@ -21,6 +21,9 @@ public class AppConfig {
     //Allocation create
     public static String URl_CREATEALLOPROCESS="http://"+linkvar+"/createalloprocess.php";
 
+    //for resetting datbase
+    public  static  String URL_RESET = "http://"+linkvar+"/resetDB.php";
+
     //Allocation create
     public static String URl_CHECKFORM="http://"+linkvar+"/checkform.php";
 

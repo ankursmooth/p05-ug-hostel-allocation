@@ -282,6 +282,11 @@ public class Student_Dashboard extends AppCompatActivity {
     }
 
     @Override
+    public void onBackPressed() {
+        Toast.makeText(Student_Dashboard.this,"You Have been Logged out",Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
@@ -633,6 +638,8 @@ public class Student_Dashboard extends AppCompatActivity {
 
         AppController.getInstance().addToRequestQueue(strReq);
     }
+
+
 
 
 

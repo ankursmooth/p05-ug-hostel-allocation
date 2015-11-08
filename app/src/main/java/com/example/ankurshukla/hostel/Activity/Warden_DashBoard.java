@@ -101,6 +101,10 @@ public class Warden_DashBoard extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_dash_board, menu);
         return true;
     }
+    @Override
+    public void onBackPressed() {
+        Toast.makeText(Warden_DashBoard.this, "You Have been Logged out", Toast.LENGTH_SHORT).show();
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
