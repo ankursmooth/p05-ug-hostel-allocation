@@ -1,0 +1,78 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@mipmap/screen1"
+    tools:context=".MainActivity">
+
+
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:hint="User ID"
+        android:id="@+id/username"
+        android:padding="10dp"
+       android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:singleLine="true"
+        android:layout_marginBottom="10dp"
+        android:background="@color/white"
+        android:textColor="@color/input_login"
+        android:textColorHint="@color/input_login_hint"
+        android:layout_marginTop="120dp"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:id="@+id/psswrd"
+        android:inputType="textPassword"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@color/white"
+        android:hint="Password"
+        android:padding="10dp"
+        android:singleLine="true"
+        android:textColor="@color/input_login"
+        android:textColorHint="@color/input_login_hint"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Login As -"
+        android:textSize="30dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/white"
+        />
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="30dp"
+        android:background="@color/lightgrey"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:padding="10dp"
+        android:textColor="@color/input_login"
+        android:textColorHint="@color/input_login_hint"
+        android:id="@+id/spinnermain"></Spinner>
+
+    <Button
+        android:layout_width="169dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:id="@+id/login"
+        android:text="LOGIN"
+        android:padding="10dp"
+        android:background="@color/btn_login_bg"
+        android:textColor="@color/black"
+        android:layout_gravity="center"/>
+
+</LinearLayout>

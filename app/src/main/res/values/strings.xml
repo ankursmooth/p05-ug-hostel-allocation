@@ -1,0 +1,56 @@
+<resources>
+    <string name="app_name">UG Hostel Allocation</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="login_As">You Are:</string>
+    <string-array name="usergroup">
+        <item>Student</item>
+        <item>Warden</item>
+        <item>Viewers</item>
+    </string-array>
+    <string name="title_activity_dash_board">DashBoard</string>
+    <string name="title_activity_wing_form">WingForm</string>
+    <string-array name="hostel_name_M">
+        <item>BH1</item>
+        <item>BH2</item>
+    </string-array>
+    <string-array name="hostel_name_F">
+        <item>GH</item>
+    </string-array>
+    <string-array name="floor_types">
+        <item>Ground</item>
+        <item>First</item>
+        <item>Second</item>
+    </string-array>
+    <string-array name="NoOfRooms">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+    <string-array name="Search_Types">
+        <item>Name</item>
+        <item>SID</item>
+        <item>Contact</item>
+    </string-array>
+    <string name="title_activity_conflict_ui">Conflicts</string>
+    <string name="conflict">The Following Students name is already present in the submitted form:</string>
+    <string name="title_activity_notifications">Notifications</string>
+    <string name="title_activity_splash_screen">UG Hostel Allocation</string>
+    <string name="title_activity_student__dashboard">Student_Dashboard</string>
+    <string name="title_activity_warden__wing">Warden_Wing</string>
+    <string name="title_activity_student__notify">Student_Notify</string>
+    <string name="title_activity_dashboard">Dashboard</string>
+    <string name="title_activity_saved__form">Saved_Form</string>
+    <string name="title_activity_submitted__form">Submitted_Form</string>
+    <string name="title_activity_search">Search</string>
+    <string name="title_activity_search_result">SearchResult</string>
+    <string name="title_activity_special__request">Special_Request</string>
+    <string name="title_activity_submitted__request">Submitted_Request</string>
+    <string name="title_activity_warden__sr">Warden_Sr</string>
+    <string name="title_activity_empty__rooms">Empty_Rooms</string>
+    <string name="title_activity_room__allotment">Room_Allotment</string>
+    <string name="title_activity_feedback">Feedback</string>
+
+
+</resources>

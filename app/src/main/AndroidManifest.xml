@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.ankurshukla.hostel" >
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application
+        android:name=".Controller.AppController"
+        android:allowBackup="true"
+        android:debuggable="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name=".Activity.MainActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name=".Activity.Warden_DashBoard"
+            android:label="@string/title_activity_dash_board" >
+        </activity>
+        <activity
+            android:name=".Student_Dashboard_Activity.Preference"
+            android:label="@string/title_activity_wing_form" >
+        </activity>
+        <activity
+            android:name=".Student_Dashboard_Activity.WingForm"
+            android:label="WingForm" >
+        </activity>
+        <activity
+            android:name=".Warden_DashboardActivity.Notifications"
+            android:label="@string/title_activity_notifications" >
+        </activity>
+        <activity
+            android:name=".Activity.Student_Dashboard"
+            android:label="@string/title_activity_student__dashboard" >
+        </activity>
+        <activity
+            android:name=".Warden_DashboardActivity.Warden_Wing"
+            android:label="@string/title_activity_warden__wing" >
+        </activity>
+        <activity
+            android:name=".Student_Dashboard_Activity.Student_Notify"
+            android:label="@string/title_activity_student__notify" >
+        </activity>
+        <activity
+            android:name=".Activity.Dashboard"
+            android:label="@string/title_activity_dashboard" >
+        </activity>
+        <activity
+            android:name=".Student_Dashboard_Activity.Saved_Form"
+            android:label="@string/title_activity_saved__form" >
+        </activity>
+        <activity
+            android:name=".Student_Dashboard_Activity.Submitted_Form"
+            android:label="@string/title_activity_submitted__form" >
+        </activity>
+        <activity
+            android:name=".Activity.SplashScreen"
+            android:label="@string/title_activity_splash_screen" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Student_Dashboard_Activity.Search"
+            android:label="@string/title_activity_search" >
+        </activity>
+        <activity
+            android:name=".Student_Dashboard_Activity.Special_Request"
+            android:label="@string/title_activity_special__request" >
+        </activity>
+        <activity
+            android:name=".Student_Dashboard_Activity.Submitted_Request"
+            android:label="@string/title_activity_submitted__request" >
+        </activity>
+        <activity
+            android:name=".Warden_DashboardActivity.Warden_Sr"
+            android:label="@string/title_activity_warden__sr" >
+        </activity>
+        <activity
+            android:name=".Warden_DashboardActivity.Empty_Rooms"
+            android:label="@string/title_activity_empty__rooms" >
+        </activity>
+        <activity
+            android:name=".Warden_DashboardActivity.Room_Allotment"
+            android:label="@string/title_activity_room__allotment" >
+        </activity>
+        <activity
+            android:name=".Feedback"
+            android:label="@string/title_activity_feedback" >
+        </activity>
+    </application>
+
+</manifest>
