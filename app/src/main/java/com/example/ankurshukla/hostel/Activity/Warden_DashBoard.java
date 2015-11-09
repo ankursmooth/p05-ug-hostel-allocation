@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -36,14 +37,15 @@ public class Warden_DashBoard extends AppCompatActivity {
 
     Button wing,notification,search,special_req;
     TextView name;
-    TextView feedback;
+    Toolbar mtool;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_warden_dash_board);
 
-        feedback = (TextView)findViewById(R.id.toolbar_fb);
+        mtool = (Toolbar)findViewById(R.id.toolbar);
+        setSupportActionBar(mtool);
         wing= (Button) findViewById(R.id.btn_warden_wing);
         notification= (Button) findViewById(R.id.btn_warden_notify);
         name=(TextView)findViewById(R.id.display_name);
@@ -53,13 +55,6 @@ public class Warden_DashBoard extends AppCompatActivity {
         String display = AppController.getString(Warden_DashBoard.this ,"username");
         name.setText(display);
 
-        feedback.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(Warden_DashBoard.this, Feedback.class);
-                startActivity(i);
-            }
-        });
 
         wing.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -119,6 +114,9 @@ public class Warden_DashBoard extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
+        }else if(id == R.id.feedback){
+            Intent i =new Intent(Warden_DashBoard.this, Feedback.class);
+            startActivity(i);
         }
 
         return super.onOptionsItemSelected(item);

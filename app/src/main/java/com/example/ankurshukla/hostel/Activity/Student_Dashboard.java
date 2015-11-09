@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -58,7 +59,7 @@ public class Student_Dashboard extends AppCompatActivity {
     //pdate and pedate are present dates
     //rqid is used to redirect the submitted request if present else redirect them to fill one request
     Date presentdate,allocationenddate,allocationstartdate;
-    TextView feedback;
+    Toolbar mtool;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +68,8 @@ public class Student_Dashboard extends AppCompatActivity {
         search_allowed = intent.getStringExtra("searchallowed");
         setContentView(R.layout.activity_student__dashboard);
 
-        feedback = (TextView)findViewById(R.id.toolbar_fb);
+        mtool = (Toolbar)findViewById(R.id.toolbar);
+        setSupportActionBar(mtool);
         adate = AppController.getString(Student_Dashboard.this,"asdate");
         aedate = AppController.getString(Student_Dashboard.this,"andate");
         wing= (Button) findViewById(R.id.btn_student_wing);//link of the wing form button in xml to use in java
@@ -80,13 +82,7 @@ public class Student_Dashboard extends AppCompatActivity {
         String display = AppController.getString(Student_Dashboard.this, "username");//taking the name of user stored in the phone database
         name.setText(display);//displaying the name of user in dashboard
 
-        feedback.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(Student_Dashboard.this,Feedback.class);
-                startActivity(i);
-            }
-        });
+
 
 
         //number takees the number of notification in database and according to it is showing the no of notification if present

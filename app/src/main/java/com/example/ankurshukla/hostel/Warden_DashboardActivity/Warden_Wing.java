@@ -34,6 +34,7 @@ public class Warden_Wing extends AppCompatActivity {
     EditText stdate,edate;
     Button startalloc,doalloc,resetdb;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +45,7 @@ public class Warden_Wing extends AppCompatActivity {
         startalloc = (Button)findViewById(R.id.startalloc);
         doalloc = (Button)findViewById(R.id.donealloc);
         resetdb = (Button)findViewById(R.id.resetdb);
+
 
 
 
@@ -72,10 +74,10 @@ public class Warden_Wing extends AppCompatActivity {
         doalloc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startalloc.setEnabled(true);
-                String wid = AppController.getString(Warden_Wing.this,"loginId");
-                doAllocation(wid);
-            }
+                    startalloc.setEnabled(true);
+                    String wid = AppController.getString(Warden_Wing.this, "loginId");
+                    doAllocation(wid);
+                }
         });
 
         resetdb.setOnClickListener(new View.OnClickListener() {
@@ -133,6 +135,7 @@ public class Warden_Wing extends AppCompatActivity {
 
                     String creatorId  = AppController.getString(Warden_Wing.this, "creator_Id");
                     createNotification(creatorId,Sdate,SEdate);
+
 
                 } catch (JSONException e) {
                     e.printStackTrace();

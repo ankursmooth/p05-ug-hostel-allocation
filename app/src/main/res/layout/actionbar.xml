@@ -25,17 +25,7 @@
         android:textColor="@color/black"
         android:textSize="24dp"/>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="right"
-        android:text="Give FeedBack"
-        android:textStyle="bold"
-        android:layout_weight="1"
-        android:paddingRight="15dp"
-        android:id="@+id/toolbar_fb"
-        android:textColor="@color/black"
-        android:textSize="12dp"/>
+
 
     </LinearLayout>
 </android.support.v7.widget.Toolbar>
