@@ -15,7 +15,7 @@
         android:layout_marginRight="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="15dp"
-        android:hint="Start Date Of Allocation(yyyy-mm-dddd)"/>
+        android:hint="Start Date Of Allocation(yyyy-mm-dd)"/>
 
     <EditText
         android:layout_width="match_parent"
@@ -24,7 +24,7 @@
         android:layout_marginRight="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="15dp"
-        android:hint="End Date Of Allocation(yyyy-mm-dddd)"/>
+        android:hint="End Date Of Allocation(yyyy-mm-dd)"/>
 
     <Button
         android:layout_width="match_parent"
