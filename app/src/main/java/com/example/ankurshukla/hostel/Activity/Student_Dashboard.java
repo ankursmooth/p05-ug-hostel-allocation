@@ -170,24 +170,20 @@ public class Student_Dashboard extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(number.equals("0")){
-                    AlertDialog.Builder alertdialogBuilder=new AlertDialog.Builder(Student_Dashboard.this);
-                    // alertdialogBuilder.setTitle("");
-                    final AlertDialog alertDialog = alertdialogBuilder.create();
+                    final android.app.AlertDialog.Builder adb = new android.app.AlertDialog.Builder(Student_Dashboard.this);
 
-                    alertdialogBuilder
-                            .setMessage("No Notifications")
+                    adb
+                            .setMessage("No Notifications Now!!")
                             .setCancelable(false)
-                            .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-                                   alertDialog.dismiss();
+                                    dialog.dismiss();
                                 }
                             });
 
-
-
-                    // show it
-                    alertDialog.show();
+                    AlertDialog dialog =  adb.create();
+                    dialog.show();
                 }else {
                     String uid = AppController.getString(Student_Dashboard.this, "Student_id");
                     get_notification(uid, number);//student is id of student by which he has login and number is the no of notification
@@ -284,6 +280,9 @@ public class Student_Dashboard extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         Toast.makeText(Student_Dashboard.this,"You Have been Logged out",Toast.LENGTH_SHORT).show();
+        Intent i = new Intent(Student_Dashboard.this,MainActivity.class);
+        startActivity(i);
+        finish();
     }
 
     @Override

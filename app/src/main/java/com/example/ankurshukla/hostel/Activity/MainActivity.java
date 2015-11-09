@@ -184,6 +184,7 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this,message ,Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(MainActivity.this, Warden_DashBoard.class);
                     startActivity(i);
+                    finish();
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -317,6 +318,7 @@ public class MainActivity extends AppCompatActivity {
                     Intent i = new Intent(MainActivity.this, Student_Dashboard.class);
                     i.putExtra("searchallowed",searchallowed);
                     startActivity(i);
+                    finish();
 
                 } catch (JSONException e) {
                     e.printStackTrace();

@@ -104,6 +104,9 @@ public class Warden_DashBoard extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         Toast.makeText(Warden_DashBoard.this, "You Have been Logged out", Toast.LENGTH_SHORT).show();
+        Intent i = new Intent(Warden_DashBoard.this,MainActivity.class);
+        startActivity(i);
+        finish();
     }
 
     @Override

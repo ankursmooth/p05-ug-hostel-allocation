@@ -366,7 +366,7 @@ public class Warden_Wing extends AppCompatActivity {
                 String resetDB = "Hello";
                 String pass = "12345";
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("doallocation",resetDB);
+                params.put("resetDB",resetDB);
                 params.put("pass", pass);
                 return params;
             }
