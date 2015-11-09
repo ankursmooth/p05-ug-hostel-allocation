@@ -26,7 +26,6 @@
         android:layout_marginRight="10dp"
         android:layout_marginLeft="10dp"
         card_view:cardCornerRadius="2dp"
-
         card_view:contentPadding="10dp"
         android:layout_weight="2.35">
 
