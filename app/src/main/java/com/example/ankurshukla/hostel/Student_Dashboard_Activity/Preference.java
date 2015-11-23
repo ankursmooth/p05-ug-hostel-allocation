@@ -213,7 +213,7 @@ public class Preference extends AppCompatActivity {
                 final android.app.AlertDialog.Builder adb = new android.app.AlertDialog.Builder(Preference.this);
 
                 adb
-                        .setMessage("Please Enter Roll No Carefully , As room allocation will be done on that basis!!")
+                        .setMessage("Please Enter student id carefully , As room allocation will be done on that basis!!")
                         .setCancelable(false)
                         .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                             @Override
