@@ -1,0 +1,269 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="fill_parent"
+
+    xmlns:card_view="http://schemas.android.com/apk/res-auto">
+
+<LinearLayout
+     android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:orientation="vertical"
+
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.example.ankurshukla.hostel.Warden_DashboardActivity.Warden_Sr">
+
+    <include layout="@layout/toolbar_warden_sr"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:text="Requests For Room Change:"
+        android:textSize="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="8dp"/>
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        card_view:cardBackgroundColor="@color/background"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:id="@+id/wsr_c1"
+
+        card_view:cardCornerRadius="2dp"
+        card_view:contentPadding="10dp"
+        android:layout_weight="2.35">
+
+        <LinearLayout android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15dp"
+                android:text="ankur"
+                android:textStyle="bold|italic"
+                android:paddingLeft="10dp"
+                android:id="@+id/wsr_rno1"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:text="ankur"
+        android:textStyle="bold"
+        android:paddingLeft="8dp"
+        android:id="@+id/wsr_id1"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:text="aaefaf"
+        android:textStyle="bold"
+        android:id="@+id/wsr_msg1"
+        android:layout_marginTop="10dp"
+        android:paddingLeft="8dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="agsegsg"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:paddingLeft="8dp"
+        android:layout_marginTop="10dp"
+        android:id="@+id/wsr_date1"/>
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        card_view:cardBackgroundColor="@color/background"
+        android:id="@+id/wsr_c2"
+        card_view:cardCornerRadius="2dp"
+        card_view:contentPadding="10dp"
+        android:layout_weight="2.35">
+
+        <LinearLayout android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15dp"
+                android:textStyle="bold|italic"
+                android:text="ankur"
+                android:paddingLeft="10dp"
+                android:id="@+id/wsr_rno2"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:text="ankur"
+                android:paddingLeft="8dp"
+                android:id="@+id/wsr_id2"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:text="aaefaf"
+                android:textStyle="bold"
+                android:id="@+id/wsr_msg2"
+                android:layout_marginTop="10dp"
+                android:paddingLeft="8dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="agsegsg"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:paddingLeft="8dp"
+                android:layout_marginTop="10dp"
+                android:id="@+id/wsr_date2"/>
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/wsr_c3"
+        android:layout_marginBottom="10dp"
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:layout_marginTop="10dp"
+        card_view:cardBackgroundColor="@color/background"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        card_view:cardCornerRadius="2dp"
+        card_view:contentPadding="10dp"
+        android:layout_weight="2.35">
+
+        <LinearLayout android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15dp"
+                android:textStyle="bold|italic"
+                android:text="ankur"
+                android:paddingLeft="10dp"
+                android:id="@+id/wsr_rno3"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:text="ankur"
+                android:textStyle="bold"
+                android:paddingLeft="8dp"
+                android:id="@+id/wsr_id3"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:text="aaefaf"
+                android:id="@+id/wsr_msg3"
+                android:layout_marginTop="10dp"
+                android:paddingLeft="8dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="agsegsg"
+                android:textSize="20dp"
+                android:paddingLeft="8dp"
+                android:textStyle="bold"
+                android:layout_marginTop="10dp"
+                android:id="@+id/wsr_date3"/>
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/wsr_c4"
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        card_view:cardBackgroundColor="@color/background"
+        android:layout_marginRight="10dp"
+        card_view:cardCornerRadius="2dp"
+        android:layout_marginBottom="10dp"
+        card_view:contentPadding="10dp"
+        android:layout_weight="2.35">
+
+        <LinearLayout android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:textStyle="bold|italic"
+                android:layout_height="wrap_content"
+                android:textSize="15dp"
+                android:text="ankur"
+                android:paddingLeft="10dp"
+                android:id="@+id/wsr_rno4"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:text="ankur"
+                android:paddingLeft="8dp"
+                android:textStyle="bold"
+                android:id="@+id/wsr_id4"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:text="aaefaf"
+                android:textStyle="bold"
+                android:id="@+id/wsr_msg4"
+                android:layout_marginTop="10dp"
+                android:paddingLeft="8dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="agsegsg"
+                android:textStyle="bold"
+                android:textSize="20dp"
+                android:paddingLeft="8dp"
+                android:layout_marginTop="10dp"
+                android:id="@+id/wsr_date4"/>
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+
+
+</LinearLayout>
+</ScrollView>

@@ -1,0 +1,30 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.ankurshukla.hostel.Warden_DashboardActivity.Notifications"
+    android:weightSum="1">
+
+    <include layout="@layout/toolbar_wrnotify"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="181dp"
+        android:hint="Enter Notification to send"
+        android:id="@+id/wardnotify_msg"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/rect_text_edit"
+        android:gravity="top"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Send Notification"
+        android:id="@+id/wardnotify_send"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="15dp"/>
+
+</LinearLayout>

@@ -1,0 +1,52 @@
+<com.example.ankurshukla.hostel.DashboardLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_weight="1"
+    android:background="@color/background"
+     >
+
+
+    <!--  Profile Button -->
+    <Button
+        android:id="@+id/btn_warden_notify"
+        style="@style/DashboardButton"
+        android:drawableTop="@drawable/notify"
+        android:text="Notifications"
+        android:paddingTop="15dp"
+        android:background="@color/lightgrey"
+        android:textColor="@color/black"/>
+
+    <!--  Tasks Button -->
+    <Button
+        android:id="@+id/btn_warden_wing"
+        style="@style/DashboardButton"
+        android:drawableTop="@drawable/warehuouse"
+        android:text="Wing Allocation"
+        android:textSize="15dp"
+        android:paddingTop="10dp"
+        android:background="@color/lightgrey"
+        android:textColor="@color/black"/>
+
+    <!--  Upload Button -->
+    <Button
+        android:id="@+id/btn_warden_search"
+        style="@style/DashboardButton"
+        android:drawableTop="@drawable/search"
+        android:text="Search"
+        android:paddingTop="10dp"
+        android:background="@color/lightgrey"
+        android:textColor="@color/black"/>
+
+    <!--  Summary Button -->
+    <Button
+        android:id="@+id/btn_warden_special"
+        style="@style/DashboardButton"
+        android:drawableTop="@drawable/warehuouse"
+        android:text="Special Request"
+        android:background="@color/lightgrey"
+        android:textColor="@color/black"/>
+
+
+
+</com.example.ankurshukla.hostel.DashboardLayout>

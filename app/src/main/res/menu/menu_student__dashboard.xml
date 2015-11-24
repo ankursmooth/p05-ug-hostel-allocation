@@ -1,0 +1,16 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+   >
+
+    <item android:id="@+id/feedback"
+        android:title="FeedBack"
+        android:textColor="@color/black"
+        android:uiOptions="splitActionBarWhenNarrow"
+        app:showAsAction="never"/>
+
+
+
+
+
+</menu>

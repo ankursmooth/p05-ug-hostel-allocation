@@ -1,0 +1,169 @@
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto">
+
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background"
+        android:orientation="vertical"
+
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:weightSum="1">
+
+        <include layout="@layout/toolbar_submit"/>
+
+        <android.support.v7.widget.CardView
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:id="@+id/submitfl1"
+            android:layout_margin="5dp"
+            card_view:cardCornerRadius="2dp"
+            card_view:contentPadding="10dp"
+            android:layout_weight="2.35">
+
+            <LinearLayout android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Room Number 1:"
+                    android:textSize="20dp"
+                    android:textStyle="bold|italic"
+                    android:paddingLeft="10dp"
+                    android:id="@+id/submitrm1"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="90dp"
+                    android:hint="Roll No 1"
+                    android:id="@+id/submitid1rm1"
+                    android:paddingLeft="10dp"
+                    android:textStyle="bold"
+                    android:layout_weight="1"
+                    android:singleLine="true"
+                    android:layout_marginTop="20dp"
+                    />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="90dp"
+                    android:id="@+id/submitid2rm1"
+                    android:layout_weight="1"
+                    android:layout_marginTop="20dp"
+                    android:textStyle="bold"
+                    android:hint="Roll No 2"
+                    android:paddingLeft="10dp"/>
+
+
+
+
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:id="@+id/submitfl2"
+            android:layout_margin="5dp"
+            card_view:cardCornerRadius="2dp"
+            card_view:contentPadding="10dp"
+            android:layout_weight="2.35">
+
+            <LinearLayout android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Room Number 2:"
+                    android:textSize="20dp"
+                    android:textStyle="bold|italic"
+                    android:paddingLeft="10dp"
+                    android:id="@+id/submitrm2"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="90dp"
+                    android:hint="Roll No 1"
+                    android:id="@+id/submitid1rm2"
+                    android:textStyle="bold"
+                    android:paddingLeft="10dp"
+                    android:layout_weight="1"
+                    android:singleLine="true"
+                    android:layout_marginTop="20dp"
+                    />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="90dp"
+                    android:id="@+id/submitid2rm2"
+                    android:layout_weight="1"
+                    android:layout_marginTop="20dp"
+                    android:hint="Roll No 2"
+                    android:textStyle="bold"
+                    android:paddingLeft="10dp"/>
+
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:id="@+id/submitfl3"
+            android:layout_margin="5dp"
+            card_view:cardCornerRadius="2dp"
+            card_view:contentPadding="10dp"
+            android:layout_weight="2.35">
+
+            <LinearLayout android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Room Number 3:"
+                    android:textSize="20dp"
+                    android:paddingLeft="10dp"
+                    android:textStyle="bold|italic"
+                    android:id="@+id/submitrm3"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="90dp"
+                    android:hint="Roll No 1"
+                    android:id="@+id/submitid1rm3"
+                    android:paddingLeft="10dp"
+                    android:layout_weight="1"
+                    android:singleLine="true"
+                    android:textStyle="bold"
+                    android:layout_marginTop="20dp"
+                    />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="90dp"
+                    android:id="@+id/submitid2rm3"
+                    android:layout_weight="1"
+                    android:textStyle="bold"
+                    android:layout_marginTop="20dp"
+                    android:hint="Roll No 2"
+                    android:paddingLeft="10dp"/>
+
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+    </LinearLayout>
+</ScrollView>

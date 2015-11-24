@@ -11,6 +11,7 @@ response
   "success": 1,
   "message": "no of notifications for this user",
   "noofnotifications": 2
+  "searchallowed":0/1
   "allocationstdate": returns start date of allocation process default value is 2030-01-01
   "allocationnddate" : returns end date of allocation process... default value is 2030-01-01
   // if you get default value of allocationnddate that means that niether wing form nor search is allowed
@@ -48,6 +49,7 @@ response when no of notifications >0
   ],
   "success": 1,
   "message": "notifications for this user",
+  "searchallowed":0/1
   "noofnotifications": 2
 }
 */
@@ -93,13 +95,24 @@ if(isset($_POST ['getnotification'])){
                   $response["allocationnddate"] = "2030-01-01";
                 }
                 
+                $sql = "SELECT COUNT(*) AS num FROM allocation where 1";
+                $stmt = $pdo->prepare($sql);
+                
+                
+                $stmt->execute();
+                
+                $row = $stmt->fetch(PDO::FETCH_ASSOC);
+                if($row['num']>0)
+                  $response["searchallowed"]=1;
+                else
+                  $response["searchallowed"]=0;
                 echo json_encode($response);
         }
         else
         {
             $response["success"] = 0;
             $response["message"] = "Unknown Error";
-
+            $response["searchallowed"]=0;
             echo json_encode($response);
         }
     }
@@ -124,7 +137,17 @@ if(isset($_POST ['getnotification'])){
             $notiz["ndate"]=$notic["ndate"];
             array_push($notizes["notiz"], $notiz);
         }    
+        $sql = "SELECT COUNT(*) AS num FROM allocation where 1";
+        $stmt = $pdo->prepare($sql);
         
+        
+        $stmt->execute();
+        
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        if($row['num']>0)
+          $notizes["searchallowed"]=1;
+        else
+          $notizes["searchallowed"]=0;
         
         if($notizes){
             $notizes["success"] = 1;
